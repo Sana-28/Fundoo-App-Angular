@@ -1,0 +1,21 @@
+
+<h3 style="text-align:center"><i>User Login</i></h3>
+<mat-card>
+  <form style="text-align:center">
+    <div class="logincontainer">
+      <mat-form-field>
+          <input matInput placeholder="Email" type="email" name="email" [(ngModel)]="email">
+      </mat-form-field>
+    </div>
+
+    <div class="logincontainer"> 
+      <mat-form-field>
+          <input matInput placeholder="Password" type="password"  name="password" [(ngModel)]="password">
+      </mat-form-field>
+    </div>
+
+    <div class="button-row">
+            <button mat-button>Login</button>
+        </div>
+    </form> 
+  </mat-card>

@@ -1,0 +1,32 @@
+ <h3 style="text-align:center"><i>User Registration</i></h3>
+
+ <mat-card fxFlex="50" fxLayoutAlign="center">
+  <form style="text-align:center">
+    <div class="registercontainer">
+        <mat-form-field>
+            <input matInput placeholder="Name" name="name" type="text" [(ngModel)]="user.name" >
+        </mat-form-field>
+    </div>
+
+    <div class="registercontainer">
+      <mat-form-field>
+          <input matInput placeholder="Email" name="email" type="email" [(ngModel)]="user.email">
+      </mat-form-field>
+    </div>
+
+    <div class="registercontainer"> 
+      <mat-form-field>
+          <input matInput placeholder="Password" name="password" type="password" [(ngModel)]="user.password">
+      </mat-form-field>
+    </div>
+
+    <div class="registercontainer">
+      <mat-form-field>
+          <input matInput placeholder="MobileNo" name="mobileNo" type="tel" [(ngModel)]="user.mobileNo"> 
+      </mat-form-field>
+    </div>
+<div class="button-row">
+        <button mat-button>Register</button>
+</div>
+</form>
+</mat-card>
