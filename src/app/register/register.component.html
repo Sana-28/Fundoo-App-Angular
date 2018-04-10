@@ -1,32 +1,35 @@
- <h3 style="text-align:center"><i>User Registration</i></h3>
+ <!-- <h3 style="text-align:center"><i>User Registration</i></h3> -->
 
- <mat-card fxFlex="50" fxLayoutAlign="center">
-  <form style="text-align:center">
+ <div fxLayoutAlign="center center">
+ <mat-card style="width: max-content;margin-top:5%;">
+        <h3 style="text-align:center; color: blue"><i>User Registration</i></h3>
+  <form style="text-align:center" #registrationFrom="ngForm" (ngSubmit)="register()">
     <div class="registercontainer">
         <mat-form-field>
-            <input matInput placeholder="Name" name="name" type="text" [(ngModel)]="user.name" >
+            <input matInput placeholder="Name" name="name" type="text" [(ngModel)]="model.name" >
         </mat-form-field>
     </div>
 
     <div class="registercontainer">
       <mat-form-field>
-          <input matInput placeholder="Email" name="email" type="email" [(ngModel)]="user.email">
+          <input matInput placeholder="Email" name="email" type="email" [(ngModel)]="model.email">
       </mat-form-field>
     </div>
 
     <div class="registercontainer"> 
       <mat-form-field>
-          <input matInput placeholder="Password" name="password" type="password" [(ngModel)]="user.password">
+          <input matInput placeholder="Password" name="password" type="password" [(ngModel)]="model.password">
       </mat-form-field>
     </div>
 
     <div class="registercontainer">
       <mat-form-field>
-          <input matInput placeholder="MobileNo" name="mobileNo" type="tel" [(ngModel)]="user.mobileNo"> 
+          <input matInput placeholder="MobileNo" name="mobileNo" type="tel" [(ngModel)]="model.mobileNo"> 
       </mat-form-field>
     </div>
 <div class="button-row">
-        <button mat-button>Register</button>
+        <button mat-button color="primary" type="submit" >Register</button>
 </div>
 </form>
 </mat-card>
+</div>

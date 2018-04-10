@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import{ FormBuilder} from '@angular/forms';
 import { NgForm} from '@angular/forms';
 
 import  { User} from '../models/user.model';
+import { RegisterService } from '../register.service';
 
 @Component({
   selector: 'app-register',
@@ -12,12 +12,12 @@ import  { User} from '../models/user.model';
 export class RegisterComponent implements OnInit {
 
   user:User;
-  constructor() { 
-
+  model:any={};
+  constructor(private registerservice:RegisterService) { 
   }
 
   ngOnInit() {
-    this.resetForm();
+    //this.resetForm();
     }
 
   resetForm(form? : NgForm){
@@ -29,5 +29,10 @@ export class RegisterComponent implements OnInit {
       password:'',
       mobileNo:''
     }
+  }
+  /**Register Api */
+  register():void{
+    console.log(this.model);
+    this.registerservice.register('register',this.model).subscribe(data=>console.log(data));
   }
 }
