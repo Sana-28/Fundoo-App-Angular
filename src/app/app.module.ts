@@ -8,10 +8,13 @@ import { HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
-import { RegisterService } from './register.service';
+import { UserService } from './service/user.service';
 
 import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 const routes: Routes = [
   //{path:'register',component:RegisterComponent}
@@ -21,7 +24,10 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ForgotpasswordComponent,
+    HomeComponent,
+    ResetpasswordComponent
   ],
   
   imports: [
@@ -33,7 +39,7 @@ const routes: Routes = [
     HttpClientModule,
   ],
 
-  providers: [RegisterService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

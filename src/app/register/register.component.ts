@@ -1,8 +1,11 @@
+/*****
+ * @author Sana Shaikh
+ * @since 9/04/2018
+ * @description This is register component contains a method to register user.
+ */
 import { Component, OnInit } from '@angular/core';
 import { NgForm} from '@angular/forms';
-
-import  { User} from '../models/user.model';
-import { RegisterService } from '../register.service';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-register',
@@ -11,28 +14,33 @@ import { RegisterService } from '../register.service';
 })
 export class RegisterComponent implements OnInit {
 
-  user:User;
   model:any={};
-  constructor(private registerservice:RegisterService) { 
+  constructor(private userservice:UserService) { 
   }
 
+/*****
+ * @method resetForm
+ * @argument {form?:}
+ * @description This method is used to reset form fields to null
+ */
   ngOnInit() {
-    //this.resetForm();
+    this.resetForm();
     }
 
   resetForm(form? : NgForm){
     if(form!=null)
     form.reset();
-    this.user={
+    this.model={
       name:'',
       email:'',
       password:'',
       mobileNo:''
     }
   }
-  /**Register Api */
+
+  /*Register Api */
   register():void{
     console.log(this.model);
-    this.registerservice.register('register',this.model).subscribe(data=>console.log(data));
+    this.userservice.postservice('register',this.model).subscribe(data=>console.log(data));
   }
 }

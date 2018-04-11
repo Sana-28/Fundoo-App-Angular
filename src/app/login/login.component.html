@@ -1,23 +1,37 @@
 <div fxLayoutAlign="center center">
 <!-- <h3 style="text-align:center"><i>User Login</i></h3> -->
+
 <mat-card style="width: max-content;margin-top:5%;">
-    <h3 style="text-align:center; color: blue"><i>User Login</i></h3>
-  <form style="text-align:center">
+    <h3 style="text-align:left; color: blue"><i>Fundoo Notes</i></h3>
+    <h5 style="text-align:center; color: #3f51b5"><i>User Login</i></h5>
+
+  <form style="text-align:center" #loginForm="ngForm" (ngSubmit)="login()">
+
     <div class="logincontainer">
       <mat-form-field>
-          <input matInput placeholder="Email" type="email" name="email" [(ngModel)]="email">
+          <input matInput placeholder="Email" type="email" name="email" [(ngModel)]="model.email">
       </mat-form-field>
     </div>
 
     <div class="logincontainer"> 
       <mat-form-field>
-          <input matInput placeholder="Password" type="password"  name="password" [(ngModel)]="password">
+          <input matInput placeholder="Password" type="password"  name="password" [(ngModel)]="model.password">
       </mat-form-field>
     </div>
 
+    <div class="logincontainer" style="text-align:left;">
+        <a href="/forgotpassword">forgot password?</a>
+    </div>
+
+    <br> 
+
+    <div class="logincontainer" style="text-align:left;">
+        <a href="/register">register</a>
+    </div>
     <div class="button-row">
-            <button mat-button color="primary">Login</button>
+            <button mat-button color="primary"><a href="/home"></a>Login</button>
         </div>
     </form> 
+
   </mat-card>
 </div>
