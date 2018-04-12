@@ -10,19 +10,27 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { NotesComponent } from './notes/notes.component';
 
 const routes: Routes = [
-  {path:'',redirectTo: 'login',pathMatch: 'full'},
-  {path:'home',component:HomeComponent},
-  {path:'register',component:RegisterComponent},
-  {path:'login' ,component:LoginComponent},
-  {path:'forgetpassword', component:ForgotpasswordComponent},
-  {path:'resetpassword', component:ResetpasswordComponent}
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {
+    path: 'home', component: HomeComponent,
+    children: [
+      { path: '', redirectTo: 'createnotes', pathMatch: 'full' },
+      { path: 'createnotes', component: NotesComponent }
+    ]
+  },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'forgetpassword', component: ForgotpasswordComponent },
+  { path: 'resetpassword', component: ResetpasswordComponent }
+  // { path: 'createnotes', component: NotesComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes),],
- 
+
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -32,7 +32,8 @@ export class LoginComponent implements OnInit {
   login():boolean{
     console.log("loginForm",this.model);
     
-    if (this.userservice.postservice('login',this.model).subscribe(data=>console.log(data))) {
+    if (this.userservice.postservice('login',this.model).subscribe(res=>console.log(res)) ){
+      
       this.router.navigate(['/home']);
       return false;
     }

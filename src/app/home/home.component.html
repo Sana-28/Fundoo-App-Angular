@@ -1,7 +1,50 @@
-<!-- <p>
-  home works!
-</p> -->
-<mat-toolbar color="primary">
-  <mat-icon> menu</mat-icon>
-  <span> Fundoo Notes </span>
-</mat-toolbar>
+<div>
+  <mat-toolbar class="toptoolbar">
+
+    <div class="toolitems">
+      <button mat-icon-button (click)="sidenav.toggle()" href="#" name="Main menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <div class="toolitems">
+      <span> Fundoo Notes </span>
+    </div>
+
+    <div class="toolitems">
+      <button mat-icon-button (click)="refresh()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+
+    <div class="toolitems">
+      <button mat-icon-button (click)="list()">
+        <mat-icon>view_list</mat-icon>
+      </button>
+    </div>
+
+    <div class="toolitems">
+      <button mat-icon-button (click)="notify()">
+        <mat-icon>notifications_none</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container fxFlexFill class="example-container">
+    <mat-sidenav mode="side" #sidenav opened fxLayout="column" class="sidenav">
+      
+      <div fxLayout="column">
+        <div class="sidenavitem">
+          <a href="/home/createnotes" mat-button> 
+            <!-- <a [routerLink]="['createnotes']"></a>  -->
+            <mat-icon>lightbulb_outline</mat-icon> Note</a>
+        </div>
+
+      </div>
+    </mat-sidenav>
+    
+    <router-outlet></router-outlet> 
+
+  </mat-sidenav-container>
+
+</div>

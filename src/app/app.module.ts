@@ -15,6 +15,7 @@ import { UserService } from './service/user.service';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { NotesComponent } from './notes/notes.component';
 
 const routes: Routes = [
   //{path:'register',component:RegisterComponent}
@@ -27,7 +28,8 @@ const routes: Routes = [
     LoginComponent,
     ForgotpasswordComponent,
     HomeComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    NotesComponent
   ],
   
   imports: [
