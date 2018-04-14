@@ -41,6 +41,6 @@ export class RegisterComponent implements OnInit {
   /*Register Api */
   register():void{
     console.log(this.model);
-    this.userservice.postservice('register',this.model).subscribe(data=>console.log(data));
+    this.userservice.postService('register',this.model).subscribe(data=>console.log(data));
   }
 }

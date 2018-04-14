@@ -1,10 +1,9 @@
 <div fxLayoutAlign="center center">
   <mat-card class="card">
     <div contenteditable='true' class="canedit" (click)="show=!show">
-      Take a note...
+      <span class="text">Take a note...</span>
     </div>
 
-    <!-- <mat-icon>list</mat-icon> -->
   </mat-card>
 </div>
 
@@ -14,9 +13,44 @@
     <div contenteditable='true' data-text='Title' class="editable line-height" name="title" (input)="model.title=$event.target.innerHTML"></div>
     <div contenteditable='true' data-text='Take a note..' class="editable line-height" name="description" (input)="model.description=$event.target.innerHTML"></div>
 
-    <mat-card-actions>
+    <mat-card-actions class="text">
       <button mat-button type="submit" class="button" (click)="createNote()">DONE</button>
     </mat-card-actions>
   </mat-card>
 
+</div>
+
+
+<div class="class-container" fxLayoutAlign="center center">
+  <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="1000px" fxLayoutGap="30px"></div>
+
+  <mat-card style="width: max-content;top:50px;margin-left: 200px" *ngFor="let note of notes">
+    <div>
+      <mat-card-header>
+        {{note.title}}
+      </mat-card-header>
+    </div>
+    <mat-card-subtitle>
+      {{note.description}}
+    </mat-card-subtitle>
+
+    <div>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button type="submit" mat-menu-item (click)="updateStatus(note,1)">
+          <mat-icon>delete</mat-icon>
+          <span>Delete note</span>
+        </button>
+
+        <button type="submit" mat-menu-item (click)="addLabel()">
+          <mat-icon>label</mat-icon>
+          <span>Add Label</span>
+        </button>
+
+      </mat-menu>
+    </div>
+  </mat-card>
 </div>

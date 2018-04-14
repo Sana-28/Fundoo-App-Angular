@@ -10,6 +10,15 @@
     <div class="toolitems">
       <span> Fundoo Notes </span>
     </div>
+  
+  <mat-toolbar class="searchbar">
+    <div class="toolitems">
+      <button mat-icon-button (click)="search()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+    
 
     <div class="toolitems">
       <button mat-icon-button (click)="refresh()">
@@ -24,26 +33,46 @@
     </div>
 
     <div class="toolitems">
+      <button mat-icon-button (click)="apps()">
+        <mat-icon>apps</mat-icon>
+      </button>
+    </div>
+
+    <div class="toolitems">
       <button mat-icon-button (click)="notify()">
         <mat-icon>notifications_none</mat-icon>
+      </button>
+    </div>
+
+    <div class="toolitems">
+      <button mat-icon-button (click)="logout()">
+        <mat-icon>account_circle</mat-icon>
       </button>
     </div>
   </mat-toolbar>
 
   <mat-sidenav-container fxFlexFill class="example-container">
     <mat-sidenav mode="side" #sidenav opened fxLayout="column" class="sidenav">
-      
+
       <div fxLayout="column">
         <div class="sidenavitem">
-          <a href="/home/createnotes" mat-button> 
+          <a href="/home/createnotes" mat-button>
             <!-- <a [routerLink]="['createnotes']"></a>  -->
             <mat-icon>lightbulb_outline</mat-icon> Note</a>
         </div>
 
       </div>
+
+      <!-- <div>
+        <div class="sidenavitem">
+          <a href="/reminder" mat-button>
+          <mat-icon>reminder</mat-icon> Reminders</a>
+        </div>
+      </div> -->
+      
     </mat-sidenav>
-    
-    <router-outlet></router-outlet> 
+
+    <router-outlet></router-outlet>
 
   </mat-sidenav-container>
 

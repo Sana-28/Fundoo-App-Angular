@@ -19,6 +19,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+
 
 @NgModule(
     {
@@ -34,7 +36,8 @@ import { MatDialogModule } from '@angular/material/dialog';
             MatIconModule,
             MatMenuModule,
             MatSidenavModule,
-            MatDialogModule],
+            MatDialogModule,
+            MatSelectModule],
             
         exports:[
             MatButtonModule,
@@ -48,7 +51,8 @@ import { MatDialogModule } from '@angular/material/dialog';
             MatIconModule,
             MatMenuModule,
             MatSidenavModule,
-            MatDialogModule],
+            MatDialogModule,
+            MatSelectModule],
     }
 )
 

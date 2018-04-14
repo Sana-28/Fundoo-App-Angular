@@ -1,39 +1,47 @@
- <!-- <h3 style="text-align:center"><i>User Registration</i></h3> -->
+<div>
+    <mat-toolbar class="toptoolbar">
+        <h3 style="text-align:left; color: #ececf8">
+            <i>Fundoo Notes</i>
+        </h3>
 
- <div fxLayoutAlign="center center">
- <mat-card style="width: max-content;margin-top:5%;">
-        <h3 style="text-align:left; color: blue"><i>Fundoo Notes</i></h3>
-        <h5 style="text-align:center; color: #3f51b5"><i>User Registration</i></h5>
+        <div fxLayoutAlign="center center">
+            <mat-card style="width: max-content;margin-top: 250%;">
+               
+                <h5 style="text-align:center; color: blue">
+                    <i>User Registration</i>
+                </h5>
 
-  <form style="text-align:center" #registrationFrom="ngForm" (ngSubmit)="register()">
+                <form style="text-align:center" #registrationFrom="ngForm" (ngSubmit)="register()">
 
-    <div class="registercontainer">
-        <mat-form-field>
-            <input matInput placeholder="name" name="name" type="text" [(ngModel)]="model.name" >
-        </mat-form-field>
-    </div>
+                    <div class="registercontainer">
+                        <mat-form-field>
+                            <input matInput placeholder="name" name="name" type="text" [(ngModel)]="model.name">
+                        </mat-form-field>
+                    </div>
 
-    <div class="registercontainer">
-      <mat-form-field>
-          <input matInput placeholder="email" name="email" type="email" [(ngModel)]="model.email">
-      </mat-form-field>
-    </div>
+                    <div class="registercontainer">
+                        <mat-form-field>
+                            <input matInput placeholder="email" name="email" type="email" [(ngModel)]="model.email">
+                        </mat-form-field>
+                    </div>
 
-    <div class="registercontainer"> 
-      <mat-form-field>
-          <input matInput placeholder="password" name="password" type="password" [(ngModel)]="model.password">
-      </mat-form-field>
-    </div>
+                    <div class="registercontainer">
+                        <mat-form-field>
+                            <input matInput placeholder="password" name="password" type="password" [(ngModel)]="model.password">
+                        </mat-form-field>
+                    </div>
 
-    <div class="registercontainer">
-      <mat-form-field>
-          <input matInput placeholder="mobile number" name="mobileNo" type="tel" [(ngModel)]="model.mobileNo"> 
-      </mat-form-field>
-    </div>
-    
-    <div class="button-row">
-        <button mat-button color="primary" type="submit" >Register</button>
-</div>
-</form>
-</mat-card>
+                    <div class="registercontainer">
+                        <mat-form-field>
+                            <input matInput placeholder="mobile number" name="mobileNo" type="tel" [(ngModel)]="model.mobileNo">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="button-row">
+                        <button mat-button color="primary" type="submit">Register</button>
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+    </mat-toolbar>
 </div>

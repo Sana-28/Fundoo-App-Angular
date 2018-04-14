@@ -4,18 +4,17 @@ import { AppRoutingModule } from './app-routing.module';//defines route for diff
 import { MaterialModule} from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule} from '@angular/common/http';
+import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
-
-import { UserService } from './service/user.service';
-
-import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { NotesComponent } from './notes/notes.component';
+
+import { UserService } from './service/user.service';
 
 const routes: Routes = [
   //{path:'register',component:RegisterComponent}
