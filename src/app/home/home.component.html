@@ -57,19 +57,25 @@
       <div fxLayout="column">
         <div class="sidenavitem">
           <a href="/home/createnotes" mat-button>
-            <!-- <a [routerLink]="['createnotes']"></a>  -->
             <mat-icon>lightbulb_outline</mat-icon> Note</a>
         </div>
 
       </div>
 
-      <!-- <div>
+      <div>
         <div class="sidenavitem">
-          <a href="/reminder" mat-button>
-          <mat-icon>reminder</mat-icon> Reminders</a>
+          <a href="/home/trash" mat-button>
+          <mat-icon>delete</mat-icon> Trash</a>
         </div>
-      </div> -->
-      
+      </div>
+
+      <div>
+        <div class="sidenavitem">
+          <a href="/home/archieve" mat-button>
+          <mat-icon>assignment_returned</mat-icon>Archive</a>
+        </div>
+      </div>
+
     </mat-sidenav>
 
     <router-outlet></router-outlet>

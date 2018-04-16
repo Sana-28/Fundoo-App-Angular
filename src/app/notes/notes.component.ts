@@ -12,6 +12,7 @@ export class NotesComponent implements OnInit {
 
   model: any = {};
   notes: NotesResponse[];
+  inTrash:any={};
 
   constructor(private userservice: UserService) { }
 
@@ -21,7 +22,6 @@ export class NotesComponent implements OnInit {
         this.notes=response;
         console.log("Notes fetched successfully..", response)
       });
-  
     console.log(environment);
   }
 
@@ -32,8 +32,20 @@ export class NotesComponent implements OnInit {
       });
   };
 
-  getNotes(notes) {
+  refreshNote(): void {
+    this.userservice.getService('getnotes',this.notes).subscribe(response => {
+      this.notes = response;
+    });
+  };
 
-  
-  }
-}
+  updateStatusNote(note,status): void {
+    console.log("Move notes to trash..", note,status);
+
+    note.inTrash = status;
+    this.userservice.putService('updatenotes', note).subscribe(response => {
+      console.log(response);
+      this.refreshNote();
+    });
+  };
+  };
+

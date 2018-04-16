@@ -15,6 +15,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { NotesComponent } from './notes/notes.component';
 
 import { UserService } from './service/user.service';
+import { TrashComponent } from './trash/trash.component';
 
 const routes: Routes = [
   //{path:'register',component:RegisterComponent}
@@ -28,7 +29,8 @@ const routes: Routes = [
     ForgotpasswordComponent,
     HomeComponent,
     ResetpasswordComponent,
-    NotesComponent
+    NotesComponent,
+    TrashComponent
   ],
   
   imports: [

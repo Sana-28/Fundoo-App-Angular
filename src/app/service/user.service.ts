@@ -52,4 +52,9 @@ export class UserService {
     console.log(urlpath);
     return this.http.get<NotesResponse[]>(urlpath,this.httpOptions);
   }
+
+  deleteService(url,notes):Observable<NotesResponse[]>{
+    var urlpath=this.URL.concat(url);
+    return this.http.get<NotesResponse[]>(urlpath,this.httpOptions);
+  }
 }

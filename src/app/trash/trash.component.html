@@ -1,0 +1,68 @@
+
+<div class="class-container" fxLayoutAlign="center center">
+    <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="1000px" fxLayoutGap="30px"></div>
+    <div *ngFor="let note of notes">
+      <div *ngIf="note.inTrash===true">
+      <mat-card style="width: max-content;margin-top: 100px; margin-right: 2000px;">
+  
+        <mat-card-header>
+          {{note.title}}
+        </mat-card-header>
+  
+        <mat-card-subtitle>
+          {{note.description}}
+        </mat-card-subtitle>
+  
+        <div>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+  
+          <mat-menu #menu="matMenu">
+              <button  type="submit" mat-menu-item (click)="deleteForever(noteId)">
+                <span>Delete Forever</span>
+              </button>
+        
+              <button type="submit" mat-menu-item (click)="restore(note)">
+                <span>Restore</span>
+              </button>
+            </mat-menu>
+        </div>
+      </mat-card>
+    </div>
+    </div>
+  </div>
+
+
+<!-- <div class="class-container" fxLayoutAlign="center center">
+  <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="1000px" fxLayoutGap="30px"></div>
+
+  <div *ngFor="let note of notes">
+    <div *ngIf="note.inTrash===true">
+      <mat-card style="width: max-content;top:100px;margin-left: 200px">
+          <div>{{note.title}}</div>
+          <div>{{note.description}}</div>
+      </mat-card>
+    </div>
+  </div>
+
+  <div fxLayout="row">
+  <div>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button type="submit" mat-menu-item>
+
+        <span>Delete Forever</span>
+      </button>
+
+      <button type="submit" mat-menu-item>
+
+        <span>Restore</span>
+      </button>
+    </mat-menu>
+  </div>
+</div>
+</div> -->
