@@ -1,6 +1,12 @@
+/**
+* @author: SANA SHAIKh
+* @since: 9/April/2018
+* @description:This component is for trash contains 2 methods i.e. restore notes and delete notes forever
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { NotesResponse } from '../response/notesresponse';
-import { UserService } from '../service/user.service';
+import { UserService, NoteService } from '../service';
 
 @Component({
   selector: 'app-trash',
@@ -10,20 +16,17 @@ import { UserService } from '../service/user.service';
 export class TrashComponent implements OnInit {
 
   notes:NotesResponse[];
-  constructor(private userservice: UserService) { }
+  constructor(private userservice: UserService , private noteServiceObj : NoteService) { }
 
   ngOnInit() {
-    this.userservice.getService('getnotes', this.notes)
-    .subscribe(response => {
-      this.notes=response;
-      console.log("Notes fetched successfully..", response)
-    });
+    this.refreshNote();
   }
 
   refreshNote(): void {
-    this.userservice.getService('getnotes',this.notes).subscribe(response => {
-    this.notes = response;
- });
+    this.noteServiceObj.getNotes().subscribe(response => {
+          this.notes = response;
+          console.log("Notes fetched successfully..", response)
+       });
 };
   
 restore(note): void{
@@ -35,14 +38,14 @@ restore(note): void{
   });
 };
 
-deleteForever(noteId): void{
-  console.log("noteId",noteId);
+deleteForever(notes): void{
+  console.log("noteId",notes);
 
-  noteId.note;
-    this.userservice.deleteService('deletenotes',noteId).subscribe(response=>{
-      console.log("deleteNote  response",response);
-       this.refreshNote();
+    notes.noteId;
+    this.noteServiceObj.deleteNotes(notes)
+                          .subscribe(response=>{
+                            console.log("Deleted Successfully..",response);
+                              this.refreshNote();
   });
 };
-
 }

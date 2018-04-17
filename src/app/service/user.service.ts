@@ -46,15 +46,13 @@ export class UserService {
     return this.http.put(urlpath, note, this.httpOptions);
   }
 
-  getService(url,notes):Observable<NotesResponse[]>{
-    console.log(url,notes);
-    var urlpath=this.URL.concat(url);
-    console.log(urlpath);
-    return this.http.get<NotesResponse[]>(urlpath,this.httpOptions);
+  getService(url : string ,notes? : any):Observable<any>{
+    let urlpath=this.URL.concat(url);
+    return this.http.get<any>(urlpath,this.httpOptions);
   }
 
-  deleteService(url,notes):Observable<NotesResponse[]>{
+  deleteService(url,note):Observable<any>{
     var urlpath=this.URL.concat(url);
-    return this.http.get<NotesResponse[]>(urlpath,this.httpOptions);
+    return this.http.post<any>(urlpath,this.httpOptions);
   }
 }

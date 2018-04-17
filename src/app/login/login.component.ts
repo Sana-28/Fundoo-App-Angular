@@ -1,3 +1,9 @@
+/**
+* @author: SANA SHAIKh
+* @since: 9/April/2018
+* @description: This is login component contains login method  
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { NgForm } from '@angular/forms';
@@ -18,6 +24,7 @@ export class LoginComponent implements OnInit {
     this.resetForm();
   }
 
+  /**This method is to set form fields to null */
   //For Ngform only reset method is available
   resetForm(form?: NgForm) {
 
@@ -29,7 +36,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  //Login Api 
+  /**This method is to call login APi */
   login(): void {
     console.log("loginForm", this.model);
     this.userservice.postService('login', this.model).subscribe(response =>

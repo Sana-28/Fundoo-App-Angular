@@ -13,9 +13,11 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { HomeComponent } from './home/home.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { NotesComponent } from './notes/notes.component';
+import { TrashComponent } from './trash/trash.component';
+import { ArchiveComponent } from './archive/archive.component';
 
 import { UserService } from './service/user.service';
-import { TrashComponent } from './trash/trash.component';
+import { NoteService } from './service/note.service';
 
 const routes: Routes = [
   //{path:'register',component:RegisterComponent}
@@ -30,7 +32,8 @@ const routes: Routes = [
     HomeComponent,
     ResetpasswordComponent,
     NotesComponent,
-    TrashComponent
+    TrashComponent,
+    ArchiveComponent
   ],
   
   imports: [
@@ -42,7 +45,7 @@ const routes: Routes = [
     HttpClientModule,
   ],
 
-  providers: [UserService],
+  providers: [UserService, NoteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

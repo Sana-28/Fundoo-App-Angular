@@ -1,16 +1,16 @@
 
 <div class="class-container" fxLayoutAlign="center center">
-    <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="1000px" fxLayoutGap="30px"></div>
+    <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="1000px" fxLayoutGap="30px">
     <div *ngFor="let note of notes">
       <div *ngIf="note.inTrash===true">
-      <mat-card style="width: max-content;margin-top: 100px; margin-right: 2000px;">
+      <mat-card style="margin-top: 100px;margin-right: 20px;">
   
         <mat-card-header>
-          {{note.title}}
+          <div [innerHTML]="note.title"></div>
         </mat-card-header>
   
         <mat-card-subtitle>
-          {{note.description}}
+          <div [innerHTML]="note.description"></div>
         </mat-card-subtitle>
   
         <div>
@@ -19,7 +19,7 @@
           </button>
   
           <mat-menu #menu="matMenu">
-              <button  type="submit" mat-menu-item (click)="deleteForever(noteId)">
+              <button  type="submit" mat-menu-item (click)="deleteForever(note)">
                 <span>Delete Forever</span>
               </button>
         
@@ -32,37 +32,4 @@
     </div>
     </div>
   </div>
-
-
-<!-- <div class="class-container" fxLayoutAlign="center center">
-  <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="1000px" fxLayoutGap="30px"></div>
-
-  <div *ngFor="let note of notes">
-    <div *ngIf="note.inTrash===true">
-      <mat-card style="width: max-content;top:100px;margin-left: 200px">
-          <div>{{note.title}}</div>
-          <div>{{note.description}}</div>
-      </mat-card>
-    </div>
   </div>
-
-  <div fxLayout="row">
-  <div>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-
-    <mat-menu #menu="matMenu">
-      <button type="submit" mat-menu-item>
-
-        <span>Delete Forever</span>
-      </button>
-
-      <button type="submit" mat-menu-item>
-
-        <span>Restore</span>
-      </button>
-    </mat-menu>
-  </div>
-</div>
-</div> -->

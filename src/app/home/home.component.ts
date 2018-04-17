@@ -1,3 +1,9 @@
+/**
+* @author: SANA SHAIKh
+* @since: 9/April/2018
+* @description:This is home component which loads only after login
+*/
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({

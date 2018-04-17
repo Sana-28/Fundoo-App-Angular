@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../service/user.service';
+/**
+* @author: SANA SHAIKh
+* @since: 9/April/2018
+* @description: This is notes component contains methods to create and update notes
+*/
+
+import { Component, OnInit, Input } from '@angular/core';
+import { UserService, NoteService } from '../service';
 import { environment } from '../../environments/environment';
 import { NotesResponse } from '../response/notesresponse';
 
@@ -11,41 +17,59 @@ import { NotesResponse } from '../response/notesresponse';
 export class NotesComponent implements OnInit {
 
   model: any = {};
-  notes: NotesResponse[];
-  inTrash:any={};
+  notes: NotesResponse[]; //= [{noteId:0,title:"sample", description : "fdfsdf" }];
+  inTrash: any = {};
+  isArchive:any ={};
+  isPin: any={};
 
-  constructor(private userservice: UserService) { }
+  //@Input
+  constructor(private userservice: UserService, private noteServiceObj: NoteService) { }
 
+  /**This ngOnInit method loads all the notes at the time of initialization */
   ngOnInit() {
-    this.userservice.getService('getnotes', this.notes)
-      .subscribe(response => {
-        this.notes=response;
-        console.log("Notes fetched successfully..", response)
-      });
-    console.log(environment);
+    this.refreshNote();
   }
 
+  /**This method is to create notes */
   createNote(): void {
-    this.userservice.putService('createnotes', this.model)
-      .subscribe(response => {
-        console.log("Note Created successfully..", response);
-      });
+    this.noteServiceObj.createNotes(this.model)
+                      .subscribe(response => {
+                          console.log("Note Created successfully..", response, this.notes);
+                                             });
+
+    /*   let self = this;
+        this.noteServiceObj.createNotes(this.model).subscribe(function(response){
+          console.log("Note Created successfully..", response, self.notes,this.notes);
+        });
+    */
   };
 
   refreshNote(): void {
-    this.userservice.getService('getnotes',this.notes).subscribe(response => {
-      this.notes = response;
-    });
+    this.noteServiceObj.getNotes()
+                        .toPromise()
+                          .then(response => {
+                             this.notes = response;
+                             console.log("Notes fetched successfully");
+                                            });
   };
-
-  updateStatusNote(note,status): void {
-    console.log("Move notes to trash..", note,status);
-
-    note.inTrash = status;
-    this.userservice.putService('updatenotes', note).subscribe(response => {
-      console.log(response);
-      this.refreshNote();
-    });
-  };
-  };
+  
+  /**This method is to move the notes to trash */
+  updateNotes(note,status,field){
+    console.log("in method");
+   if(field =='trash'){
+      note.inTrash=status;
+      this.noteServiceObj.updateNotes(note)
+                          .subscribe(response => {
+                            console.log(response,"Moved notes to trash..");
+                             this.refreshNote();});
+    }
+    else if(field =='archive'){
+      note.isArchive=status;
+      this.noteServiceObj.updateNotes(note)
+                            .subscribe(response => {
+                                console.log(response,"Moved notes to archive...");
+                                   this.refreshNote();});
+    }
+  }
+};
 

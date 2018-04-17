@@ -1,3 +1,10 @@
+/**
+* @author: SANA SHAIKh
+* @since: 9/April/2018
+* @description: This is forgot password componet
+*/
+
+
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { NgForm } from '@angular/forms';

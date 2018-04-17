@@ -1,0 +1,25 @@
+<div class="class-container" fxLayoutAlign="center center">
+  <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="1000px" fxLayoutGap="30px">
+    <div *ngFor="let note of notes">
+      <div *ngIf="note.isArchive===true">
+        <mat-card style="width: max-content;margin-top: 100px;align-self: center;">
+
+          <mat-card-header>
+            <div [innerHTML]="note.title"></div>
+          </mat-card-header>
+
+          <mat-card-subtitle>
+            <div [innerHTML]="note.description"></div>
+          </mat-card-subtitle>
+
+          <div>
+            <button mat-icon-button type="submit" (click)="unArchive(note)">
+              <mat-icon>unarchive</mat-icon>
+            </button>
+
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

@@ -10,15 +10,15 @@
     <div class="toolitems">
       <span> Fundoo Notes </span>
     </div>
-  
-  <mat-toolbar class="searchbar">
-    <div class="toolitems">
-      <button mat-icon-button (click)="search()">
-        <mat-icon>search</mat-icon>
-      </button>
-    </div>
-  </mat-toolbar>
-    
+
+    <mat-toolbar class="searchbar">
+      <div class="toolitems">
+        <button mat-icon-button (click)="search()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar>
+
 
     <div class="toolitems">
       <button mat-icon-button (click)="refresh()">
@@ -56,7 +56,7 @@
 
       <div fxLayout="column">
         <div class="sidenavitem">
-          <a href="/home/createnotes" mat-button>
+          <a routerLink="/home/createnotes" routerLinkActive="active" mat-button>
             <mat-icon>lightbulb_outline</mat-icon> Note</a>
         </div>
 
@@ -64,15 +64,15 @@
 
       <div>
         <div class="sidenavitem">
-          <a href="/home/trash" mat-button>
-          <mat-icon>delete</mat-icon> Trash</a>
+          <a routerLink="/home/trash" routerLinkActive="active" mat-button>
+            <mat-icon>delete</mat-icon> Trash</a>
         </div>
       </div>
 
       <div>
         <div class="sidenavitem">
-          <a href="/home/archieve" mat-button>
-          <mat-icon>assignment_returned</mat-icon>Archive</a>
+          <a routerLink="/home/archieve" routerLinkActive="active" mat-button>
+            <mat-icon>assignment_returned</mat-icon>Archive</a>
         </div>
       </div>
 
