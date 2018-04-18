@@ -21,8 +21,8 @@ export class NotesComponent implements OnInit {
   inTrash: any = {};
   isArchive:any ={};
   isPin: any={};
+  pinSvg='/assets/icons/pin.svg';
 
-  //@Input
   constructor(private userservice: UserService, private noteServiceObj: NoteService) { }
 
   /**This ngOnInit method loads all the notes at the time of initialization */
@@ -68,7 +68,17 @@ export class NotesComponent implements OnInit {
       this.noteServiceObj.updateNotes(note)
                             .subscribe(response => {
                                 console.log(response,"Moved notes to archive...");
-                                   this.refreshNote();});
+                                   this.refreshNote();
+                                  });
+    }
+    else if(field== 'pin'){
+      note.isPin=status;
+      this.noteServiceObj.updateNotes(note)
+                          .subscribe(response=>{
+                            console.log(response,"Pin note..");
+                            this.refreshNote();
+                          });
+
     }
   }
 };

@@ -23,26 +23,27 @@ export class TrashComponent implements OnInit {
   }
 
   refreshNote(): void {
-    this.noteServiceObj.getNotes().subscribe(response => {
-          this.notes = response;
-          console.log("Notes fetched successfully..", response)
+    this.noteServiceObj.getNotes()
+                        .subscribe(response => {
+                            this.notes = response;
+                              console.log("Notes fetched successfully..", response)
        });
 };
   
 restore(note): void{
   console.log("Restore notes from trash..",note);
-  note.status=false;
-    this.userservice.putService('updatenotes',note).subscribe(response=>{
-      console.log("deleteNote  response",response);
-       this.refreshNote();
+            note.status=false;
+             this.userservice.putService('updatenotes',note).subscribe(response=>{
+               console.log("deleteNote  response",response);
+                this.refreshNote();
   });
 };
 
-deleteForever(notes): void{
-  console.log("noteId",notes);
+deleteForever(note): void{
+  console.log("noteId",note);
 
-    notes.noteId;
-    this.noteServiceObj.deleteNotes(notes)
+  note.noteId;
+    this.noteServiceObj.deleteNotes(note)
                           .subscribe(response=>{
                             console.log("Deleted Successfully..",response);
                               this.refreshNote();

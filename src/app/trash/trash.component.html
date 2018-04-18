@@ -20,10 +20,12 @@
   
           <mat-menu #menu="matMenu">
               <button  type="submit" mat-menu-item (click)="deleteForever(note)">
+                 <mat-icon>delete_forever</mat-icon> 
                 <span>Delete Forever</span>
               </button>
         
               <button type="submit" mat-menu-item (click)="restore(note)">
+                  <mat-icon>restore_page</mat-icon>
                 <span>Restore</span>
               </button>
             </mat-menu>

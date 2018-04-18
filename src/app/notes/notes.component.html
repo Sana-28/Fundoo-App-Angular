@@ -10,6 +10,7 @@
 <div fxLayoutAlign="center center" *ngIf="show" class="divbox">
 
   <mat-card style="width: 41%;">
+
     <div contenteditable='true' data-text='Title' class="editable line-height" name="title" (input)="model.title=$event.target.innerHTML"></div>
     <div contenteditable='true' data-text='Take a note..' class="editable line-height" name="description" (input)="model.description=$event.target.innerHTML"></div>
 
@@ -26,7 +27,9 @@
       <div *ngIf="note.inTrash===false">
         <!-- <note-details [note]="note" *ngFor="let note of notes"></note-details> -->
         <mat-card style="top:50px;">
-
+          <div style="margin-left:90%;">
+            <img src="/assets/icons/pin.svg" (click)="updateNotes(note,'true','pin')">
+          </div>
           <mat-card-header>
             {{note.title}}
           </mat-card-header>
@@ -53,15 +56,14 @@
                 </button>
               </mat-menu>
             </div>
-
-            
-
           </div>
+
           <div>
-              <button mat-button type="submit" (click)="updateNotes(note,'true','archive')">
-                <mat-icon>archive</mat-icon>
-              </button>
+            <button mat-button type="submit" (click)="updateNotes(note,'true','archive')">
+              <mat-icon>archive</mat-icon>
+            </button>
           </div>
+
         </mat-card>
       </div>
     </div>

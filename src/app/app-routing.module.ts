@@ -22,7 +22,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'createnotes', pathMatch: 'full' },
       { path: 'createnotes', component: NotesComponent },
       { path: 'trash', component:TrashComponent },
-      { path: 'archieve',component:ArchiveComponent }
+      { path: 'archive',component:ArchiveComponent }
     ]
   },
   { path: 'register', component: RegisterComponent },
