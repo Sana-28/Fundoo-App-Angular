@@ -13,6 +13,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { NotesComponent } from './notes/notes.component';
 import { TrashComponent } from './trash/trash.component';
 import { ArchiveComponent } from './archive/archive.component';
+import { ReminderComponent } from './reminder/reminder.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -22,13 +23,15 @@ const routes: Routes = [
       { path: '', redirectTo: 'createnotes', pathMatch: 'full' },
       { path: 'createnotes', component: NotesComponent },
       { path: 'trash', component:TrashComponent },
-      { path: 'archive',component:ArchiveComponent }
+      { path: 'archive', component:ArchiveComponent },
+      { path: 'reminder', component:ReminderComponent}
     ]
   },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forgetpassword', component: ForgotpasswordComponent },
   { path: 'resetpassword', component: ResetpasswordComponent }
+
   // { path: 'createnotes', component: NotesComponent }
 ];
 

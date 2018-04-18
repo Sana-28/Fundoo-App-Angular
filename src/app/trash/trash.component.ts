@@ -16,6 +16,8 @@ import { UserService, NoteService } from '../service';
 export class TrashComponent implements OnInit {
 
   notes:NotesResponse[];
+  inTrash: any = {};
+
   constructor(private userservice: UserService , private noteServiceObj : NoteService) { }
 
   ngOnInit() {
@@ -30,23 +32,29 @@ export class TrashComponent implements OnInit {
        });
 };
   
+/**
+* @method:This method is to restore the deleted notes
+*/
 restore(note): void{
   console.log("Restore notes from trash..",note);
-            note.status=false;
-             this.userservice.putService('updatenotes',note).subscribe(response=>{
-               console.log("deleteNote  response",response);
-                this.refreshNote();
-  });
+            note.inTrash=false;
+            this.noteServiceObj.updateNotes(note)
+                                .subscribe(response=>{
+                                   console.log(response);
+                                     this.refreshNote();
+                                });
 };
 
+/**
+* @method:This method is to delete notes permanently
+*/
 deleteForever(note): void{
   console.log("noteId",note);
-
-  note.noteId;
-    this.noteServiceObj.deleteNotes(note)
-                          .subscribe(response=>{
+                    this.noteServiceObj.deleteNotes(note)
+                          .subscribe(response => {
                             console.log("Deleted Successfully..",response);
                               this.refreshNote();
   });
 };
+
 }

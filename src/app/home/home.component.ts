@@ -5,6 +5,8 @@
 */
 
 import { Component, OnInit } from '@angular/core';
+import { UserService, NoteService } from '../service';
+import { NotesResponse } from '../response/notesresponse';
 
 @Component({
   selector: 'app-home',
@@ -14,10 +16,26 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   model:any={};
+  notes: NotesResponse[];
+  reminder='/assets/icons/remind.png';
 
-  constructor() { }
+  constructor(private userservice: UserService, private noteServiceObj: NoteService) { }
 
   ngOnInit() {
+   this.refresh();
+    }
+
+  refresh(): void {
+    this.noteServiceObj.getNotes()
+                        .toPromise()
+                          .then(response => {
+                             this.notes = response;
+                             console.log("Notes fetched successfully");
+                                            });
+  };
+
+  notify():void{
+
   }
 
 }

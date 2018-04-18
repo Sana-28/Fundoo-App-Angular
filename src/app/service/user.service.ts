@@ -47,12 +47,15 @@ export class UserService {
   }
 
   getService(url : string ,notes? : any):Observable<any>{
+    
     let urlpath=this.URL.concat(url);
     return this.http.get<any>(urlpath,this.httpOptions);
   }
 
   deleteService(url,note):Observable<any>{
+
     var urlpath=this.URL.concat(url);
-    return this.http.post<any>(urlpath,this.httpOptions);
+    console.log("Http opton",this.httpOptions);
+    return this.http.post<any>(urlpath,note,this.httpOptions);
   }
 }

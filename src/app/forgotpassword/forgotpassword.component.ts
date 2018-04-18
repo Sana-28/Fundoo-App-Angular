@@ -22,7 +22,7 @@ export class ForgotpasswordComponent implements OnInit {
   ngOnInit() {
   }
 
-/* Forgotpassword Api*/
+/**@method:This method is to call forgot password Api*/
 forgot():void
 {
   console.log(this.model);

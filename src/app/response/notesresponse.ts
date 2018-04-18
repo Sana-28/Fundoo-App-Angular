@@ -6,4 +6,5 @@ export class NotesResponse{
     inTrash:Boolean;
     isPin:Boolean;
     isArchive:Boolean;
+    color:string;
   }

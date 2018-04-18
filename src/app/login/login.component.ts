@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.resetForm();
   }
 
-  /**This method is to set form fields to null */
+  /**@method:This method is to set form fields to null */
   //For Ngform only reset method is available
   resetForm(form?: NgForm) {
 
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  /**This method is to call login APi */
+  /**@method:This method is to call login APi */
   login(): void {
     console.log("loginForm", this.model);
     this.userservice.postService('login', this.model).subscribe(response =>

@@ -16,21 +16,49 @@ import { NotesResponse } from '../response/notesresponse';
 })
 export class NotesComponent implements OnInit {
 
-  model: any = {};
-  notes: NotesResponse[]; //= [{noteId:0,title:"sample", description : "fdfsdf" }];
-  inTrash: any = {};
-  isArchive:any ={};
-  isPin: any={};
-  pinSvg='/assets/icons/pin.svg';
+  model     : any = {};
+  inTrash   : any = {};
+  isArchive : any = {};
+  isPin     : any = {};
+
+  notes     : NotesResponse[]; //= [{noteId:0,title:"sample", description : "fdfsdf" }];
+  
+  pinSvg    ='/assets/icons/pin.svg';
+  unpinSvg  ='/assets/icons/unpin.svg';
+  colorSvg  ='/assets/icons/colorSvg';
+
+  colors = [{
+    color: '#FF0000',
+    path: '/assets/icons/Red.png'
+  }, {
+    color: '#fcff77',
+    path: '/assets/icons/yellow.png'
+  }, {
+    color: '#80ff80',
+    path: '/assets/icons/green.png'
+  }, {
+    color: '#9ee0ff',
+    path: '/assets/icons/skyblue.png'
+  }, {
+    color: '#7daaf2',
+    path: '/assets/icons/blue.png'
+  }, {
+    color: '#9966ff',
+    path: '/assets/icons/purple.png'
+  }, {
+    color: '#ff99cc',
+    path: '/assets/icons/pink.png'
+  }
+  ];
 
   constructor(private userservice: UserService, private noteServiceObj: NoteService) { }
 
-  /**This ngOnInit method loads all the notes at the time of initialization */
+  /**@method:This ngOnInit method loads all the notes at the time of initialization */
   ngOnInit() {
     this.refreshNote();
   }
 
-  /**This method is to create notes */
+  /**@method:This method is to create notes */
   createNote(): void {
     this.noteServiceObj.createNotes(this.model)
                       .subscribe(response => {
@@ -44,42 +72,56 @@ export class NotesComponent implements OnInit {
     */
   };
 
+  /**@method:This method is to fetch notes */
   refreshNote(): void {
     this.noteServiceObj.getNotes()
                         .toPromise()
                           .then(response => {
                              this.notes = response;
-                             console.log("Notes fetched successfully");
+                              console.log("Notes fetched successfully");
                                             });
   };
+
+  update(note):void{
+    this.noteServiceObj.updateNotes(note)
+                        .subscribe(response => {
+                            console.log(response);
+                            this.refreshNote();});
+  }
   
-  /**This method is to move the notes to trash */
+  /**@method:This method is to move the notes to trash */
   updateNotes(note,status,field){
-    console.log("in method");
-   if(field =='trash'){
-      note.inTrash=status;
-      this.noteServiceObj.updateNotes(note)
-                          .subscribe(response => {
-                            console.log(response,"Moved notes to trash..");
-                             this.refreshNote();});
+
+    if(field =='trash'){
+       note.inTrash=status;
+        this.update(note);
+         console.log("Moved notes to trash..");
     }
+
     else if(field =='archive'){
       note.isArchive=status;
-      this.noteServiceObj.updateNotes(note)
-                            .subscribe(response => {
-                                console.log(response,"Moved notes to archive...");
-                                   this.refreshNote();
-                                  });
+       this.update(note);
+        console.log("Moved notes to archive...");
     }
-    else if(field== 'pin'){
-      note.isPin=status;
-      this.noteServiceObj.updateNotes(note)
-                          .subscribe(response=>{
-                            console.log(response,"Pin note..");
-                            this.refreshNote();
-                          });
 
+    else if(field == 'pin'){
+      note.isPin=status;
+       this.update(note);
+       console.log("Pin note..");
+    }
+
+    else if(field == 'pin'){
+      note.isPin=status;
+       this.update(note);
+        console.log("Unpinned note..");
+    }
+
+    else if(field == 'color'){
+     
+       this.update(note);
+        console.log("Set color");
     }
   }
+
 };
 
