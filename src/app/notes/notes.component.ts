@@ -81,47 +81,95 @@ export class NotesComponent implements OnInit {
                               console.log("Notes fetched successfully");
                                             });
   };
-
+  
+  /**@method:This method is to move the notes to trash
+   * @param:note,status,field
+   */
   update(note):void{
     this.noteServiceObj.updateNotes(note)
                         .subscribe(response => {
                             console.log(response);
                             this.refreshNote();});
   }
-  
-  /**@method:This method is to move the notes to trash */
+
   updateNotes(note,status,field){
 
     if(field =='trash'){
-       note.inTrash=status;
+
+        note.inTrash=status;
         this.update(note);
-         console.log("Moved notes to trash..");
+        console.log("Moved notes to trash..");
     }
 
     else if(field =='archive'){
-      note.isArchive=status;
-       this.update(note);
+
+        note.isArchive=status;
+        this.update(note);
         console.log("Moved notes to archive...");
     }
 
     else if(field == 'pin'){
-      note.isPin=status;
-       this.update(note);
-       console.log("Pin note..");
+
+        note.isPin=status;
+        this.update(note);
+        console.log("Pin note..");
     }
 
     else if(field == 'pin'){
-      note.isPin=status;
-       this.update(note);
+
+        note.isPin=status;
+        this.update(note);
         console.log("Unpinned note..");
     }
 
     else if(field == 'color'){
      
-       this.update(note);
+        this.update(note);
         console.log("Set color");
-    }
-  }
+      }
+  };
 
+/**@method:This method is to set reminder of notes
+ * @param:note,field
+ */
+remind(note):void{
+  this.noteServiceObj.updateNotes(note)
+                      .subscribe(response=>{
+                        console.log(response);
+                        this.refreshNote();
+                                            });
+}
+
+saveReminder(note,field){
+ 
+  var today =new Date();
+
+  if(field == 'today'){
+
+      today.setHours(20);
+      today.setMinutes(0);
+      today.setMilliseconds(0);
+      note.reminder= today;
+      this.remind(note);
+  }
+  else if(field == 'tomorrow'){
+
+      today.setDate(today.getDate()+1);
+      today.setHours(8);
+      today.setMinutes(0);
+      today.setMilliseconds(0);
+      note.reminder= today;
+      this.remind(note);
+
+  }else if(field == 'nextWeek'){
+
+      today.setDate(today.getDate()+6);
+      today.setHours(8);
+      today.setMinutes(0);
+      today.setMilliseconds(0);
+      note.reminder=today;
+      this.remind(note);
+  }
+}
 };
 

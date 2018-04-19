@@ -1,4 +1,6 @@
 <div fxLayoutAlign="center center">
+
+  <!-- Card to take note -->
   <mat-card class="card">
     <div contenteditable='true' class="canedit" (click)="show=!show">
       <span class="text">Take a note...</span>
@@ -7,9 +9,8 @@
   </mat-card>
 </div>
 
-
+<!-- Div shown on click -->
 <div fxLayoutAlign="center center" *ngIf="show" class="divbox">
-
   <mat-card style="width: 41%;">
     <div contenteditable='true' data-text='Title' class="editable line-height" name="title" (input)="model.title=$event.target.innerHTML"></div>
     <div contenteditable='true' data-text='Take a note..' class="editable line-height" name="description" (input)="model.description=$event.target.innerHTML"></div>
@@ -22,28 +23,28 @@
 
 <!-- Div to show pin notes -->
 <div class="class-container" fxLayoutAlign="center center">
-    <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="900px" fxLayoutGap="20px">
-      <div *ngFor="let note of notes">
-        <div *ngIf="note.isPin===true && note.isArchive===false && note.inTrash===false">
-            <mat-card class="pin" fxFlex="230px">
-                
-              <div style="margin-left: 90%;">
-                  <img src="{{unpinSvg}}" (click)="updateNotes(note,status,'pin')">
-              </div>
-               
-                  <mat-card-header>
-                      <div [innerHTML]="note.title"></div>
-                  </mat-card-header>
-      
-                  <mat-card-content>
-                      <div [innerHTML]="note.description"></div>
-                  </mat-card-content>
+  <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="900px" fxLayoutGap="20px">
+    <div *ngFor="let note of notes">
+      <div *ngIf="note.isPin===true && note.isArchive===false && note.inTrash===false">
+        <mat-card class="pin" fxFlex="230px">
 
-              </mat-card>
-        </div>
-        </div>
+          <div style="margin-left: 90%;">
+            <img src="{{unpinSvg}}" (click)="updateNotes(note,status,'pin')">
+          </div>
+
+          <mat-card-header>
+            <div [innerHTML]="note.title"></div>
+          </mat-card-header>
+
+          <mat-card-content>
+            <div [innerHTML]="note.description"></div>
+          </mat-card-content>
+
+        </mat-card>
       </div>
-</div> 
+    </div>
+  </div>
+</div>
 <!-- Close of Pin div -->
 
 <!-- Display cards that is not pin/trash/archive -->
@@ -53,18 +54,106 @@
       <div *ngIf="note.inTrash===false && note.isPin===false && note.isArchive===false">
         <!-- <note-details [note]="note" *ngFor="let note of notes"></note-details> -->
         <mat-card [style.background]="note.color" style="top:50px;">
+
           <div style="margin-left:90%;">
             <img src="/assets/icons/pin.svg" (click)="updateNotes(note,'true','pin')">
           </div>
+
           <mat-card-header>
             <div [innerHTML]="note.title"></div>
           </mat-card-header>
 
           <mat-card-subtitle>
-              <div [innerHTML]="note.description"></div>
+            <div [innerHTML]="note.description"></div>
           </mat-card-subtitle>
 
-          <div>
+          <!-- All buttons row Wrap -->
+          <div fxLayout="row wrap">
+
+            <!-- Reminder Div -->
+            <div>
+              <button mat-icon-button [matMenuTriggerFor]="remind">
+                <img src="/assets/icons/reminder.svg">
+              </button>
+
+              <mat-menu #remind="matMenu">
+                <div>
+                  <button type="submit" mat-menu-item>
+                    <b>Reminder:</b>
+                  </button>
+                </div>
+
+                <button type="submit" mat-menu-item>
+                  <div *ngFor="let note of notes">
+                    <div style="user-select: none;text-align: left;" (click)="saveReminder(note,'today')">
+                      <span> Later today &nbsp;&nbsp;&nbsp;</span>
+                      <span> 8:00 PM</span>
+                    </div>
+                  </div>
+                </button>
+
+                <button type="submit" mat-menu-item (click)="saveReminder(note,'tomorrow')">
+                  <div style="user-select: none;text-align: left;">
+                    <span>Tomorrow &nbsp;&nbsp;</span>
+                    <span> &nbsp;&nbsp; 8:00 PM</span>
+                  </div>
+                </button>
+
+                <button type="submit" mat-menu-item (click)="saveReminder(note,'nextWeek')">
+                  <div style="user-select: none;text-align: left;">
+                    <span>Next week &nbsp;&nbsp;</span>
+                    <span> &nbsp;&nbsp; Mon,8:00 AM</span>
+                  </div>
+                </button>
+
+                <div>
+                  <button mat-button [mat-menu-trigger-for]="calender">
+                    <mat-icon>schedule</mat-icon>
+                    <span>Pick date and time</span>
+                  </button>
+              </div>
+                  <mat-menu #calender="matMenu">
+                    <button mat-menu-item (click)="saveReminder(note,'pickDate')">
+                      <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                    </button>
+
+                  </mat-menu>
+
+                <button type="submit" mat-menu-item>
+                  <mat-icon>room</mat-icon>
+                  <span>Pick place</span>
+                </button>
+              </mat-menu>
+            </div>
+
+            <!-- Color Div -->
+            <div>
+              <button mat-icon-button [matMenuTriggerFor]="color">
+                <mat-icon>color_lens</mat-icon>
+                <!-- assets/icons/color.svg -->
+              </button>
+
+              <mat-menu #color="matMenu">
+                <div>
+                  <a *ngFor="let color of colors">
+                    <img src="{{color.path}}" (click)="note.color=color.color;updateNotes(note,'true','color')">
+                  </a>
+                </div>
+              </mat-menu>
+            </div>
+
+            <!-- Archive Div -->
+            <div>
+              <button mat-button type="submit" (click)="updateNotes(note,'true','archive')">
+                <mat-icon>archive</mat-icon>
+              </button>
+            </div>
+
+            <!-- Delete Div -->
             <div>
               <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
@@ -82,63 +171,11 @@
                 </button>
               </mat-menu>
             </div>
+
           </div>
-
-          <div>
-            <button mat-button type="submit" (click)="updateNotes(note,'true','archive')">
-              <mat-icon>archive</mat-icon>
-            </button>
-          </div>
-
-          <div>
-              <button mat-icon-button [matMenuTriggerFor]="color">
-                  <mat-icon>color_lens</mat-icon>
-                  <!-- assets/icons/color.svg -->
-                </button>
-
-                <mat-menu #color="matMenu">
-                  <div>
-                      <a *ngFor="let color of colors">
-                          <img src="{{color.path}}" (click)="note.color=color.color;updateNotes(note,'true','color')">
-                     </a>
-                  </div>
-                </mat-menu> 
-          </div>
-
-          <div>
-            <button mat-icon-button [matMenuTriggerFor]="menu">
-                <img src="/assets/icons/reminder.svg">
-            </button>
-
-            <mat-menu #menu="matMenu">
-                <button type="submit" mat-menu-item>
-                  <span>Later today</span>
-                </button>
-
-                <button type="submit" mat-menu-item>
-                  <span>Tomorrow</span>
-                </button>
-
-                <button type="submit" mat-menu-item>
-                  <span>Next week</span>
-                </button>
-
-                <button type="submit" mat-menu-item>
-                  <mat-icon>schedule</mat-icon>
-                  <span>Pick date and time</span>
-                </button>
-
-                <button type="submit" mat-menu-item>
-                    <mat-icon>room</mat-icon>
-                    <span>Pick place</span>
-                </button>
-            </mat-menu>
-          </div>
-
         </mat-card>
+
       </div>
     </div>
   </div>
 </div>
-
-

@@ -20,6 +20,8 @@ import { ReminderComponent } from './reminder/reminder.component';
 import { UserService } from './service/user.service';
 import { NoteService } from './service/note.service';
 
+import { FilterPipe } from './filter.pipe';
+
 
 const routes: Routes = [
   //{path:'register',component:RegisterComponent}
@@ -36,7 +38,8 @@ const routes: Routes = [
     NotesComponent,
     TrashComponent,
     ArchiveComponent,
-    ReminderComponent
+    ReminderComponent,
+    FilterPipe
   ],
   
   imports: [
@@ -46,6 +49,7 @@ const routes: Routes = [
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
+    
   ],
 
   providers: [UserService, NoteService],

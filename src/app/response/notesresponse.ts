@@ -7,4 +7,5 @@ export class NotesResponse{
     isPin:Boolean;
     isArchive:Boolean;
     color:string;
+    reminder:Date;
   }
