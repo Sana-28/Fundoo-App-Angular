@@ -23,8 +23,10 @@
                           <mat-chip color="primary" selected="true" class="matchip">
                               <mat-icon style="color: #fafafa;">schedule</mat-icon>
                               <label>{{note.reminder|date:'MMM dd,y, hh:mm a'}}</label>
+                              <img style="margin-left: 8px;" src="{{crossSvg}}" (click)="saveReminder(note,'null')">
                           </mat-chip>
                     </mat-chip-list>
+                 
                   </div>
             <div>
   

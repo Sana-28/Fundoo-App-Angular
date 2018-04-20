@@ -23,4 +23,8 @@ export class NoteService {
   deleteNotes(note): Observable<any>{
     return this.userServiceObj.deleteService('deletenotes',note);
   }
+
+  createLabel(label):Observable<any>{
+    return this.userServiceObj.postService('createlabel',label);
+  }
 }

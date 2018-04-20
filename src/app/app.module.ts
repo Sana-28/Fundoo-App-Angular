@@ -21,6 +21,7 @@ import { UserService } from './service/user.service';
 import { NoteService } from './service/note.service';
 
 import { FilterPipe } from './filter.pipe';
+import { LabelComponent } from './label/label.component';
 
 
 const routes: Routes = [
@@ -39,7 +40,8 @@ const routes: Routes = [
     TrashComponent,
     ArchiveComponent,
     ReminderComponent,
-    FilterPipe
+    FilterPipe,
+    LabelComponent
   ],
   
   imports: [

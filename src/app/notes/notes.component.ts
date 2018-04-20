@@ -26,6 +26,7 @@ export class NotesComponent implements OnInit {
   pinSvg    ='/assets/icons/pin.svg';
   unpinSvg  ='/assets/icons/unpin.svg';
   colorSvg  ='/assets/icons/colorSvg';
+  crossSvg  = '/assets/icons/cross.svg';
 
   colors = [{
     color: '#FF0000',
@@ -170,6 +171,21 @@ saveReminder(note,field){
       note.reminder=today;
       this.remind(note);
   }
+  else if(field == 'pickDate'){
+
+    today.setDate(today.getDate());
+    today.setHours(8);
+    today.setMinutes(0);
+    today.setMilliseconds(0);
+    note.reminder=today;
+    this.remind(note);
+  }
+
+  else if (field == 'null') {
+           
+    note.reminder=null;
+    this.remind(note);
+}
 }
 };
 
