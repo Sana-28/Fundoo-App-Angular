@@ -24,7 +24,10 @@ export class UserService {
 
   /*HttpClient is available as an injectable class, with methods 
   to perform HTTP requests. */
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    /*if(localStorage.getItem('Authorization'))
+      this.httpOptions.headers = this.httpOptions.headers.append('Authorization', localStorage.getItem('Authorization'));*/
+  }
 
   private URL = 'http://localhost:8080/ToDo-App/';
 

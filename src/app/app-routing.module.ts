@@ -10,7 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-import { NotesComponent } from './notes/notes.component';
+import { NoteListComponent } from './notes/note.list.component';
 import { TrashComponent } from './trash/trash.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { ReminderComponent } from './reminder/reminder.component';
@@ -22,7 +22,7 @@ const routes: Routes = [
     path: 'home', component: HomeComponent,
     children: [
       { path: '', redirectTo: 'createnotes', pathMatch: 'full' },
-      { path: 'createnotes', component: NotesComponent },
+      { path: 'createnotes', component: NoteListComponent },
       { path: 'trash', component:TrashComponent },
       { path: 'archive', component:ArchiveComponent },
       { path: 'reminder', component:ReminderComponent },

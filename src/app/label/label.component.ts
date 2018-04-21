@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MAT_DIALOG_DATA,MatDialogRef} from '@angular/material';
+
 import { Label } from '../response/labelresponse';
 import { NoteService } from '../service';
 
@@ -12,7 +14,7 @@ export class LabelComponent implements OnInit {
   model  : any = {};
   labels : Label[];
 
-  constructor(private noteServiceObj:NoteService) { }
+  constructor(private noteServiceObj:NoteService,public dialogRef:MatDialogRef<LabelComponent>) { }
 
   ngOnInit() {
   }
@@ -21,7 +23,8 @@ export class LabelComponent implements OnInit {
     createLabel(): void {
     this.noteServiceObj.createLabel(this.model)
                       .subscribe(response => {
-                          console.log("Label Created successfully..", response, this.labels);
+                          console.log("Label Created successfully..", response, this.labels)
+                          this.dialogRef.close();
                                              });
  };
 }

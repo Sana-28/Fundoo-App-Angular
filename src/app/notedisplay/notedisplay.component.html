@@ -1,0 +1,24 @@
+<div class="">
+
+
+    <mat-card class="pin" fxFlex="230px">
+
+        <div style="margin-left: 90%;">
+          <img src="{{unpinSvg}}" (click)="updateNotes(note,status,'pin')">
+        </div>
+
+        <mat-card-header>
+          <div [innerHTML]="note.title"></div>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div [innerHTML]="note.description"></div>
+        </mat-card-content>
+
+      </mat-card>
+    <!-- <span>Student Name</span>
+    {{student.studentName}}
+    
+    <button (click)="display(student)">Click</button> -->
+    
+    </div>

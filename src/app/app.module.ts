@@ -12,17 +12,17 @@ import { LoginComponent } from './login/login.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { HomeComponent } from './home/home.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-import { NotesComponent } from './notes/notes.component';
+import { NoteListComponent } from './notes/note.list.component';
 import { TrashComponent } from './trash/trash.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { ReminderComponent } from './reminder/reminder.component';
+import { LabelComponent } from './label/label.component';
+import { NotedisplayComponent } from './notedisplay/notedisplay.component';
 
 import { UserService } from './service/user.service';
 import { NoteService } from './service/note.service';
 
-import { FilterPipe } from './filter.pipe';
-import { LabelComponent } from './label/label.component';
-
+import { NoteFilterPipe } from './notefilter.pipe';
 
 const routes: Routes = [
   //{path:'register',component:RegisterComponent}
@@ -36,12 +36,15 @@ const routes: Routes = [
     ForgotpasswordComponent,
     HomeComponent,
     ResetpasswordComponent,
-    NotesComponent,
+    NoteListComponent,
     TrashComponent,
     ArchiveComponent,
     ReminderComponent,
-    FilterPipe,
-    LabelComponent
+    LabelComponent,
+
+    NoteFilterPipe,
+
+    NotedisplayComponent
   ],
   
   imports: [

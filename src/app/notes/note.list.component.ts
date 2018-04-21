@@ -8,13 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserService, NoteService } from '../service';
 import { environment } from '../../environments/environment';
 import { NotesResponse } from '../response/notesresponse';
+import { NoteFilterPipe } from '../notefilter.pipe';
+
 
 @Component({
   selector: 'app-notes',
-  templateUrl: './notes.component.html',
-  styleUrls: ['./notes.component.css']
+  templateUrl: './note.list.component.html',
+  styleUrls: ['./note.list.component.css']
 })
-export class NotesComponent implements OnInit {
+export class NoteListComponent implements OnInit {
 
   model     : any = {};
   inTrash   : any = {};
