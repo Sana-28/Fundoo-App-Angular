@@ -4,13 +4,14 @@
 * @description:This is home component which loads only after login
 */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
 
 import { UserService, NoteService } from '../service';
 import { NotesResponse } from '../response/notesresponse';
 import { LabelComponent } from '../label/label.component';
-import { Label } from '../response/labelresponse';
+import { LabelResponse } from '../response/labelresponse';
 
 @Component({
   selector: 'app-home',
@@ -21,14 +22,15 @@ export class HomeComponent implements OnInit {
 
   model:any={};
   notes: NotesResponse[];
-  label: Label[];
+  labels: LabelResponse[];
   reminder='/assets/icons/remind.png';
 
-  constructor(private userservice: UserService, private noteServiceObj: NoteService, private dialog: MatDialog) { }
+  constructor(private userservice: UserService, private noteServiceObj: NoteService, private dialog: MatDialog, private router : Router) { }
 
   ngOnInit() {
    this.refresh();
-    }
+    this.refreshLabel();
+      }
 
   refresh(): void {
     this.noteServiceObj.getNotes()
@@ -38,6 +40,20 @@ export class HomeComponent implements OnInit {
                              console.log("Notes fetched successfully");
                                             });
   };
+  
+  refreshLabel():void{
+    this.noteServiceObj.getLabels()
+                          .toPromise()
+                            .then(response=>{
+                              this.labels=response;
+                              console.log("Labels fetched successfully..",this.labels);
+                            })
+  }
+
+  logout() : void{
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
 
   notify():void{
 
@@ -46,7 +62,7 @@ export class HomeComponent implements OnInit {
   openLabel(){
     this.dialog.open(LabelComponent, {
      
-      width: '500px',
+      width: '350px',
       height: '210px'
     });
   };

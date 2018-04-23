@@ -189,5 +189,9 @@ saveReminder(note,field){
     this.remind(note);
 }
 }
+
+addLabel():void{
+  
+}
 };
 

@@ -5,6 +5,7 @@
 
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -16,10 +17,15 @@ import { ArchiveComponent } from './archive/archive.component';
 import { ReminderComponent } from './reminder/reminder.component';
 import { LabelComponent } from './label/label.component';
 
+import { AuthGuard } from './guard/auth.guard';
+import { LoginAuthGuard } from './guard/auth.guard';
+//import { OnlyLoggedInUsersGuard } from './guard/auth.guard';
+
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'home', component: HomeComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'createnotes', pathMatch: 'full' },
       { path: 'createnotes', component: NoteListComponent },
@@ -29,7 +35,7 @@ const routes: Routes = [
     ]
   },
   { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent,canActivate: [LoginAuthGuard]},
   { path: 'forgetpassword', component: ForgotpasswordComponent },
   { path: 'resetpassword', component: ResetpasswordComponent }
 

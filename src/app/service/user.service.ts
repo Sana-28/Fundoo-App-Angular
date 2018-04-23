@@ -41,12 +41,12 @@ export class UserService {
     return this.http.post<any>(urlpath, model, { observe: 'response' });
   }
 
-  putService(url, note): Observable<any>{
+  putService(url, label): Observable<any>{
 
-    console.log(url,note);
+    console.log(url,label);
     var urlpath = this.URL.concat(url);
     console.log(urlpath);
-    return this.http.put(urlpath, note, this.httpOptions);
+    return this.http.put(urlpath, label, this.httpOptions);
   }
 
   getService(url : string ,notes? : any):Observable<any>{
@@ -60,5 +60,9 @@ export class UserService {
     var urlpath=this.URL.concat(url);
     console.log("Http opton",this.httpOptions);
     return this.http.post<any>(urlpath,note,this.httpOptions);
+  }
+
+  isLoggedIn(): boolean {
+    return false;
   }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserService } from "./user.service"
 import { Observable } from 'rxjs/Observable';
 import { NotesResponse } from '../response/notesresponse';
+import { LabelResponse } from '../response/labelresponse';
 
 @Injectable()
 export class NoteService {
@@ -24,7 +25,11 @@ export class NoteService {
     return this.userServiceObj.deleteService('deletenotes',note);
   }
 
+  getLabels(): Observable<LabelResponse[]>{
+    return this.userServiceObj.getService('getlabels');
+  }
+
   createLabel(label):Observable<any>{
-    return this.userServiceObj.postService('createlabel',label);
+    return this.userServiceObj.putService('createlabel',label);
   }
 }

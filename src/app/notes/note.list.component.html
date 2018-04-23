@@ -24,8 +24,9 @@
 <!-- Div to show pin notes -->
 <div class="class-container" fxLayoutAlign="center center">
   <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="900px" fxLayoutGap="20px">
-    <div *ngFor="let note of notes | noteFilter: {isPin:true,inTrash:false,isArchive:false}">
-      <!-- <div *ngIf="note.isPin===true && note.isArchive===false && note.inTrash===false"> -->
+    <!-- <div *ngFor="let note of notes | noteFilter: {isPin:true,inTrash:false,isArchive:false}"> -->
+        <div *ngFor="let note of notes">
+          <div *ngIf="note.isPin===true && note.isArchive===false && note.inTrash===false" style="margin-left: 300px;">
         
               <!-- <app-notedisplay [notes]="note"></app-notedisplay> -->
  
@@ -44,7 +45,7 @@
           </mat-card-content>
 
         </mat-card>
-    <!-- </div> -->
+    </div>
   </div>
 </div>
 <!-- Close of Pin div -->
@@ -52,11 +53,12 @@
 <!-- Display cards that is not pin/trash/archive -->
 <div class="class-container" fxLayoutAlign="center center">
   <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="1000px" fxLayoutGap="30px">
-    <div *ngFor="let note of notes | noteFilter: {isPin:false,isTrash:false,isArchive:false}">
-        <!-- <div *ngIf="!note.isPin"> -->
-      <!-- <div *ngIf="note.inTrash===false && note.isPin===false && note.isArchive===false"> -->
+    <!-- <div *ngFor="let note of notes | noteFilter: {isPin:false,isTrash:false,isArchive:false}"> -->
+        <div *ngFor="let note of notes">
+      <!-- <div *ngIf="!note.isPin"> -->
+      <div *ngIf="note.inTrash===false && note.isPin===false && note.isArchive===false">
         <!-- <note-details [note]="note" *ngFor="let note of notes"></note-details> -->
-        <mat-card [style.background]="note.color" style="top:100px;">
+        <mat-card [style.background]="note.color" style="top:250px;">
 
           <div style="margin-left:90%;">
             <img src="/assets/icons/pin.svg" (click)="updateNotes(note,'true','pin')">
@@ -183,7 +185,7 @@
 
                 <button type="submit" mat-menu-item (click)="addLabel()">
                   <mat-icon>label</mat-icon>
-                  <span>Add Label</span>
+                  <span>Change Labels</span>
                 </button>
               </mat-menu>
             </div>
@@ -191,7 +193,7 @@
           </div>
         </mat-card>
 
-      <!-- </div> -->
+      
     </div>
   </div>
 </div>

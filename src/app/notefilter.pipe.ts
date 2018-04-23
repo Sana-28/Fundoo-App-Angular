@@ -27,7 +27,7 @@ export class NoteFilterPipe implements PipeTransform {
       }
       return check;
     }
-    return noteObj.isPin;
+    return noteObj;
   
     });
   }

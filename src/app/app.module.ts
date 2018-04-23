@@ -24,6 +24,8 @@ import { NoteService } from './service/note.service';
 
 import { NoteFilterPipe } from './notefilter.pipe';
 
+import { AuthGuard, LoginAuthGuard} from './guard/auth.guard';
+
 const routes: Routes = [
   //{path:'register',component:RegisterComponent}
 ];
@@ -56,8 +58,8 @@ const routes: Routes = [
     HttpClientModule,
     
   ],
-
-  providers: [UserService, NoteService],
+ entryComponents:[LabelComponent],
+  providers: [UserService, NoteService, AuthGuard, LoginAuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

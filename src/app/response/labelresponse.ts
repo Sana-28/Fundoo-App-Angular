@@ -1,4 +1,4 @@
-export class Label{
+export class LabelResponse{
 
     labelId    : number;
     labelTitle : string;
