@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserService, NoteService } from '../service';
 import { environment } from '../../environments/environment';
 import { NotesResponse } from '../response/notesresponse';
+import { LabelResponse } from '../response/labelresponse';
 import { NoteFilterPipe } from '../notefilter.pipe';
 
 
@@ -24,7 +25,9 @@ export class NoteListComponent implements OnInit {
   isPin     : any = {};
 
   notes     : NotesResponse[]; //= [{noteId:0,title:"sample", description : "fdfsdf" }];
-  
+  labels     : LabelResponse[];
+
+
   pinSvg    ='/assets/icons/pin.svg';
   unpinSvg  ='/assets/icons/unpin.svg';
   colorSvg  ='/assets/icons/colorSvg';
@@ -59,6 +62,7 @@ export class NoteListComponent implements OnInit {
   /**@method:This ngOnInit method loads all the notes at the time of initialization */
   ngOnInit() {
     this.refreshNote();
+    this.refreshLabel();
   }
 
   /**@method:This method is to create notes */
@@ -84,6 +88,15 @@ export class NoteListComponent implements OnInit {
                               console.log("Notes fetched successfully");
                                             });
   };
+
+  refreshLabel():void{
+    this.noteServiceObj.getLabels()
+                          .toPromise()
+                            .then(response=>{
+                              this.labels=response;
+                              console.log("Labels fetched successfully..");
+                            })
+  }
   
   /**@method:This method is to move the notes to trash
    * @param:note,status,field
@@ -191,7 +204,23 @@ saveReminder(note,field){
 }
 
 addLabel():void{
+  this.noteServiceObj.getLabels()
+                        .subscribe(response=>{
+              
+                          this.labels=response;
+                          console.log("Label fetched successfully..",response, this.labels);
+                        });
+}
+
+optionChange(status, labelId, noteId){
+ 
+  console.log("status changed..",status.bubbles);
+  this.noteServiceObj.addRemoveLabel(status, labelId, noteId)
   
+                        .subscribe(response=>{
+
+                        
+                        });
 }
 };
 

@@ -9,7 +9,7 @@ import { UserService, NoteService } from '../service';
 })
 export class NotedisplayComponent implements OnInit {
 
-  @Input() notes : any;
+  @Input() note : any;
   
   ngOnInit(){
 

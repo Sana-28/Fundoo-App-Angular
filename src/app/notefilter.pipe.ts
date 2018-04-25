@@ -18,8 +18,7 @@ export class NoteFilterPipe implements PipeTransform {
 
       var check=true;
       if(option){
-        for (var index in noteObj) {
-          console.log(noteObj[index]);
+        for (var index in option) {
             if(noteObj[index]!=option[index]){
               check=false;
               break;
@@ -27,8 +26,7 @@ export class NoteFilterPipe implements PipeTransform {
       }
       return check;
     }
-    return noteObj;
-  
+    return check;
     });
   }
 }

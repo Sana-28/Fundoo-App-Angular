@@ -41,28 +41,34 @@ export class UserService {
     return this.http.post<any>(urlpath, model, { observe: 'response' });
   }
 
-  putService(url, label): Observable<any>{
+  putService(url, model): Observable<any>{
 
-    console.log(url,label);
+    //console.log(url,model);
     var urlpath = this.URL.concat(url);
     console.log(urlpath);
-    return this.http.put(urlpath, label, this.httpOptions);
+    return this.http.put(urlpath, model, this.httpOptions);
   }
 
-  getService(url : string ,notes? : any):Observable<any>{
+  getService(url : string ,model? : any):Observable<any>{
     
     let urlpath=this.URL.concat(url);
     return this.http.get<any>(urlpath,this.httpOptions);
   }
 
-  deleteService(url,note):Observable<any>{
+  deleteService(url,model):Observable<any>{
 
     var urlpath=this.URL.concat(url);
-    console.log("Http opton",this.httpOptions);
-    return this.http.post<any>(urlpath,note,this.httpOptions);
+    console.log("Http option",this.httpOptions);
+    return this.http.post<any>(urlpath,model,this.httpOptions);
   }
 
   isLoggedIn(): boolean {
     return false;
+  }
+
+  putServiceLabel(url){
+    var urlpath=this.URL.concat(url);
+    console.log(urlpath);
+    return this.http.put(urlpath,this.httpOptions);
   }
 }

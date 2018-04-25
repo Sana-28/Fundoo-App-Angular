@@ -27,9 +27,14 @@ export class NoteService {
 
   getLabels(): Observable<LabelResponse[]>{
     return this.userServiceObj.getService('getlabels');
+
   }
 
   createLabel(label):Observable<any>{
     return this.userServiceObj.putService('createlabel',label);
+  }
+
+  addRemoveLabel(status,labelId,noteId):Observable<any>{
+    return this.userServiceObj.putServiceLabel('addremovelabel'+'/'+noteId+'/'+labelId+'/'+status.bubbles);
   }
 }

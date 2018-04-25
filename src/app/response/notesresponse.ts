@@ -8,4 +8,11 @@ export class NotesResponse{
     isArchive:Boolean;
     color:string;
     reminder:Date;
+    label:Set<Label> ;
+  }
+
+  export class Label{
+    
+    labelId    : number;
+    labelTitle : string;
   }
