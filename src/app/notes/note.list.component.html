@@ -158,7 +158,7 @@
               <mat-menu #color="matMenu">
                 <div>
                   <a *ngFor="let color of colors">
-                    <img src="{{color.path}}" (click)="note.color=color.color;updateNotes(note,'true','color')">
+                    <img src="{{color.path}}" (click)="note.color=color.color; updateNotes(note,'true','color')">
                   </a>
                 </div>
               </mat-menu>

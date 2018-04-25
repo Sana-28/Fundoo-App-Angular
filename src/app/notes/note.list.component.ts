@@ -216,11 +216,8 @@ optionChange(status, labelId, noteId){
  
   console.log("status changed..",status.bubbles);
   this.noteServiceObj.addRemoveLabel(status, labelId, noteId)
-  
                         .subscribe(response=>{
-
-                        
+                          console.log("status changed..");
                         });
 }
 };
-
