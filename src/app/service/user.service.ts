@@ -1,3 +1,5 @@
+
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'; //use to share data b/w components
@@ -44,7 +46,7 @@ export class UserService {
 
   putService(url, model): Observable<any>{
 
-    //console.log(url,model);
+    console.log('testinggg',url,model);
     var urlpath = this.URL.concat(url);
     console.log(urlpath);
     return this.http.put(urlpath, model, this.httpOptions);
@@ -72,7 +74,6 @@ export class UserService {
     console.log(urlpath);
     return this.http.put(urlpath,this.httpOptions);
   }
-
 
   getUser(url):Observable<CurrentUserResp>{
     

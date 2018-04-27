@@ -8,16 +8,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { HomeComponent } from './component/home/home.component';
+import { ForgotpasswordComponent } from './component/forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { NoteListComponent } from './notes/note.list.component';
 import { TrashComponent } from './trash/trash.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { ReminderComponent } from './reminder/reminder.component';
 
-import { AuthGuard } from './guard/auth.guard';
-import { LoginAuthGuard } from './guard/auth.guard';
+import { AuthGuard } from './authguard/auth.guard';
+import { LoginAuthGuard } from './authguard/auth.guard';
 //import { OnlyLoggedInUsersGuard } from './guard/auth.guard';
 
 const routes: Routes = [

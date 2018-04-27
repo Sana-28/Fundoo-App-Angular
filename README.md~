@@ -27,20 +27,21 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 # FundooNotes-Angular
 	It contains COMPONENTs and Services related to USer and Notes.
-##UserComponent 
+
+# UserComponent 
 	Its contains registration,login,forgot password and reset password COMPOnents
 
-##NoteComponent
+# NoteComponent
 	It contains all the notes related Components, i.e. Note, Reminder, Trash, Archive,Pin.
 
-##Services
+# Services
 	It contains services related to user and notes,i.e. userService, NoteService, LabelService,CollaboratorService. 
 
-##Getting Started
+# Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-##Prerequisites
+# Prerequisites
 
 What things you need to install??
 visual studio code to run your code on local machine
@@ -59,7 +60,7 @@ CHECK: Installed or not??
 	npm -v;
 	ng -v;
 
-##ANGULAR 5
+# ANGULAR 5
 To add Any Package:
 npm install --save @angular/material @angular/cdk
 
@@ -69,5 +70,5 @@ ng generate component 'component name here'
 To create Services:
 ng generate service 'service name here'
 
-##Author
+# Author
 SANA SHAIkh

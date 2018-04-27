@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
 import { environment } from '../../environments/environment';
 
-import { CollaboratorComponent } from '../collaborator/collaborator.component';
+import { CollaboratorComponent } from '../component/collaborator/collaborator.component';
 
 import { NotesResponse } from '../response/notesresponse';
 import { LabelResponse } from '../response/labelresponse';
@@ -30,7 +30,7 @@ export class NoteListComponent implements OnInit {
   isPin     : any = {};
 
   notes     : NotesResponse[]; //= [{noteId:0,title:"sample", description : "fdfsdf" }];
-  labels     : LabelResponse[];
+  labels    : LabelResponse[];
 
 
   pinSvg    ='/assets/icons/pin.svg';

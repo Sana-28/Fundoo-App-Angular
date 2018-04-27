@@ -8,10 +8,10 @@ import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
 
-import { UserService, NoteService } from '../service';
-import { NotesResponse } from '../response/notesresponse';
-import { LabelComponent } from '../label/label.component';
-import { LabelResponse } from '../response/labelresponse';
+import { UserService, NoteService } from '../../service';
+import { NotesResponse } from '../../response/notesresponse';
+import { LabelComponent } from '../../label/label.component';
+import { LabelResponse } from '../../response/labelresponse';
 
 @Component({
   selector: 'app-home',

@@ -10,8 +10,8 @@ import { MaterialModule} from './material.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
-import { HomeComponent } from './home/home.component';
+import { ForgotpasswordComponent } from './component/forgotpassword/forgotpassword.component';
+import { HomeComponent } from './component/home/home.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { NoteListComponent } from './notes/note.list.component';
 import { TrashComponent } from './trash/trash.component';
@@ -19,7 +19,7 @@ import { ArchiveComponent } from './archive/archive.component';
 import { ReminderComponent } from './reminder/reminder.component';
 import { LabelComponent } from './label/label.component';
 import { NotedisplayComponent } from './notedisplay/notedisplay.component';
-import { CollaboratorComponent } from './collaborator/collaborator.component';
+import { CollaboratorComponent } from './component/collaborator/collaborator.component';
 
 
 import { UserService } from './service/user.service';
@@ -28,7 +28,7 @@ import { CollaboratorService } from './service/collaborator.service';
 
 import { NoteFilterPipe } from './notefilter.pipe';
 
-import { AuthGuard, LoginAuthGuard} from './guard/auth.guard';
+import { AuthGuard, LoginAuthGuard} from './authguard/auth.guard';
 
 const routes: Routes = [
   //{path:'register',component:RegisterComponent}
@@ -52,7 +52,7 @@ const routes: Routes = [
     NoteFilterPipe,
 
     NotedisplayComponent
-  ],
+    ],
   
   imports: [
     BrowserModule,
