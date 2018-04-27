@@ -1,3 +1,9 @@
+/**
+* @author: SANA SHAIKh
+* @since: 9/April/2018
+* @description: This is collaborator component contains methods to add collaborator on notes
+*/
+
 import { Component, OnInit, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA,MatDialogRef} from '@angular/material';
 import { importType } from '@angular/compiler/src/output/output_ast';
