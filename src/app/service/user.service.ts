@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject'; //use to share data b/w 
 import { Observable } from 'rxjs/Observable';
 import { Headers, RequestOptions, Response } from '@angular/http';
 import { NotesResponse } from '../response/notesresponse';
+import { CurrentUserResp } from '../response/currentuserresp';
 
 /*It looks similar to component file but  but it uses the @Injectable() 
 decorator, which means we can import it. into other components and access
@@ -70,5 +71,12 @@ export class UserService {
     var urlpath=this.URL.concat(url);
     console.log(urlpath);
     return this.http.put(urlpath,this.httpOptions);
+  }
+
+
+  getUser(url):Observable<CurrentUserResp>{
+    
+    let urlpath=this.URL.concat(url);
+    return this.http.get<CurrentUserResp>(urlpath,this.httpOptions);
   }
 }

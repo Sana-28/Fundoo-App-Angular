@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
 
   };
 
-  openLabel(){
+  openLabelDialog(){
     this.dialog.open(LabelComponent, {
      
       width: '350px',

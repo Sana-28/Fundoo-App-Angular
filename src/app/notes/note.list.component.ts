@@ -5,12 +5,17 @@
 */
 
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService, NoteService } from '../service';
+import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
 import { environment } from '../../environments/environment';
+
+import { CollaboratorComponent } from '../collaborator/collaborator.component';
+
 import { NotesResponse } from '../response/notesresponse';
 import { LabelResponse } from '../response/labelresponse';
+
 import { NoteFilterPipe } from '../notefilter.pipe';
 
+import { UserService, NoteService } from '../service';
 
 @Component({
   selector: 'app-notes',
@@ -57,7 +62,7 @@ export class NoteListComponent implements OnInit {
   }
   ];
 
-  constructor(private userservice: UserService, private noteServiceObj: NoteService) { }
+  constructor(private userservice: UserService, private noteServiceObj: NoteService,private dialog: MatDialog) { }
 
   /**@method:This ngOnInit method loads all the notes at the time of initialization */
   ngOnInit() {
@@ -206,7 +211,6 @@ saveReminder(note,field){
 addLabel():void{
   this.noteServiceObj.getLabels()
                         .subscribe(response=>{
-              
                           this.labels=response;
                           console.log("Label fetched successfully..",response, this.labels);
                         });
@@ -214,10 +218,18 @@ addLabel():void{
 
 optionChange(status, labelId, noteId){
  
-  console.log("status changed..",status.bubbles);
+  console.log("Checkk..",status.bubbles);
   this.noteServiceObj.addRemoveLabel(status, labelId, noteId)
                         .subscribe(response=>{
                           console.log("status changed..");
                         });
 }
+
+openCollaboratorDialog(note){
+  this.dialog.open(CollaboratorComponent, {
+    data : note,
+    width: '350px',
+    height: '210px'
+  });
+};
 };

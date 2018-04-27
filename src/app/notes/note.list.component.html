@@ -148,6 +148,13 @@
                    </mat-menu>
             </div>
 
+            <!-- Collaborator Div -->
+            <div>
+                <button mat-menu-item  (click)="openCollaboratorDialog(note)">
+                  <mat-icon>person_add</mat-icon>
+                </button>
+            </div>
+
             <!-- Color Div -->
             <div>
               <button mat-icon-button [matMenuTriggerFor]="color">
@@ -174,7 +181,7 @@
             <!-- Delete Div -->
             <div>
               <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>more_vert</mat-icon>
+                <mat-icon style="color:royalblue">more_vert</mat-icon>
               </button>
 
               <mat-menu #menu="matMenu">
@@ -184,7 +191,7 @@
                 </button>
 
                 <button type="submit" mat-menu-item [matMenuTriggerFor]="label" (click)="addLabel()">
-                  <mat-icon>label</mat-icon>
+                  <mat-icon style="color:royalblue">label</mat-icon>
                   <span>Change Labels</span>
                 </button>
 

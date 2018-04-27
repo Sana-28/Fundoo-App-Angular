@@ -93,19 +93,19 @@
         <button mat-menu-item style="color:royalblue">
           Labels
         </button>
-      </div>
+    </div>
 
       <div *ngFor="let label of labels">
         <div class="toolitems">
-          <button mat-menu-itemn> 
-              <mat-icon>label</mat-icon>
+          <button mat-menu-item style="color:royalblue"> 
+              <mat-icon style="color:royalblue">label</mat-icon>
               <span>{{label.labelTitle}}</span>
           </button>
         </div> 
        </div> 
       
        <div>
-        <button mat-menu-item  (click)="openLabel()">
+        <button mat-menu-item  (click)="openLabelDialog()">
           <mat-icon style="color:royalblue">add</mat-icon>
           <span style="color:royalblue">Create new label</span>
         </button>
