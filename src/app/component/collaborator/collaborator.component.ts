@@ -8,11 +8,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA,MatDialogRef } from '@angular/material';
 import { importType } from '@angular/compiler/src/output/output_ast';
 
-import { CollaboratorResponse } from '../../response/collaboratorresponse';
-import { CurrentUserResp } from '../../response/currentuserresp';
+import { CollaboratorResponse } from '../../model/collaboratorresponse';
+import { CurrentUserResp } from '../../model/currentuserresp';
+import { NoteResponse } from '../../model/noteresponse';
+
 import { UserService } from '../../service/user.service';
 import { CollaboratorService } from '../../service';
-import { NotesResponse } from '../../response/notesresponse';
 
 @Component({
   selector: 'app-collaborator',
@@ -23,10 +24,10 @@ export class CollaboratorComponent implements OnInit {
 
   model:any = {};
   user : CurrentUserResp;
-  note : NotesResponse;
+  note : NoteResponse;
   collaborator: CollaboratorResponse[];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data:NotesResponse, private userservice: UserService,private collaboratorServiceObj:CollaboratorService, public dialogRef:MatDialogRef<CollaboratorComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data:NoteResponse, private userservice: UserService,private collaboratorServiceObj:CollaboratorService, public dialogRef:MatDialogRef<CollaboratorComponent>) { }
 
   ngOnInit() {
       this.userservice.getUser('getuser').subscribe(response =>{

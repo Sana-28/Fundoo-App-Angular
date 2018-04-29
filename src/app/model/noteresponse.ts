@@ -1,4 +1,4 @@
-export class NotesResponse{
+export class NoteResponse{
 
     noteId: number;
     title:string;

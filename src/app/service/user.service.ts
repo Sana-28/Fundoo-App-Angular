@@ -1,12 +1,15 @@
-
-
+/**
+* @author: SANA SHAIKh
+* @since: 9/April/2018
+* @description: This is User service i.e. common Http services contains methods to get,put,post,delete requests 
+*/
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'; //use to share data b/w components
 import { Observable } from 'rxjs/Observable';
 import { Headers, RequestOptions, Response } from '@angular/http';
-import { NotesResponse } from '../response/notesresponse';
-import { CurrentUserResp } from '../response/currentuserresp';
+import { NoteResponse } from '../model/noteresponse';
+import { CurrentUserResp } from '../model/currentuserresp';
 
 /*It looks similar to component file but  but it uses the @Injectable() 
 decorator, which means we can import it. into other components and access
@@ -65,6 +68,13 @@ export class UserService {
     return this.http.post<any>(urlpath,model,this.httpOptions);
   }
 
+
+  getUser(url):Observable<CurrentUserResp>{
+    
+    let urlpath=this.URL.concat(url);
+    return this.http.get<CurrentUserResp>(urlpath,this.httpOptions);
+  }
+
   isLoggedIn(): boolean {
     return false;
   }
@@ -75,9 +85,4 @@ export class UserService {
     return this.http.put(urlpath,this.httpOptions);
   }
 
-  getUser(url):Observable<CurrentUserResp>{
-    
-    let urlpath=this.URL.concat(url);
-    return this.http.get<CurrentUserResp>(urlpath,this.httpOptions);
-  }
 }

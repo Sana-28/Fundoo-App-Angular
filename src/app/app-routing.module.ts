@@ -6,15 +6,15 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './component/register/register.component';
+import { LoginComponent } from './component/login/login.component';
 import { HomeComponent } from './component/home/home.component';
 import { ForgotpasswordComponent } from './component/forgotpassword/forgotpassword.component';
-import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-import { NoteListComponent } from './notes/note.list.component';
-import { TrashComponent } from './trash/trash.component';
-import { ArchiveComponent } from './archive/archive.component';
-import { ReminderComponent } from './reminder/reminder.component';
+import { ResetpasswordComponent } from './component/resetpassword/resetpassword.component';
+import { NoteListComponent } from './component/notes/note.list.component';
+import { TrashComponent } from './component/trash/trash.component';
+import { ArchiveComponent } from './component/archive/archive.component';
+import { ReminderComponent } from './component/reminder/reminder.component';
 
 import { AuthGuard } from './authguard/auth.guard';
 import { LoginAuthGuard } from './authguard/auth.guard';

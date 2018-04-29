@@ -5,7 +5,7 @@
 */
 
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../service/user.service';
+import { UserService } from '../../service/user.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 

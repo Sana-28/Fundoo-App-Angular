@@ -1,40 +1,35 @@
+/**
+* @author: SANA SHAIKh
+* @since: 9/April/2018
+* @description: This is Note Service contains method to create note,update note,delete note,get notes
+*/
 import { Injectable } from '@angular/core';
 import { UserService } from "./user.service"
 import { Observable } from 'rxjs/Observable';
-import { NotesResponse } from '../response/notesresponse';
-import { LabelResponse } from '../response/labelresponse';
+import { NoteResponse } from '../model/noteresponse';
 
 @Injectable()
 export class NoteService {
 
   constructor(private userServiceObj : UserService ) { }
 
-  getNotes () : Observable<NotesResponse[]>{
+  /**@method: This method is to fetch notes */
+  getNotes () : Observable<NoteResponse[]>{
     return this.userServiceObj.getService('getnotes');
   }
 
+   /**@method: This method is to create notes */
   createNotes(note) :Observable<any>{
     return this.userServiceObj.putService('createnotes', note);
   }
 
+   /**@method: This method is to update notes */
   updateNotes(note):Observable<any>{
     return this.userServiceObj.putService('updatenotes',note);
   }
 
+   /**@method: This method is to delete notes */
   deleteNotes(note): Observable<any>{
     return this.userServiceObj.deleteService('deletenotes',note);
-  }
-
-  getLabels(): Observable<LabelResponse[]>{
-    return this.userServiceObj.getService('getlabels');
-
-  }
-
-  createLabel(label):Observable<any>{
-    return this.userServiceObj.putService('createlabel',label);
-  }
-
-  addRemoveLabel(status,labelId,noteId):Observable<any>{
-    return this.userServiceObj.putServiceLabel('addremovelabel'+'/'+noteId+'/'+labelId+'/'+status.bubbles);
   }
 }

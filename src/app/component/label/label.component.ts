@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {MAT_DIALOG_DATA,MatDialogRef} from '@angular/material';
+import { MAT_DIALOG_DATA,MatDialogRef} from '@angular/material';
 
-import { LabelResponse } from '../response/labelresponse';
-
-import { NoteService } from '../service';
+import { LabelResponse } from '../../model/labelresponse';
+import { NoteService, LabelService } from '../../service';
 
 @Component({
   selector: 'app-label',
@@ -15,14 +14,14 @@ export class LabelComponent implements OnInit {
   model : any = {};
   label : LabelResponse[];
 
-  constructor(private noteServiceObj:NoteService,public dialogRef:MatDialogRef<LabelComponent>) { }
+  constructor(private noteServiceObj:NoteService,private labelServiceObj: LabelService , public dialogRef:MatDialogRef<LabelComponent>) { }
 
   ngOnInit() {
     this.refreshLabel();
   }
 
   refreshLabel():void{
-    this.noteServiceObj.getLabels()
+    this.labelServiceObj.getLabels()
                           .toPromise()
                             .then(response=>{
                               this.label=response;
@@ -32,7 +31,7 @@ export class LabelComponent implements OnInit {
 
   /**@method:This method is to create labels */
   createLabel(): void {
-    this.noteServiceObj.createLabel(this.model)
+    this.labelServiceObj.createLabel(this.model)
                       .subscribe(response => {
                           console.log("Label Created successfully..", response, this.label)
                            this.dialogRef.close();

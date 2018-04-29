@@ -8,22 +8,23 @@ import { AppRoutingModule } from './app-routing.module';//defines route for diff
 import { MaterialModule} from './material.module';
 
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './component/register/register.component';
+import { LoginComponent } from './component/login/login.component';
 import { ForgotpasswordComponent } from './component/forgotpassword/forgotpassword.component';
 import { HomeComponent } from './component/home/home.component';
-import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-import { NoteListComponent } from './notes/note.list.component';
-import { TrashComponent } from './trash/trash.component';
-import { ArchiveComponent } from './archive/archive.component';
-import { ReminderComponent } from './reminder/reminder.component';
-import { LabelComponent } from './label/label.component';
-import { NotedisplayComponent } from './notedisplay/notedisplay.component';
+import { ResetpasswordComponent } from './component/resetpassword/resetpassword.component';
+import { NoteListComponent } from './component/notes/note.list.component';
+import { TrashComponent } from './component/trash/trash.component';
+import { ArchiveComponent } from './component/archive/archive.component';
+import { ReminderComponent } from './component/reminder/reminder.component';
+import { LabelComponent } from './component/label/label.component';
+import { NotedisplayComponent } from './component/notedisplay/notedisplay.component';
 import { CollaboratorComponent } from './component/collaborator/collaborator.component';
 
 
 import { UserService } from './service/user.service';
 import { NoteService } from './service/note.service';
+import { LabelService } from './service/label.service';
 import { CollaboratorService } from './service/collaborator.service';
 
 import { NoteFilterPipe } from './notefilter.pipe';
@@ -48,10 +49,9 @@ const routes: Routes = [
     ArchiveComponent,
     ReminderComponent,
     LabelComponent,
+    NotedisplayComponent,
 
-    NoteFilterPipe,
-
-    NotedisplayComponent
+    NoteFilterPipe, 
     ],
   
   imports: [
@@ -64,7 +64,7 @@ const routes: Routes = [
     
   ],
  entryComponents:[LabelComponent,CollaboratorComponent],
-  providers: [UserService, NoteService,CollaboratorService, AuthGuard, LoginAuthGuard ],
+  providers: [UserService, NoteService, LabelService, CollaboratorService, AuthGuard, LoginAuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

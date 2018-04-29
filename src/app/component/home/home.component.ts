@@ -8,10 +8,10 @@ import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
 
-import { UserService, NoteService } from '../../service';
-import { NotesResponse } from '../../response/notesresponse';
-import { LabelComponent } from '../../label/label.component';
-import { LabelResponse } from '../../response/labelresponse';
+import { UserService, NoteService, LabelService } from '../../service';
+import { NoteResponse } from '../../model/noteresponse';
+import { LabelComponent } from '../label/label.component';
+import { LabelResponse } from '../../model/labelresponse';
 
 @Component({
   selector: 'app-home',
@@ -21,28 +21,28 @@ import { LabelResponse } from '../../response/labelresponse';
 export class HomeComponent implements OnInit {
 
   model:any={};
-  notes: NotesResponse[];
+  notes: NoteResponse[];
   labels: LabelResponse[];
   reminder='/assets/icons/remind.png';
 
-  constructor(private userservice: UserService, private noteServiceObj: NoteService, private dialog: MatDialog, private router : Router) { }
+  constructor(private userservice: UserService, private noteServiceObj: NoteService, private labelServiceObj:LabelService, private dialog: MatDialog, private router : Router) { }
 
   ngOnInit() {
-   this.refresh();
-    this.refreshLabel();
+  //  this.refresh();
+     this.refreshLabel();
       }
 
-  refresh(): void {
+  /*refresh(): void {
     this.noteServiceObj.getNotes()
                         .toPromise()
                           .then(response => {
                              this.notes = response;
                              console.log("Notes fetched successfully");
                                             });
-  };
+  };*/
   
   refreshLabel():void{
-    this.noteServiceObj.getLabels()
+    this.labelServiceObj.getLabels()
                           .toPromise()
                             .then(response=>{
                               this.labels=response;

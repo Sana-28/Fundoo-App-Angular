@@ -5,8 +5,8 @@
 */
 
 import { Component, OnInit } from '@angular/core';
-import { NotesResponse } from '../response/notesresponse';
-import { UserService, NoteService } from '../service';
+import { NoteResponse } from '../../model/noteresponse';
+import { UserService, NoteService } from '../../service';
 
 @Component({
   selector: 'app-trash',
@@ -15,7 +15,7 @@ import { UserService, NoteService } from '../service';
 })
 export class TrashComponent implements OnInit {
 
-  notes:NotesResponse[];
+  notes:NoteResponse[];
   inTrash: any = {};
 
   constructor(private userservice: UserService , private noteServiceObj : NoteService) { }

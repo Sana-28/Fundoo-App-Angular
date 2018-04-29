@@ -1,3 +1,4 @@
+
 <div fxLayoutAlign="center center">
 
   <!-- Card to take note -->
@@ -58,7 +59,7 @@
       <!-- <div *ngIf="!note.isPin"> -->
       <div *ngIf="note.inTrash===false && note.isPin===false && note.isArchive===false">
         <!-- <note-details [note]="note" *ngFor="let note of notes"></note-details> -->
-        <mat-card [style.background]="note.color" style="top:250px;">
+        <mat-card [style.background]="note.color" style="top:250px; margin-left: 100px">
 
           <div style="margin-left:90%;">
             <img src="/assets/icons/pin.svg" (click)="updateNotes(note,'true','pin')">
@@ -83,6 +84,23 @@
                       </mat-chip>
                 </mat-chip-list>
              
+              </div>
+            </div>
+
+            <!-- For showing label -->
+            <div *ngIf="note.labels!=null">
+              <div *ngFor="let label of note.labels">
+                <div fxLayout="row" fxLayoutGap="5px">
+
+                <div>
+                  <mat-chip-list>
+                    <mat-chip>{{label.name}}
+                      <img src="{{clearSvg}}" (click)="removeLabel(false, note.noteId, label.labelId)">
+                    </mat-chip>
+                  </mat-chip-list>
+                </div>
+
+              </div>
               </div>
             </div>
 
@@ -207,7 +225,7 @@
                   </mat-form-field>
                 </div>
 
-                 <!-- <div *ngIf="labels!=null"> -->
+                 <div *ngIf="labels!=null">
                   <div *ngFor="let label of labels">
                     <label>
                       <input type="checkbox" name="labels" value="{{label.labelTitle}}"
@@ -216,7 +234,7 @@
                         {{label.labelTitle}}
                     </label>
                   </div>
-                <!-- </div> -->
+                </div>
 
                   </div>
                   </mat-menu>
