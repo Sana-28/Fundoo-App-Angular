@@ -5,7 +5,7 @@
 */
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { UserService } from '.';
+import { UserService } from './user.service';
 import { LabelResponse } from '../model/labelresponse';
 
 @Injectable()

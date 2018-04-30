@@ -12,6 +12,7 @@ import { CollaboratorComponent } from '../collaborator/collaborator.component';
 
 import { NoteResponse } from '../../model/noteresponse';
 import { LabelResponse } from '../../model/labelresponse';
+import { CollaboratorResponse } from '../../model/collaboratorresponse';
 
 import { NoteFilterPipe } from '../../notefilter.pipe';
 
@@ -29,9 +30,9 @@ export class NoteListComponent implements OnInit {
   isArchive : any = {};
   isPin     : any = {};
 
-  notes     : NoteResponse[]; //= [{noteId:0,title:"sample", description : "fdfsdf" }];
-  labels    : LabelResponse[];
-
+  notes         : NoteResponse[]; //= [{noteId:0,title:"sample", description : "fdfsdf" }];
+  labels        : LabelResponse[];
+  collaborators : CollaboratorResponse[];
 
   pinSvg    ='/assets/icons/pin.svg';
   unpinSvg  ='/assets/icons/unpin.svg';
@@ -225,13 +226,12 @@ optionChange(status, labelId, noteId){
                         });
 }
 
-removeLabel(status,noteId,labelId){
+removeLabel(note,labelId,field){
 
-  this.labelServiceObj.addRemoveLabel(status,labelId,noteId);
-  console.log(status,noteId,labelId);
+  note.labels=null;
+  this.labelServiceObj.addRemoveLabel(labelId,note,field);
+  console.log(note,labelId,field);
 }
-  
-  
 
 openCollaboratorDialog(note){
   this.dialog.open(CollaboratorComponent, {

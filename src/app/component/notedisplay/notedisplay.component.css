@@ -1,0 +1,32 @@
+.card{
+    width:41%;
+    margin-top: 100px;
+}
+
+.pin{
+    margin-top: -570px;
+    margin-left: 322px;
+}
+
+.text{
+    color:#3f51b5; 
+}
+
+.divbox{
+    margin-top: -10%;
+    top: 20px;
+}
+
+.canedit {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    outline: none;
+      line-height: 20px;   
+ } 
+
+ .button{
+    margin-left: 80%;
+ }
+.matchip{
+    block-size: 10px;
+}

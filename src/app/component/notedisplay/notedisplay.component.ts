@@ -1,8 +1,17 @@
+/**
+* @author: SANA SHAIKh
+* @since: 9/April/2018
+* @description: This is notes display component contains methods to create and update notes
+*/
 import { Component, OnInit,Input } from '@angular/core';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
+import { environment } from '../../../environments/environment';
 
 import { NoteResponse } from '../../model/noteresponse';
 import { LabelResponse } from '../../model/labelresponse';
+import { CollaboratorResponse } from '../../model/collaboratorresponse';
+
+import { NoteFilterPipe } from '../../notefilter.pipe';
 
 import { UserService, NoteService, LabelService } from '../../service';
 
@@ -24,6 +33,7 @@ export class NotedisplayComponent implements OnInit {
 
   notes     : NoteResponse[]; //= [{noteId:0,title:"sample", description : "fdfsdf" }];
   labels    : LabelResponse[];
+  collaborators : CollaboratorResponse[];
 
 
   pinSvg    ='/assets/icons/pin.svg';
@@ -55,7 +65,8 @@ export class NotedisplayComponent implements OnInit {
   }
   ];
 
-  constructor(private userservice: UserService, private noteServiceObj: NoteService,private dialog: MatDialog,private labelServiceObj:LabelService) { }
+  
+  constructor(private userservice: UserService, private noteServiceObj: NoteService , private labelServiceObj:LabelService, private dialog: MatDialog) { }
 
   /**@method:This ngOnInit method loads all the notes at the time of initialization */
   ngOnInit() {
@@ -202,6 +213,13 @@ optionChange(status, labelId, noteId){
                         .subscribe(response=>{
                           console.log("status changed..");
                         });
+}
+
+removeLabel(note,labelId,field){
+
+  note.labels=null;
+  this.labelServiceObj.addRemoveLabel(labelId,note,field);
+  console.log(note,labelId,field);
 }
 
 openCollaboratorDialog(note){

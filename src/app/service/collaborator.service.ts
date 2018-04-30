@@ -18,4 +18,8 @@ export class CollaboratorService {
   createCollaborator(model):Observable<any>{
     return this.userServiceObj.putService('addCollaborator',model);
   }
+
+  deleteCollaborator(model):Observable<any>{
+    return this.userServiceObj.deleteService('deletecollborator',model);
+  }
 }

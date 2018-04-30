@@ -30,6 +30,7 @@ import { CollaboratorService } from './service/collaborator.service';
 import { NoteFilterPipe } from './notefilter.pipe';
 
 import { AuthGuard, LoginAuthGuard} from './authguard/auth.guard';
+import { ToolbarDirective } from './directive/toolbar.directive';
 
 const routes: Routes = [
   //{path:'register',component:RegisterComponent}
@@ -51,7 +52,9 @@ const routes: Routes = [
     LabelComponent,
     NotedisplayComponent,
 
-    NoteFilterPipe, 
+    NoteFilterPipe,
+
+    ToolbarDirective, 
     ],
   
   imports: [

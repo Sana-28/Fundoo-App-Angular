@@ -53,13 +53,14 @@
 
 <!-- Display cards that is not pin/trash/archive -->
 <div class="class-container" fxLayoutAlign="center center">
-  <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="1000px" fxLayoutGap="30px">
+    <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="900px" fxLayoutGap="20px">
+        <!-- <div fxLayout="row" fxLayoutAlign="space-evenly center" > -->
     <!-- <div *ngFor="let note of notes | noteFilter: {isPin:false,isTrash:false,isArchive:false}"> -->
         <div *ngFor="let note of notes">
       <!-- <div *ngIf="!note.isPin"> -->
       <div *ngIf="note.inTrash===false && note.isPin===false && note.isArchive===false">
         <!-- <note-details [note]="note" *ngFor="let note of notes"></note-details> -->
-        <mat-card [style.background]="note.color" style="top:250px; margin-left: 100px">
+        <mat-card [style.background]="note.color"  style="margin-top: 450px;" fxFlexAlign="left left">
 
           <div style="margin-left:90%;">
             <img src="/assets/icons/pin.svg" (click)="updateNotes(note,'true','pin')">
@@ -84,8 +85,8 @@
                       </mat-chip>
                 </mat-chip-list>
              
-              </div>
             </div>
+          </div>
 
             <!-- For showing label -->
             <div *ngIf="note.labels!=null">
@@ -94,13 +95,28 @@
 
                 <div>
                   <mat-chip-list>
-                    <mat-chip>{{label.name}}
-                      <img src="{{clearSvg}}" (click)="removeLabel(false, note.noteId, label.labelId)">
+                    <mat-chip color="primary" selected="true" class="matchip">
+                      {{label.labelTitle}}
+                      <img style="margin-left: 8px;" src="{{crossSvg}}" (click)="removeLabel(note, label.labelId,'null')">
                     </mat-chip>
                   </mat-chip-list>
                 </div>
 
               </div>
+              </div>
+            </div>
+
+            <!-- For showing collaborator -->
+            <div *ngIf="note.collaborators!=null">
+              <div *ngFor="let collaborator of note.collaborators">
+
+                <mat-chip-list>
+                  <mat-chip>
+                    {{collaborator.sharedUser.email}}
+                    <img style="margin-left: 8px;" src="{{crossSvg}}">
+                  </mat-chip>
+                </mat-chip-list>
+
               </div>
             </div>
 
