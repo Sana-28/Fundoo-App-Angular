@@ -19,6 +19,7 @@ export class CollaboratorService {
     return this.userServiceObj.putService('addCollaborator',model);
   }
 
+  /**method: This method is to remove collaborator */
   deleteCollaborator(model):Observable<any>{
     return this.userServiceObj.deleteService('deletecollborator',model);
   }

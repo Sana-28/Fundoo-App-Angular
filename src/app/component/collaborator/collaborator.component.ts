@@ -26,7 +26,7 @@ export class CollaboratorComponent implements OnInit {
   model:any = {};
   user : CurrentUserResp;
   note : NoteResponse;
-  collaborators: CollaboratorResponse[];
+  collaborators: CollaboratorResponse;
 
   crossSvg = '/assets/icons/cross.svg';
 
@@ -57,9 +57,15 @@ export class CollaboratorComponent implements OnInit {
     });
 }
 
+/**method: */
 removeCollaborator(noteId,email){
  
   this.model.noteId=this.data.noteId;
+  console.log(this.model.noteId);
+
+  this.model.email=email;
+  console.log(this.model.email);
+  
   this.collaboratorServiceObj.deleteCollaborator(this.model)
                                 .subscribe(response=>{
                                   console.log("Deleted successfully..",response)

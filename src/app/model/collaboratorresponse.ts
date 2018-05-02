@@ -1,7 +1,7 @@
 export class CollaboratorResponse {
 
      collaboratorId: number;
-     sharedUser: string;
+     sharedUser: User;
      note: Note;
    
 }

@@ -91,7 +91,7 @@ export class NoteListComponent implements OnInit {
                         .toPromise()
                           .then(response => {
                              this.notes = response;
-                              console.log("Notes fetched successfully");
+                              console.log("Notes fetched successfully",this.notes);
                                             });
   };
 
