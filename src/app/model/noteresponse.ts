@@ -12,6 +12,8 @@ export class NoteResponse {
   reminder: Date;
   label: Set<Label>;
   collaborator: Set<Collaborator>;
+  noteImage:any[];
+  imageString: string;
 }
 
 export class Label {

@@ -85,4 +85,20 @@ export class UserService {
     return this.http.put(urlpath,this.httpOptions);
   }
 
+  imageUpload(url, model):Observable<any>{
+    const fd = new FormData()
+    const file = model.event[0]
+    fd.append('image', file)
+    fd.append('noteId', model.noteId)
+    var urlpath=this.URL.concat(url);
+
+    const httpOptions2 = {
+      headers: new HttpHeaders({
+        'Authorization': localStorage.getItem('Authorization')
+      })
+    };
+
+    return this.http.post<any>(urlpath, fd, httpOptions2);
+  }
+
 }

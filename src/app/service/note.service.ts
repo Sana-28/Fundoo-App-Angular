@@ -32,4 +32,11 @@ export class NoteService {
   deleteNotes(note): Observable<any>{
     return this.userServiceObj.deleteService('deletenotes',note);
   }
+
+  /**@method: This method is to upload image of notes */
+  uploadImage(model):Observable<any>{
+    console.log("Checking upload image in service", model)
+    //return this.userServiceObj.putService('uploadNoteImage',model);
+    return this.userServiceObj.imageUpload('uploadNoteImage',model);
+  }
 }

@@ -17,6 +17,7 @@ import { CollaboratorResponse } from '../../model/collaboratorresponse';
 import { NoteFilterPipe } from '../../notefilter.pipe';
 
 import { UserService, NoteService, LabelService } from '../../service';
+import { toBase64String } from '@angular/compiler/src/output/source_map';
 
 @Component({
   selector: 'app-notes',
@@ -25,10 +26,12 @@ import { UserService, NoteService, LabelService } from '../../service';
 })
 export class NoteListComponent implements OnInit {
 
-  model     : any = {};
-  inTrash   : any = {};
-  isArchive : any = {};
-  isPin     : any = {};
+      model     : any = {};
+      inTrash   : any = {};
+      isArchive : any = {};
+      isPin     : any = {};
+      response  : any = {};
+  fileToUpload  : File = null;
 
   notes         : NoteResponse[]; //= [{noteId:0,title:"sample", description : "fdfsdf" }];
   labels        : LabelResponse[];
@@ -91,8 +94,12 @@ export class NoteListComponent implements OnInit {
                         .toPromise()
                           .then(response => {
                              this.notes = response;
+                             this.notes.forEach(note =>{
+                              note.imageString = 'data:image/JPEG;base64,' + note.noteImage;
+                             })
                               console.log("Notes fetched successfully",this.notes);
                                             });
+
   };
 
   refreshLabel():void{
@@ -240,4 +247,16 @@ openCollaboratorDialog(note){
     height: '210px'
   });
 };
+
+handleFileInput(event,noteId) {
+  this.model.event= event;
+  console.log("Note image->>", event)
+
+  this.model.noteId=noteId;
+  
+  this.noteServiceObj.uploadImage(this.model)
+                    .subscribe(response=>{
+                      console.log("Image uploaded successfully..");
+  });
+}
 };

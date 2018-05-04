@@ -3,11 +3,15 @@
     margin-top: 100px;
 }
 
-.pin{
+/* .pin{
     margin-top: -570px;
     margin-left: 322px;
-}
-
+} */
+.mat-design{
+    max-width: 201px;
+    margin-top: 15px;
+  }
+  
 .text{
     color:#3f51b5; 
 }
