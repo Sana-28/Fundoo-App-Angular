@@ -44,12 +44,27 @@
       </button>
     </div>
 
-    <div class="toolitems">
+    <!-- <div class="toolitems">
       <button mat-icon-button (click)="logout()">
         <mat-icon>account_circle</mat-icon>
       </button>
-    </div>
+    </div> -->
+
+    <div>
+      <button mat-mini-fab [matMenuTriggerFor]="appMenu" style="background-color: #3f51b5; margin-left: 850px">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+   </div>
   </mat-toolbar>
+
+  <mat-menu #appMenu="matMenu">
+    <div fxLayout="row">
+            <mat-icon>account_circle</mat-icon>
+    </div>
+   
+    <button mat-raised-button>Add account</button>
+    <button mat-raised-button (click)="logout()">Sign out</button>
+ </mat-menu> 
 
   <mat-sidenav-container fxFlexFill class="example-container">
     <mat-sidenav mode="side" #sidenav opened fxLayout="column" class="sidenav">

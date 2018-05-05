@@ -94,12 +94,13 @@ export class NoteListComponent implements OnInit {
                         .toPromise()
                           .then(response => {
                              this.notes = response;
+                            
                              this.notes.forEach(note =>{
                               note.imageString = 'data:image/JPEG;base64,' + note.noteImage;
                              })
+                          
                               console.log("Notes fetched successfully",this.notes);
                                             });
-
   };
 
   refreshLabel():void{

@@ -5,6 +5,9 @@
 
     <mat-card  [style.background]="note.color" class="mat-design">
 
+            <div *ngIf="note.noteImage">
+              <img [src]="note.imageString"/>
+          </div>
         <div style="margin-left: 90%;">
           <img src="{{unpinSvg}}" (click)="updateNotes(note,status,'pin')">
         </div>

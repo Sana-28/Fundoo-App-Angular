@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent,canActivate: [LoginAuthGuard]},
   { path: 'forgetpassword', component: ForgotpasswordComponent },
-  { path: 'resetpassword', component: ResetpasswordComponent }
+  { path: 'resetpassword' , component: ResetpasswordComponent }
 
   // { path: 'createnotes', component: NotesComponent }
 ];

@@ -15,9 +15,9 @@
     <div contenteditable='true' data-text='Title' class="editable line-height" name="title" (input)="model.title=$event.target.innerHTML"></div>
     <div contenteditable='true' data-text='Take a note..' class="editable line-height" name="description" (input)="model.description=$event.target.innerHTML"></div>
 
-    <mat-card-actions class="text">
-      <button mat-button type="submit" class="button" (click)="createNote()">DONE</button>
-    </mat-card-actions>
+      <mat-card-actions class="text">
+        <button mat-button type="submit" class="button" (click)="createNote()">DONE</button>
+      </mat-card-actions>
   </mat-card>
 </div>
 
@@ -25,9 +25,9 @@
 <div class="class-container" fxLayoutAlign="center center">
   <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="900px" fxLayoutGap="20px">
     <div *ngFor="let note of notes | noteFilter: {isPin:true,inTrash:false,isArchive:false}">
-        <div *ngIf="note.noteImage">
+        <!-- <div *ngIf="note.noteImage">
             <img [src]="note.imageString"/>
-        </div>
+        </div> -->
       <!-- <div *ngFor="let note of notes"> -->
       <!-- <div *ngIf="note.isPin===true && note.isArchive===false && note.inTrash===false" style="margin-left: 300px;"> -->
 
@@ -64,6 +64,10 @@
         <div *ngIf="note.inTrash===false && note.isPin===false && note.isArchive===false">
           <!-- <note-details [note]="note" *ngFor="let note of notes"></note-details> -->
           <mat-card [style.background]="note.color" class="mat-design">
+
+                <div *ngIf="note.noteImage">
+                  <img [src]="note.imageString"/>
+                </div>
 
             <div style="margin-left:90%;">
               <img src="/assets/icons/pin.svg" (click)="updateNotes(note,'true','pin')">
