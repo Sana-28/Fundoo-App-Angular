@@ -1,4 +1,5 @@
 /**
+*@description:This is reset password component contains a  method to call reset new password Api
 * @author: SANA SHAIKh
 * @since: 9/April/2018
 */
@@ -17,9 +18,10 @@ export class ResetpasswordComponent implements OnInit {
   constructor(private userServiceObj:UserService) { }
 
   ngOnInit() {
-    console.log(window.location.search);
+    //console.log(window.location.search);
   }
 
+  /**@method: This method is set new password */
   reset(){
     console.log(this.model);
     var u = 'resetnewpassword'+window.location.search;

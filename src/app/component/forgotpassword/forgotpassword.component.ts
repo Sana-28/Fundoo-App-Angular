@@ -28,7 +28,6 @@ forgot():void
   console.log(this.model);
   this.userservice.postService('forgetpassword',this.model)
                     .subscribe(data=>{
-                
                       console.log(data)});
 }
 }
