@@ -18,7 +18,7 @@ export class ResetpasswordComponent implements OnInit {
   constructor(private userServiceObj:UserService) { }
 
   ngOnInit() {
-    //console.log(window.location.search);
+    console.log(window.location.search);
   }
 
   /**@method: This method is set new password */

@@ -28,19 +28,20 @@ export class HomeComponent implements OnInit {
   constructor(private userservice: UserService, private noteServiceObj: NoteService, private labelServiceObj:LabelService, private dialog: MatDialog, private router : Router) { }
 
   ngOnInit() {
-  //  this.refresh();
+     this.refresh();
      this.refreshLabel();
       }
 
-  /*refresh(): void {
+  refresh(): void {
     this.noteServiceObj.getNotes()
                         .toPromise()
                           .then(response => {
                              this.notes = response;
                              console.log("Notes fetched successfully");
                                             });
-  };*/
+  };
   
+  /**@method: This method is to fetch labels*/
   refreshLabel():void{
     this.labelServiceObj.getLabels()
                           .toPromise()
@@ -50,6 +51,7 @@ export class HomeComponent implements OnInit {
                             })
   }
 
+  /**@method: This method is for logout */
   logout() : void{
     localStorage.clear();
     this.router.navigate(['/login']);
@@ -59,6 +61,7 @@ export class HomeComponent implements OnInit {
 
   };
 
+  /**@method: This method is to open dialog for adding label */
   openLabelDialog(){
     this.dialog.open(LabelComponent, {
      

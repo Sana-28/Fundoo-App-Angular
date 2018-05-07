@@ -32,7 +32,10 @@ export class ArchiveComponent implements OnInit {
        });
 };
 
-/**@method:This method is to unArchieve notes */
+/**
+ * @method:This method is to unArchieve notes 
+ * @param note
+*/
   unArchive(note):void{
   console.log("Unarchive note..",note);
             note.isArchive=false;

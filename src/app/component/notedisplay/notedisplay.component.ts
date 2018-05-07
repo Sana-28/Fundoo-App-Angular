@@ -84,6 +84,7 @@ export class NotedisplayComponent implements OnInit {
                                             });
   };
 
+  /**@method: This method is to fetch labels */
   refreshLabel():void{
     this.labelServiceObj.getLabels()
                           .toPromise()
@@ -198,6 +199,7 @@ saveReminder(note,field){
 }
 }
 
+/**@method:This method is to add LAbels */
 addLabel():void{
   this.labelServiceObj.getLabels()
                         .subscribe(response=>{
@@ -215,6 +217,11 @@ optionChange(status, labelId, noteId){
                         });
 }
 
+/**@method:This method is to remove labels 
+ * @param note
+ * @param labelId
+ * @param field
+*/
 removeLabel(note,labelId,field){
 
   note.labels=null;
@@ -222,6 +229,9 @@ removeLabel(note,labelId,field){
   console.log(note,labelId,field);
 }
 
+/**@method:This method is to open collaborator dialog
+ * @param note
+ */
 openCollaboratorDialog(note){
   this.dialog.open(CollaboratorComponent, {
     data : note,

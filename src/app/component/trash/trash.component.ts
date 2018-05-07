@@ -24,6 +24,7 @@ export class TrashComponent implements OnInit {
     this.refreshNote();
   }
 
+   /**@method:This method is to fetch notes */
   refreshNote(): void {
     this.noteServiceObj.getNotes()
                         .subscribe(response => {
@@ -34,6 +35,7 @@ export class TrashComponent implements OnInit {
   
 /**
 * @method:This method is to restore the deleted notes
+* @param note
 */
 restore(note): void{
   console.log("Restore notes from trash..",note);
@@ -47,6 +49,7 @@ restore(note): void{
 
 /**
 * @method:This method is to delete notes permanently
+* @param note
 */
 deleteForever(note): void{
   console.log("noteId",note);

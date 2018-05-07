@@ -43,16 +43,17 @@ export class ToolbarDirective {
     }
     else if (url.indexOf("trash")) {
       this.elRef.nativeElement.style['background-color'] = 'grey';
-      this.ngAfterViewInit("home/trash");
+     // this.ngAfterViewInit("home/trash");
     }
   }
   ngAfterViewInit(url): void {
 
-    if (url === 'home/createnotes') {
-      this.changeColor("home/createnotes")
-    }
-    else if (url === 'home/trash') {
-      this.changeColor("home/trash")
-    }
+    // if (url === 'home/createnotes') {
+    //   this.changeColor("home/createnotes")
+    // }
+    // else if (url === 'home/trash') {
+    //   this.changeColor("home/trash")
+    // }
+    this.changeColor("home/trash")
   }
 }

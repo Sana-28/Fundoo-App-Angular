@@ -23,6 +23,7 @@ export class ReminderComponent implements OnInit {
         this.refreshNote();
     }
 
+    /**@method:This method is to fetch notes */
     refreshNote(): void {
         this.noteServiceObj.getNotes()
             .subscribe(response => {

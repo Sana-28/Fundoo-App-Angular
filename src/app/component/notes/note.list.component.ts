@@ -103,6 +103,7 @@ export class NoteListComponent implements OnInit {
                                             });
   };
 
+  /**@method: This method is to fetch labels */
   refreshLabel():void{
     this.labelServiceObj.getLabels()
                           .toPromise()
@@ -160,7 +161,8 @@ export class NoteListComponent implements OnInit {
   };
 
 /**@method:This method is to set reminder of notes
- * @param:note,field
+ * @param:note
+ * @param:field
  */
 remind(note):void{
   this.noteServiceObj.updateNotes(note)
@@ -217,6 +219,7 @@ saveReminder(note,field){
 }
 }
 
+/**@method: This method is to add label */
 addLabel():void{
   this.labelServiceObj.getLabels()
                         .subscribe(response=>{
@@ -234,6 +237,11 @@ optionChange(status, labelId, noteId){
                         });
 }
 
+/**@method:This method is to remove label 
+ * @param note
+ * @param labelId
+ * @param field
+*/
 removeLabel(note,labelId,field){
 
   note.labels=null;
@@ -241,6 +249,10 @@ removeLabel(note,labelId,field){
   console.log(note,labelId,field);
 }
 
+
+/**@method: This method is to open collaborator dialog 
+ * @param note
+*/
 openCollaboratorDialog(note){
   this.dialog.open(CollaboratorComponent, {
     data : note,
@@ -249,6 +261,10 @@ openCollaboratorDialog(note){
   });
 };
 
+/**@method:This method is to upload a image 
+ * @param noteId
+ * @param event
+ */
 handleFileInput(event,noteId) {
   this.model.event= event;
   console.log("Note image->>", event)

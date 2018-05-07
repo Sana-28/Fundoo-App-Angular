@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
     this.resetForm();
     }
 
+  /**@method: This method is to set form fields to null*/
   resetForm(form? : NgForm){
     if(form!=null)
     form.reset();
@@ -38,7 +39,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  /*Register Api */
+ /**@method:This method is to call register Api */
   register():void{
     console.log(this.model);
     this.userservice.postService('register',this.model).subscribe(data=>console.log(data));

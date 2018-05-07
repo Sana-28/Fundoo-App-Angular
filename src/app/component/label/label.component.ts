@@ -1,3 +1,9 @@
+/**
+* @author: SANA SHAIKh
+* @since: 9/April/2018
+* @description:This is label component contains method to fetch labels and create labels
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA,MatDialogRef} from '@angular/material';
 
@@ -20,6 +26,7 @@ export class LabelComponent implements OnInit {
     this.refreshLabel();
   }
 
+  /**@method: This method is to fetch labels */
   refreshLabel():void{
     this.labelServiceObj.getLabels()
                           .toPromise()

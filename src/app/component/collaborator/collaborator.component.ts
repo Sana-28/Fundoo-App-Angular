@@ -57,7 +57,10 @@ export class CollaboratorComponent implements OnInit {
     });
 }
 
-/**method: */
+/**method: This methd is to remove collaborator 
+ * @param noteId
+ * @param email
+*/
 removeCollaborator(noteId,email){
  
   this.model.noteId=this.data.noteId;
