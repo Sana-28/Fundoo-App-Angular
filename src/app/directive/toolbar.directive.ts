@@ -1,5 +1,12 @@
+/**
+* @author: SANA SHAIKh
+* @since: 9/April/2018
+* @description: This is color directive to change color of ToolBar
+*/
+
+
 import { Directive, ElementRef, Input, AfterViewInit, HostListener } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap,NavigationEnd } from '@angular/router';
 import 'rxjs/add/operator/pairwise';
 
 
@@ -16,35 +23,52 @@ export class ToolbarDirective {
 
   ngOnInit(): void {
     console.log("check->>", this.router.url)
-    // this.activatedroute.parent.url.subscribe((url)=>{
-    //   console.log(this.router.url)
-    // })
+    /*this.activatedroute.parent.url.subscribe((url)=>{
+      console.log(this.router.url)
+    })*/
 
-    this.router.events.subscribe((url: any) => {
-      console.log('url=', url)
-      if (url === 'home/createnotes') {
-        this.changeColor(url);
+    this.router.events.subscribe((event: any) => {
+      if(event instanceof NavigationEnd){
+        console.log(event);
+        this.changeColor(event.url);        
       }
+        /*if (url === 'home/createnotes') {
+        this.changeColor(url);
+      }*/
     });
 
     /* this.router.events.pairwise().subscribe((url:any) =>{
          console.log('url=', url)
      });*/
   }
+  
   changeColor(url: string) {
     //  let Url="http://localhost:4200/"
 
-    if (url.indexOf("createnotes") > -1) {
+    if (url.indexOf("createnotes")>-1) {
       this.elRef.nativeElement.style['background-color'] = 'skyblue';
 
-      let url = "createnotes";
-      this.ngAfterViewInit(url);
+      // let url = "createnotes";
+      // this.ngAfterViewInit(url);
 
     }
-    else if (url.indexOf("trash")) {
-      this.elRef.nativeElement.style['background-color'] = 'grey';
+    else if (url.indexOf("archive")>-1) {
+      this.elRef.nativeElement.style['background-color'] = 'MediumSlateBlue	';
      // this.ngAfterViewInit("home/trash");
     }
+
+    else if(url.indexOf("reminder")>-1){
+      this.elRef.nativeElement.style['background-color'] = 'pink';
+    }
+
+    else if(url.indexOf("trash")>-1){
+      this.elRef.nativeElement.style['background-color'] = 'RosyBrown';
+    }
+
+
+    // else if (url.indexOf("archive")){
+    //   this.elRef.nativeElement.style['background-color'] = 'black';
+    // }
   }
   ngAfterViewInit(url): void {
 
@@ -54,6 +78,6 @@ export class ToolbarDirective {
     // else if (url === 'home/trash') {
     //   this.changeColor("home/trash")
     // }
-    this.changeColor("home/trash")
+   // this.changeColor("home/trash")
   }
 }

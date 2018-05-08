@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import { Headers, RequestOptions, Response } from '@angular/http';
 import { NoteResponse } from '../model/noteresponse';
 import { CurrentUserResp } from '../model/currentuserresp';
+import { environment } from "../../environments/environment"
 
 /*It looks similar to component file but  but it uses the @Injectable() 
 decorator, which means we can import it. into other components and access
@@ -24,9 +25,14 @@ export class UserService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('Authorization')
+      // 'Authorization': this.getToken()
+     //'Authorization': localStorage.getItem('Authorization')
     })
   };
+
+   public getToken(): string {
+     return localStorage.getItem('Authorization');
+   }
 
   /*HttpClient is available as an injectable class, with methods 
   to perform HTTP requests. */
@@ -35,7 +41,8 @@ export class UserService {
       this.httpOptions.headers = this.httpOptions.headers.append('Authorization', localStorage.getItem('Authorization'));*/
   }
 
-  private URL = 'http://localhost:8080/ToDo-App/';
+  // private URL = 'http://localhost:8080/ToDo-App/';
+      private URL= environment.base_url;
 
   /*A representation of any set of values over any amount of time.
    This is the most basic building block of RxJS*/

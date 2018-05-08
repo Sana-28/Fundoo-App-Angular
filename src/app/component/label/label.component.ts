@@ -32,7 +32,7 @@ export class LabelComponent implements OnInit {
                           .toPromise()
                             .then(response=>{
                               this.label=response;
-                              console.log("Labels fetched successfully..");
+                               console.log("Labels fetched successfully..");
                             })
   }
 

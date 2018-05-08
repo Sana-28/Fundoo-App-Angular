@@ -54,9 +54,9 @@ restore(note): void{
 deleteForever(note): void{
   console.log("noteId",note);
                     this.noteServiceObj.deleteNotes(note)
-                          .subscribe(response => {
-                            console.log("Deleted Successfully..",response);
-                              this.refreshNote();
+                                          .subscribe(response => {
+                                            console.log("Deleted Successfully..",response);
+                                              this.refreshNote(); 
   });
 };
 

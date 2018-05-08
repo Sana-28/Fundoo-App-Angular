@@ -23,9 +23,10 @@ export class ResetpasswordComponent implements OnInit {
 
   /**@method: This method is set new password */
   reset(){
+    
     console.log(this.model);
-    var u = 'resetnewpassword'+window.location.search;
-    this.userServiceObj.postService(u,this.model)
+    var urlPath = 'resetnewpassword'+window.location.search;
+    this.userServiceObj.postService(urlPath,this.model)
                         .subscribe(data=>{
                           console.log(data)});
   }

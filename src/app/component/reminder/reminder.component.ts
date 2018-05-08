@@ -26,9 +26,9 @@ export class ReminderComponent implements OnInit {
     /**@method:This method is to fetch notes */
     refreshNote(): void {
         this.noteServiceObj.getNotes()
-            .subscribe(response => {
-                this.notes = response;
-                console.log("Notes fetched successfully..", response)
+                            .subscribe(response => {
+                              this.notes = response;
+                                console.log("Notes fetched successfully..", response)
             });
     };
 
@@ -38,9 +38,9 @@ export class ReminderComponent implements OnInit {
      */
     update(note): void {
         this.noteServiceObj.updateNotes(note)
-            .subscribe(response => {
-                console.log(response);
-                this.refreshNote();
+                            .subscribe(response => {
+                                console.log(response);
+                                this.refreshNote();
             });
     }
 
@@ -86,9 +86,9 @@ export class ReminderComponent implements OnInit {
      */
     remind(note): void {
         this.noteServiceObj.updateNotes(note)
-            .subscribe(response => {
-                console.log(response);
-                this.refreshNote();
+                            .subscribe(response => {
+                                console.log(response);
+                                    this.refreshNote();
             });
     }
 

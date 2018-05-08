@@ -26,9 +26,10 @@ export class ArchiveComponent implements OnInit {
 
   /**@method:This method is to fetch notes */
   refreshNote(): void {
-    this.noteServiceObj.getNotes().subscribe(response => {
-          this.notes = response;
-          console.log("Notes fetched successfully..", response)
+    this.noteServiceObj.getNotes()
+                          .subscribe(response => {
+                             this.notes = response;
+                                console.log("Notes fetched successfully..", response)
        });
 };
 

@@ -9,6 +9,7 @@ import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
 import { environment } from '../../../environments/environment';
 
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
+import { UpdateNoteComponent } from '../update-note/update-note.component';
 
 import { NoteResponse } from '../../model/noteresponse';
 import { LabelResponse } from '../../model/labelresponse';
@@ -74,10 +75,15 @@ export class NoteListComponent implements OnInit {
     this.refreshLabel();
   }
 
+  refreshPage(): void {
+    window.location.reload();
+  }
+
   /**@method:This method is to create notes */
   createNote(): void {
     this.noteServiceObj.createNotes(this.model)
                       .subscribe(response => {
+                        this.refreshPage();
                           console.log("Note Created successfully..", response, this.notes);
                                              });
 
@@ -97,7 +103,7 @@ export class NoteListComponent implements OnInit {
                             
                              this.notes.forEach(note =>{
                               note.imageString = 'data:image/JPEG;base64,' + note.noteImage;
-                             })
+                              })
                           
                               console.log("Notes fetched successfully",this.notes);
                                             });
@@ -109,7 +115,7 @@ export class NoteListComponent implements OnInit {
                           .toPromise()
                             .then(response=>{
                               this.labels=response;
-                              console.log("Labels fetched successfully..");
+                                console.log("Labels fetched successfully..");
                             })
   }
   
@@ -168,7 +174,7 @@ remind(note):void{
   this.noteServiceObj.updateNotes(note)
                       .subscribe(response=>{
                         console.log(response);
-                        this.refreshNote();
+                         this.refreshNote();
                                             });
 }
 
@@ -246,7 +252,7 @@ removeLabel(note,labelId,field){
 
   note.labels=null;
   this.labelServiceObj.addRemoveLabel(labelId,note,field);
-  console.log(note,labelId,field);
+                       console.log(note,labelId,field);
 }
 
 
@@ -266,6 +272,7 @@ openCollaboratorDialog(note){
  * @param event
  */
 handleFileInput(event,noteId) {
+
   this.model.event= event;
   console.log("Note image->>", event)
 
@@ -274,6 +281,14 @@ handleFileInput(event,noteId) {
   this.noteServiceObj.uploadImage(this.model)
                     .subscribe(response=>{
                       console.log("Image uploaded successfully..");
+  });
+}
+
+openNoteDialog(note){
+  this.dialog.open(UpdateNoteComponent,{
+   data : note,
+    width: '350px',
+    height: '210px'
   });
 }
 };

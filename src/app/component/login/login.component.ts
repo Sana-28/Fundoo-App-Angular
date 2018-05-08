@@ -43,8 +43,11 @@ export class LoginComponent implements OnInit {
       {
       //console.log(response));
       if (response.status === 200) {
-        console.log(response.headers.get("Authorization"));
+        console.log("Check header..", response.headers.get("Authorization"));
+
+        //localStorage.setItem=this.userservice.getToken.toString;
         localStorage.setItem('Authorization', response.headers.get("Authorization"));
+        
         this.router.navigate(['/home']);
           
         } else if (response.status !== 200) {

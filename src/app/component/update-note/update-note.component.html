@@ -1,0 +1,15 @@
+  
+<div>
+<div id="updateNoteTitle" contenteditable='true' data-text='Title' name="title" (input)="data.title=$event.target.innerHTML">
+
+</div>
+
+<div id="updateNpteDescription" contenteditable='true' data-text='Take a note...'  name="description" (input)="data.description=$event.target.innerHTML">
+
+</div>
+
+<div>
+    <button mat-button style="margin-left: 80%;" (click)="updateNote()">CLOSE</button>
+</div>
+
+</div>

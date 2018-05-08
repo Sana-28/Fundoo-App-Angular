@@ -15,6 +15,7 @@ import { NoteListComponent } from './component/notes/note.list.component';
 import { TrashComponent } from './component/trash/trash.component';
 import { ArchiveComponent } from './component/archive/archive.component';
 import { ReminderComponent } from './component/reminder/reminder.component';
+import { ErrorComponent } from './component/error/error.component';
 
 import { AuthGuard } from './authguard/auth.guard';
 import { LoginAuthGuard } from './authguard/auth.guard';
@@ -36,7 +37,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent,canActivate: [LoginAuthGuard]},
   { path: 'forgetpassword', component: ForgotpasswordComponent },
-  { path: 'resetpassword' , component: ResetpasswordComponent }
+  { path: 'resetpassword' , component: ResetpasswordComponent },
+  { path: 'errorpage' ,component: ErrorComponent}
 
   // { path: 'createnotes', component: NotesComponent }
 ];

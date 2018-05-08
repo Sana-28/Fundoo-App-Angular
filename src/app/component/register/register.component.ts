@@ -41,7 +41,10 @@ export class RegisterComponent implements OnInit {
 
  /**@method:This method is to call register Api */
   register():void{
+    
     console.log(this.model);
-    this.userservice.postService('register',this.model).subscribe(data=>console.log(data));
+    this.userservice.postService('register',this.model)
+                      .subscribe(data=>console.log(data));
+                      this.resetForm();
   }
 }

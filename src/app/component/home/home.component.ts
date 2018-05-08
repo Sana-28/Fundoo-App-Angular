@@ -9,8 +9,11 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
 
 import { UserService, NoteService, LabelService } from '../../service';
-import { NoteResponse } from '../../model/noteresponse';
+
+import { UpdatelabelComponent } from '../updatelabel/updatelabel.component';
 import { LabelComponent } from '../label/label.component';
+
+import { NoteResponse } from '../../model/noteresponse';
 import { LabelResponse } from '../../model/labelresponse';
 
 @Component({
@@ -37,7 +40,7 @@ export class HomeComponent implements OnInit {
                         .toPromise()
                           .then(response => {
                              this.notes = response;
-                             console.log("Notes fetched successfully");
+                              console.log("Notes fetched successfully");
                                             });
   };
   
@@ -47,7 +50,7 @@ export class HomeComponent implements OnInit {
                           .toPromise()
                             .then(response=>{
                               this.labels=response;
-                              console.log("Labels fetched successfully..",this.labels);
+                               console.log("Labels fetched successfully..",this.labels);
                             })
   }
 
@@ -64,6 +67,14 @@ export class HomeComponent implements OnInit {
   /**@method: This method is to open dialog for adding label */
   openLabelDialog(){
     this.dialog.open(LabelComponent, {
+     
+      width: '350px',
+      height: '210px'
+    });
+  };
+
+  OpenLabelUpdateDialog(label){
+    this.dialog.open(UpdatelabelComponent, {
      
       width: '350px',
       height: '210px'
