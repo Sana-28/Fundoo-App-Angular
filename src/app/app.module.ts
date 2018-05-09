@@ -30,17 +30,16 @@ import { UserService } from './service/user.service';
 import { NoteService } from './service/note.service';
 import { LabelService } from './service/label.service';
 import { CollaboratorService } from './service/collaborator.service';
-import { TokenInterceptor } from './service/tokeninterceptor';
 
 import { NoteFilterPipe } from './notefilter.pipe';
-
+import { TokenInterceptor } from './service/tokeninterceptor';
 import { AuthGuard, LoginAuthGuard} from './authguard/auth.guard';
 import { ToolbarDirective } from './directive/toolbar.directive';
 
 const routes: Routes = [
   //{path:'register',component:RegisterComponent}
 ];
-
+ 
 @NgModule({
   declarations: [
     AppComponent,

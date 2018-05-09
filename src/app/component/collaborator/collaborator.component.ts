@@ -63,7 +63,7 @@ export class CollaboratorComponent implements OnInit {
 */
 removeCollaborator(noteId,email){
  
-  this.model.noteId=this.data.noteId;
+  this.model.oteId=this.data.noteId;
   console.log(this.model.noteId);
 
   this.model.email=email;

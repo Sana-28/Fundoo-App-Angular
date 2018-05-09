@@ -69,15 +69,20 @@ export class HomeComponent implements OnInit {
     this.dialog.open(LabelComponent, {
      
       width: '350px',
-      height: '210px'
+      height: '210px',
+      data : {
+        labels : this.labels
+    }
     });
   };
 
-  OpenLabelUpdateDialog(label){
+  OpenLabelUpdateDialog(){
     this.dialog.open(UpdatelabelComponent, {
-     
-      width: '350px',
-      height: '210px'
+      data : {
+        labels : this.labels
+    },
+      height: '500px'
+      
     });
   };
 

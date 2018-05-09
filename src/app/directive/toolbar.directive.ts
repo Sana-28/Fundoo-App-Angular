@@ -5,7 +5,7 @@
 */
 
 
-import { Directive, ElementRef, Input, AfterViewInit, HostListener } from '@angular/core';
+import { Directive, ElementRef, Input, AfterViewInit} from '@angular/core';
 import { Router, ActivatedRoute, ParamMap,NavigationEnd } from '@angular/router';
 import 'rxjs/add/operator/pairwise';
 

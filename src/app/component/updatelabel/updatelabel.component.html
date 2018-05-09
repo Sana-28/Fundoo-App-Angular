@@ -4,9 +4,39 @@
     <div>
        <mat-form-field >
         <input matInput placeholder="Create new label" [(ngModel)]="model.labelTitle">
-       <mat-icon>done</mat-icon>
        </mat-form-field>
+        <i class="material-icons" (click)="createLabel()" >done</i>
     </div>
-    <div><button type="submit" (click)="createLabel()" mat-raised-button>Done
-    </button></div>
+
+        <div *ngFor="let labelObj of label"> 
+          <input class="input" #inlineEditControl [(ngModel)]="labelObj.labelTitle"/>
+
+          <button mat-button type="submit" (click)="updateLabel(labelObj)">
+              <mat-icon style="color:royalblue">create</mat-icon> 
+          </button>
+
+          <button mat-button type="submit" (click)="deleteLabel(labelObj)">
+            <mat-icon style="color:royalblue">delete_forever</mat-icon>
+          </button>
+          
+        </div>
   </div>
+
+
+    <!-- <div *ngFor="let label of labels">
+      <div class="toolitems">
+        <button mat-menu-item style="color:royalblue"> 
+            <mat-icon style="color:royalblue">label</mat-icon>
+            <span>{{label.labelTitle}}</span> -->
+            <!-- <input name="labels" value="{{label.labelTitle}}"> -->
+            
+             <!-- <i class="material-icons">create</i> -->
+
+        <!-- </button>
+      </div> 
+     </div>  -->
+    
+
+    <!-- <div><button type="submit" (click)="createLabel()" mat-raised-button>Done
+    </button></div> -->
+  

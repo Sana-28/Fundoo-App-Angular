@@ -4,7 +4,7 @@
 * @description:This is label component contains method to fetch labels and create labels
 */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA,MatDialogRef} from '@angular/material';
 
 import { LabelResponse } from '../../model/labelresponse';
@@ -18,9 +18,17 @@ import { NoteService, LabelService } from '../../service';
 export class LabelComponent implements OnInit {
 
   model : any = {};
-  label : LabelResponse[];
+  @Input() label : LabelResponse[];
 
-  constructor(private noteServiceObj:NoteService,private labelServiceObj: LabelService , public dialogRef:MatDialogRef<LabelComponent>) { }
+  
+  constructor(@Inject(MAT_DIALOG_DATA)
+                private data: any,
+                private noteServiceObj:NoteService,
+                private labelServiceObj: LabelService ,
+                public dialogRef:MatDialogRef<LabelComponent>) 
+                {
+                  this.label = data.labels;
+                 }
 
   ngOnInit() {
     this.refreshLabel();
