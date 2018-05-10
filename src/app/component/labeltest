@@ -1,101 +1,83 @@
-<div fxLayout="column" fxLayoutGap="20px" style="left: 493.5px; top: 60.5px;">
-
-    <div><b>Edit labels </b></div>
-    
-    <div>
-         <div class='inline'>
-             <img style="margin-right: 10px;height: 17px;margin-top: 10px;" src="{{clearImg}}" matTooltip="cancel" (click)="deleteLabel(label.labelId)">
+<div fxLayout="column" fxLayoutGap="12px">
+       
+    <div *ngIf="data.image">
+            <mat-card>
+                <mat-card-header>
+                 <img [src]='"/assets/icon/"+data.image'/>
+                </mat-card-header>
+                <button mat-icon-button  style="margin-left: 96%;" (click)="removeImage()">
+                        <mat-icon>delete</mat-icon>
+                </button>
+                    
+            </mat-card>
              
-             <!-- <div contenteditable="true" data-text="Take a note..." class="editable"></div> -->
-               <input style="outline: none;border:none;" contenteditable="true" matInput placeholder="Create new label" [(ngModel)]="model.labelTitle">
-              <img style="margin-right: 10px;height: 17px;margin-top: 10px;"matTooltip="create label" src="{{checkImg}}" (click)=" createLabel(label)">
-             </div> 
-              <ul>
-              <li *ngFor="let label of labels"> 
-                {{label.labelTitle}}
-              </li>
-              </ul> 
-           </div>
-    <div flexLayout="row" fxLayoutAlign="end" >
-      <button type="submit" (click)="createLabel()" mat-raised-button style="margin-top: 160px;">Done</button>
     </div>
-  </div>
 
-  import { ViewChild, ElementRef, Component, OnInit, Input,Inject,Provider, forwardRef } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+    <div id="update-title" contenteditable='true' data-text='Title' class="editable line-height"name="title" (input)="data.title=$event.target.innerHTML"></div>
+    
+    <div id="update-description" contenteditable='true' data-text='Take a note..' class="editable line-height" name="description" (input)="data.description=$event.target.innerHTML"></div>
+
+    <div>
+        <button mat-button style="margin-left: 88%;" (click)="updateNote()">Close</button>
+    </div>
+
+</div>
+
+
+
+/** update note css*/
+[contentEditable=true]:empty:before{
+    content:attr(data-text)
+  }
+  .editable {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  outline: none;
+  line-height: 20px; 
+  } 
+
+/**updates*/
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { HttputilService } from '../httputil.service';
-import { Label } from '../Label';
-// import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/common";
+import { NoteResponse } from '../NoteResponse';
+import { UrlDTO } from '../UrlDTO';
+import { UrlDataRes } from '../UrlDataRes';
+
 @Component({
-  selector: 'app-label',
-  templateUrl: './label.component.html',
-  styleUrls: ['./label.component.css']
+  selector: 'app-update',
+  templateUrl: './update.component.html',
+  styleUrls: ['./update.component.css']
 })
+export class UpdateComponent implements OnInit {
+  UrlDTO: any = {};
+  urlDtoRes:UrlDataRes[];
 
-// const INLINE_EDIT_CONTROL_VALUE_ACCESSOR = new Provider(
-//   NG_VALUE_ACCESSOR, {
-//       useExisting: forwardRef(() => InlineEditComponent),
-//       multi: true
-//   });
-export class LabelComponent implements OnInit {
-  model: any = {};//get form data by 2way Binding
-  @Input() labels: Label[];
-  contentId: String;
-  showHide1:boolean;
- 
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: NoteResponse,
+    private commonService: HttputilService,
+    public MatRef: MatDialogRef<UpdateComponent>) {
 
-  clearImg = "/assets/icons/clear.svg";
-  plusImg = "/assets/icons/createlabel.svg";
-  checkImg = "/assets/icons/checkmark.png";
-
-
-
-
-  constructor(@Inject(MAT_DIALOG_DATA)
-   private data: any,
-    private commonService: HttputilService, public dialogRef: MatDialogRef<LabelComponent>,private dialog: MatDialog) 
-    { 
-
-      this.labels = data.labels;
-    }
-    changeShowStatus()
-   {
-     this.showHide1 = !this.showHide1;
-   }
-
-
-  ngOnInit() 
-  {    
   }
- 
- createLabel(): void {
-    console.log("formValue", this.model);
-    this.commonService.postServiceData('note/createlabel', this.model)
-      .subscribe(data => {
-        console.log("label created", data);
-        this.commonService.loadAllLabel();
-        this.dialogRef.close();
 
+  ngOnInit() {
+    document.getElementById('update-title').innerHTML = this.data.title;
+    document.getElementById('update-description').innerHTML = this.data.description;
+  }
+
+  updateNote() {
+   
+     this.commonService.putService('updateNote', this.data)
+       .subscribe(response => {
+         this.MatRef.close();
       });
   }
 
-
-  deleteLabel(contentId): void {
-    console.log(contentId);
-    this.commonService.deleteServiceData('note/deleteLabel', contentId).subscribe(data => {
-    this.labels = data.body;
-    this.commonService.loadAllLabel();
-    });
-
-  }
-  updateLabel(): void {
-    console.log("formValue", this.data);
-    this.commonService.putServiceData('note/updateLabel', this.data)
-      .subscribe(data => {
-        console.log(data);
-        this.commonService.loadAllLabel();
-        this.dialogRef.close();
+  removeImage() {
+    this.data.image = null;
+    this.commonService.putService('updateNote', this.data)
+      .subscribe(response => {
+        console.log(response);
       });
   }
-
 }

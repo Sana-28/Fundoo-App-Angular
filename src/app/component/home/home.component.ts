@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
      this.refreshLabel();
       }
 
+  /**@method: This is to refresh notes */
   refresh(): void {
     this.noteServiceObj.getNotes()
                         .toPromise()
@@ -81,7 +82,8 @@ export class HomeComponent implements OnInit {
       data : {
         labels : this.labels
     },
-      height: '500px'
+      
+      height: '210px',
       
     });
   };

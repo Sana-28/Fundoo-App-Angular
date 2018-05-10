@@ -7,8 +7,8 @@
 
 import { Directive, ElementRef, Input, AfterViewInit} from '@angular/core';
 import { Router, ActivatedRoute, ParamMap,NavigationEnd } from '@angular/router';
-import 'rxjs/add/operator/pairwise';
-
+import { filter } from 'rxjs/operator/filter';
+import { map } from 'rxjs/operator/map';
 
 @Directive({
   selector: '[appToolbar]'
@@ -21,21 +21,30 @@ export class ToolbarDirective {
     private elRef: ElementRef) {
   }
 
-  ngOnInit(): void {
+  ngOnInit(){
     console.log("check->>", this.router.url)
-    /*this.activatedroute.parent.url.subscribe((url)=>{
-      console.log(this.router.url)
-    })*/
+    // this.router.events.pipe(filter(event => event instanceof NavigationEnd)
+    //                   .subscribe({URL}:any)
 
+    //                          console.log(event);
+    //                           this.changeColor(event.url); 
+    //   }
+    // });
     this.router.events.subscribe((event: any) => {
       if(event instanceof NavigationEnd){
         console.log(event);
         this.changeColor(event.url);        
       }
+    });
+
+    /*this.activatedroute.parent.url.subscribe((url)=>{
+      console.log(this.router.url)
+    })*/
+
         /*if (url === 'home/createnotes') {
         this.changeColor(url);
       }*/
-    });
+   
 
     /* this.router.events.pairwise().subscribe((url:any) =>{
          console.log('url=', url)

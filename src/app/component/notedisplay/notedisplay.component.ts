@@ -239,4 +239,22 @@ openCollaboratorDialog(note){
     height: '210px'
   });
 };
+
+/**@method:This method is to upload a image 
+ * @param noteId
+ * @param event
+ */
+handleFileInput(event,noteId) {
+
+  this.model.event= event;
+  console.log("Note image->>", event)
+
+  this.model.noteId=noteId;
+  
+  this.noteServiceObj.uploadImage(this.model)
+                      .subscribe(response=>{
+                       console.log("Image uploaded successfully..");
+  });
+}
+
 };

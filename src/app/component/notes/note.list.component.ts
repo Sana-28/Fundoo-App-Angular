@@ -280,16 +280,16 @@ handleFileInput(event,noteId) {
   this.model.noteId=noteId;
   
   this.noteServiceObj.uploadImage(this.model)
-                    .subscribe(response=>{
-                      console.log("Image uploaded successfully..");
+                      .subscribe(response=>{
+                       console.log("Image uploaded successfully..");
   });
 }
 
 openNoteDialog(note){
   this.dialog.open(UpdateNoteComponent,{
    data : note,
-    width: '350px',
-    height: '210px'
+     width: '350px',
+    //  height: '210px'
   });
 }
 };

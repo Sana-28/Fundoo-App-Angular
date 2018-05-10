@@ -51,8 +51,8 @@ export class UpdatelabelComponent implements OnInit {
 
                           console.log("Label Created successfully..", response, this.label)
                            this.dialogRef.close();
-                           this.refreshPage();
-                            // this.refreshLabel();
+                          // this.refreshPage();
+                            this.refreshLabel();
                                              });
  };
 
@@ -64,6 +64,7 @@ export class UpdatelabelComponent implements OnInit {
                         .subscribe(data => {
                           console.log(data);
                           this.dialogRef.close();
+                          this.refreshLabel();
                         });
  }
 
@@ -76,6 +77,7 @@ export class UpdatelabelComponent implements OnInit {
                         .subscribe(data=>{
                           console.log(data);
                           this.dialogRef.close();
+                          this.refreshLabel();
                         });
 
  

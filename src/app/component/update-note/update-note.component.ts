@@ -2,6 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA,MatDialogRef } from '@angular/material';
 
 import { NoteResponse } from '../../model/noteresponse';
+
+import { UserService, NoteService } from '../../service';
+
 @Component({
   selector: 'app-update-note',
   templateUrl: './update-note.component.html',
@@ -12,7 +15,11 @@ export class UpdateNoteComponent implements OnInit {
   model:any = {};
   note : NoteResponse;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data:NoteResponse) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data:any,
+              private userServiceObj:UserService,
+              private noteServiceObj:NoteService,
+              public dialogRef:MatDialogRef<UpdateNoteComponent>) { }
+
 
   ngOnInit() {
     document.getElementById('updateNoteTitle').innerHTML=this.data.title;
@@ -20,7 +27,14 @@ export class UpdateNoteComponent implements OnInit {
   }
 
   updateNote(){
+  
+    console.log(this.data);
+     this.noteServiceObj.updateNotes(this.data)
+                          .subscribe(data => {
+                            console.log(data);
+                            this.dialogRef.close();
+                            
+                          });
 
   }
-
 }
