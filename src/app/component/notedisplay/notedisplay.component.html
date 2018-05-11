@@ -5,12 +5,15 @@
 
     <mat-card  [style.background]="note.color" class="mat-design">
 
-          <div *ngIf="note.noteImage">
+          <div *ngIf="note.noteImage" (click)="openNoteDialog(note)">
               <img class="image" [src]="note.imageString"/>
           </div>
 
         <div style="margin-left: 90%;">
-          <img src="{{unpinSvg}}" (click)="updateNotes(note,status,'pin')">
+          
+            <img [src]="getIcon(note)" (click)="updateNotes(note,status,'pin')">
+            <!-- <img [src]="checkIcon(note)" (click)="updateNotes(note,status,'pin')"> -->
+          <!-- <img src="{{unpinSvg}}" (click)="updateStatus(note,status,'pin')"> -->
         </div>
 
         <mat-card-header>

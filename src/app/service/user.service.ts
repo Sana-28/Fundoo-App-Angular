@@ -108,4 +108,9 @@ export class UserService {
     return this.http.post<any>(urlpath, fd, httpOptions2);
   }
 
+  imageDelete(url, model):Observable<any>{
+    var urlpath=this.URL.concat(url);
+    return this.http.post<any>(urlpath,model,this.httpOptions);
+  }
+
 }

@@ -83,9 +83,9 @@ export class NoteListComponent implements OnInit {
   createNote(): void {
     this.noteServiceObj.createNotes(this.model)
                       .subscribe(response => {
-                         this.refreshPage();
+                        //  this.refreshPage();
                           console.log("Note Created successfully..", response, this.notes);
-                          this.refreshNote();        
+                          this.noteServiceObj.reloadNotes();       
                         });
 
     /*   let self = this;

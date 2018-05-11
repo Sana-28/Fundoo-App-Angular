@@ -37,4 +37,12 @@ export class UpdateNoteComponent implements OnInit {
                           });
 
   }
+
+  deleteImage(note) {
+    this.data.noteId = note.noteId;
+    this.noteServiceObj.deleteImage(this.data.noteId )
+      .subscribe(response => {
+        console.log(response);
+      });
+  }
 }

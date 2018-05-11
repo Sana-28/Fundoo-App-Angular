@@ -6,12 +6,27 @@
 import { Injectable } from '@angular/core';
 import { UserService } from "./user.service"
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+
 import { NoteResponse } from '../model/noteresponse';
+
 
 @Injectable()
 export class NoteService {
 
+  private NoteSubject=new Subject<any>();
+
   constructor(private userServiceObj : UserService ) { }
+
+  /**@method: This method is to fetch notes */
+  reloadNotes():void{
+    var path = "getnotes";
+    this.userServiceObj.getService(path)
+                        .toPromise()
+                          .then((res)=>{
+                            this.NoteSubject.next(res);
+                           });
+   }
 
   /**@method: This method is to fetch notes */
   getNotes () : Observable<NoteResponse[]>{
@@ -38,5 +53,9 @@ export class NoteService {
     console.log("Checking upload image in service", model)
     //return this.userServiceObj.putService('uploadNoteImage',model);
     return this.userServiceObj.imageUpload('uploadNoteImage',model);
+  }
+
+  deleteImage(model):Observable<any>{
+    return this.userServiceObj.imageDelete('deleteImage',model);
   }
 }

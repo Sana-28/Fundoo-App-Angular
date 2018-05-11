@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   constructor(private userservice: UserService, private noteServiceObj: NoteService, private labelServiceObj:LabelService, private dialog: MatDialog, private router : Router) { }
 
   ngOnInit() {
-     this.refresh();
+     //this.refresh();
      this.refreshLabel();
       }
 

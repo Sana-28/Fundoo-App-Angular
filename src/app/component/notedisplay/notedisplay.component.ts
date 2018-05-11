@@ -16,6 +16,7 @@ import { NoteFilterPipe } from '../../notefilter.pipe';
 import { UserService, NoteService, LabelService } from '../../service';
 
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
+import { UpdateNoteComponent } from '../update-note/update-note.component';
 
 @Component({
   selector: 'app-notedisplay',
@@ -74,14 +75,33 @@ export class NotedisplayComponent implements OnInit {
     this.refreshLabel();
   }
 
+  checkIcon(note){
+    //var isPin=true;
+    
+    if(this.note.isPin === false){
+      return this.unpinSvg;
+    }
+   
+    return this.pinSvg;
+  }
+
+  getIcon(note){
+    if(!note.isPin){
+      return '/assets/icons/unpin.svg';
+    }
+
+    return '/assets/icons/pin.svg'
+
+  }
+
   /**@method:This method is to fetch notes */
   refreshNote(): void {
-    this.noteServiceObj.getNotes()
-                        .toPromise()
-                          .then(response => {
-                             this.notes = response;
-                              console.log("Notes fetched successfully");
-                                            });
+    // this.noteServiceObj.getNotes()
+    //                     .toPromise()
+    //                       .then(response => {
+    //                          this.notes = response;
+    //                           console.log("Notes fetched successfully");
+    //                                         });
   };
 
   /**@method: This method is to fetch labels */
@@ -254,6 +274,14 @@ handleFileInput(event,noteId) {
   this.noteServiceObj.uploadImage(this.model)
                       .subscribe(response=>{
                        console.log("Image uploaded successfully..");
+  });
+}
+
+openNoteDialog(note){
+  this.dialog.open(UpdateNoteComponent,{
+   data : note,
+     width: '350px',
+    height: '400px'
   });
 }
 
