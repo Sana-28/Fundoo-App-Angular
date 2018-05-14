@@ -19,6 +19,9 @@
         </div>
       </mat-toolbar> -->
 
+      <form [formGroup]="searchForm">
+            <input type='text' [formControl]="inputFormControl">
+     </form> 
 
     <div class="toolitems">
       <button mat-icon-button (click)="refresh()">
@@ -27,7 +30,7 @@
     </div>
 
     <div class="toolitems">
-      <button mat-icon-button (click)="list()">
+      <button mat-icon-button (click)="viewlist()">
         <mat-icon>view_list</mat-icon>
       </button>
     </div>
@@ -51,7 +54,7 @@
     </div> -->
 
     <div>
-      <button mat-mini-fab [matMenuTriggerFor]="appMenu" style="background-color: #3f51b5; margin-left: 850px">
+      <button mat-mini-fab [matMenuTriggerFor]="appMenu" style="background-color: #3f51b5;">
         <mat-icon>account_circle</mat-icon>
       </button>
    </div>

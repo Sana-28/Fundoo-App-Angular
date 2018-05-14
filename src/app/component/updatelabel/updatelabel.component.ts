@@ -28,7 +28,7 @@ export class UpdatelabelComponent implements OnInit {
                                           }
 
   ngOnInit() {
-    this.refreshLabel();
+    //this.refreshLabel();
   }
 
   refreshPage(): void {

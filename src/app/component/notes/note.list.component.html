@@ -29,7 +29,7 @@
 
 <div class="class-container" fxLayoutAlign="center center">
   <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="900px" fxLayoutGap="20px">
-    <div *ngFor="let note of notes | noteFilter: {isPin:true,inTrash:false,isArchive:false}">
+    <div *ngFor="let note of notes | noteFilter: {isPin:true,inTrash:false,isArchive:false}" class={{noteView}}>
       <!-- <div *ngIf="note.noteImage">
             <img [src]="note.imageString"/>
         </div> -->
@@ -69,7 +69,7 @@
 
   <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
       <div fxLayout="row wrap"  fxLayoutAlign="space-between center"  class="mat-div" fxFlex="900px"> 
-         <div *ngFor="let note of notes | noteFilter: {isPin:false,inTrash:false,isArchive:false}">
+         <div *ngFor="let note of notes | noteFilter: {isPin:false,inTrash:false,isArchive:false}" class={{noteView}}>
             <app-notedisplay [note]="note"></app-notedisplay>
          </div>
       </div>

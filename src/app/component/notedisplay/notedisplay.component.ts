@@ -71,11 +71,12 @@ export class NotedisplayComponent implements OnInit {
 
   /**@method:This ngOnInit method loads all the notes at the time of initialization */
   ngOnInit() {
-    this.refreshNote();
-    this.refreshLabel();
+   //this.refreshNote();
+  // this.noteServiceObj.reloadNotes();
+    //this.refreshLabel();
   }
 
-  checkIcon(note){
+  /*checkIcon(note){
     //var isPin=true;
     
     if(this.note.isPin === false){
@@ -83,7 +84,7 @@ export class NotedisplayComponent implements OnInit {
     }
    
     return this.pinSvg;
-  }
+  }*/
 
   getIcon(note){
     if(!note.isPin){
@@ -96,12 +97,12 @@ export class NotedisplayComponent implements OnInit {
 
   /**@method:This method is to fetch notes */
   refreshNote(): void {
-    // this.noteServiceObj.getNotes()
-    //                     .toPromise()
-    //                       .then(response => {
-    //                          this.notes = response;
-    //                           console.log("Notes fetched successfully");
-    //                                         });
+    this.noteServiceObj.getNotes()
+                        .toPromise()
+                          .then(response => {
+                             this.notes = response;
+                              console.log("Notes fetched successfully");
+                                            });
   };
 
   /**@method: This method is to fetch labels */

@@ -7,12 +7,12 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
+import { FormsModule, FormGroup, FormControl, FormBuilder} from '@angular/forms'
 
 import { UserService, NoteService, LabelService } from '../../service';
 
 import { UpdatelabelComponent } from '../updatelabel/updatelabel.component';
 import { LabelComponent } from '../label/label.component';
-
 import { NoteResponse } from '../../model/noteresponse';
 import { LabelResponse } from '../../model/labelresponse';
 
@@ -27,32 +27,46 @@ export class HomeComponent implements OnInit {
   notes: NoteResponse[];
   labels: LabelResponse[];
   reminder='/assets/icons/remind.png';
+  searchForm: FormGroup;
+  inputFormControl: FormControl;
 
-  constructor(private userservice: UserService, private noteServiceObj: NoteService, private labelServiceObj:LabelService, private dialog: MatDialog, private router : Router) { }
+  constructor(private userservice: UserService,
+                private noteServiceObj: NoteService, 
+                  private labelServiceObj:LabelService,
+                   private dialog: MatDialog,
+                    private router : Router,
+                     private builder: FormBuilder) 
+                     { 
+                        this.inputFormControl = new FormControl();
+                        this.searchForm = this.builder.group({
+                         inputFormControl: this.inputFormControl
+                        }); 
+                     }
 
   ngOnInit() {
      //this.refresh();
-     this.refreshLabel();
+     //this.labelServiceObj.getlabel();
+     this.searchText();
       }
 
   /**@method: This is to refresh notes */
   refresh(): void {
-    this.noteServiceObj.getNotes()
-                        .toPromise()
-                          .then(response => {
-                             this.notes = response;
-                              console.log("Notes fetched successfully");
-                                            });
+    // this.noteServiceObj.getNotes()
+    //                     .toPromise()
+    //                       .then(response => {
+    //                          this.notes = response;
+    //                           console.log("Notes fetched successfully");
+    //                                         });
   };
   
   /**@method: This method is to fetch labels*/
   refreshLabel():void{
-    this.labelServiceObj.getLabels()
+    /*this.labelServiceObj.getLabels()
                           .toPromise()
                             .then(response=>{
                               this.labels=response;
                                console.log("Labels fetched successfully..",this.labels);
-                            })
+                            })*/
   }
 
   /**@method: This method is for logout */
@@ -88,4 +102,16 @@ export class HomeComponent implements OnInit {
     });
   };
 
+  viewlist(){
+    this.noteServiceObj.changeView();
+  }
+
+  searchText(){
+    console.log("Test for search",this.inputFormControl);
+    this.searchForm.valueChanges.subscribe(
+      (formData) => {
+        console.log(formData.inputFormControl);
+        this.userservice.searchData(formData.inputFormControl);
+      });
+  }
 }

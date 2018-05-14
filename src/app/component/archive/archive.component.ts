@@ -4,7 +4,7 @@
 * @description:This component is for archieve contains a method to refresh notes
 */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NoteResponse } from '../../model/noteresponse';
 import { UserService, NoteService } from '../../service';
 

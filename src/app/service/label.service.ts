@@ -5,13 +5,36 @@
 */
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { UserService } from './user.service';
 import { LabelResponse } from '../model/labelresponse';
 
 @Injectable()
 export class LabelService {
 
+  private labelSubject = new Subject<any>();
+
   constructor(private userServiceObj: UserService) { }
+
+
+  reloadLabels():void{
+    var path = "getlabels";
+    debugger;
+    this.userServiceObj.getService(path)
+                        .toPromise()
+                          .then((res)=>{
+                            
+                            this.labelSubject.next(res);
+                          
+                            console.log("Label fetched successfully");
+                          });
+   }
+
+   getlabels():Observable<LabelResponse[]>
+    {
+      setTimeout(this.reloadLabels.bind(this))
+        return this.labelSubject.asObservable();
+    }
 
   /**@method: This method is to fetch label */
   getLabels(): Observable<LabelResponse[]> {

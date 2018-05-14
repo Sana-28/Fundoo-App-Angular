@@ -33,6 +33,8 @@ export class NoteListComponent implements OnInit {
       isPin     : any = {};
       response  : any = {};
   fileToUpload  : File = null;
+  gridListView  : boolean;
+  noteView      : string=localStorage.getItem('class');
 
   notes         : NoteResponse[]; //= [{noteId:0,title:"sample", description : "fdfsdf" }];
   labels        : LabelResponse[];
@@ -71,21 +73,53 @@ export class NoteListComponent implements OnInit {
 
   /**@method:This ngOnInit method loads all the notes at the time of initialization */
   ngOnInit() {
-    this.refreshNote();
-    this.refreshLabel();
+    //this.refreshNote();
+   // this.noteServiceObj.reloadNotes();
+    this.readNote();
+    this.readLabel();
+
+    this.noteServiceObj.getStatus()
+                        .subscribe((status)=>{
+                            this.noteView = status ? "list-view" : "grid-view";
+                            localStorage.setItem('class',this.noteView);     
+
+                          });
   }
 
-  refreshPage(): void {
-    window.location.reload();
+  /**@method:This method is to fetch notes */
+  readNote(): void {
+    this.noteServiceObj.getnotes()
+                          .subscribe(response => {
+                             this.notes = response;
+                             //debugger;
+                             this.notes.forEach(note =>{
+                              note.imageString = 'data:image/JPEG;base64,' + note.noteImage;
+                              });
+                              console.log("Notes fetched successfully",this.notes);
+                            });
+  };
+
+  /**@method: This method is to fetch labels */
+  readLabel():void{
+    this.labelServiceObj.getlabels()
+                          .subscribe(response=>{
+                              this.labels = response;
+                                console.log("Labels fetched successfully..");
+                            });
   }
+
+  // refreshPage(): void {
+  //   window.location.reload();
+  // }
 
   /**@method:This method is to create notes */
   createNote(): void {
     this.noteServiceObj.createNotes(this.model)
                       .subscribe(response => {
                         //  this.refreshPage();
+                        this.noteServiceObj.reloadNotes();       
+
                           console.log("Note Created successfully..", response, this.notes);
-                          this.noteServiceObj.reloadNotes();       
                         });
 
     /*   let self = this;
@@ -95,29 +129,9 @@ export class NoteListComponent implements OnInit {
     */
   };
 
-  /**@method:This method is to fetch notes */
-  refreshNote(): void {
-    this.noteServiceObj.getNotes()
-                        .toPromise()
-                          .then(response => {
-                             this.notes = response;
-                            
-                             this.notes.forEach(note =>{
-                              note.imageString = 'data:image/JPEG;base64,' + note.noteImage;
-                              })
-                          
-                              console.log("Notes fetched successfully",this.notes);
-                                            });
-  };
 
   /**@method: This method is to fetch labels */
   refreshLabel():void{
-    this.labelServiceObj.getLabels()
-                          .toPromise()
-                            .then(response=>{
-                              this.labels=response;
-                                console.log("Labels fetched successfully..");
-                            })
   }
   
   /**@method:This method is to move the notes to trash
@@ -127,7 +141,8 @@ export class NoteListComponent implements OnInit {
     this.noteServiceObj.updateNotes(note)
                         .subscribe(response => {
                             console.log(response);
-                            this.refreshNote();});
+                            this.readNote();
+                          });
   }
 
   updateNotes(note,status,field){
@@ -175,7 +190,7 @@ remind(note):void{
   this.noteServiceObj.updateNotes(note)
                       .subscribe(response=>{
                         console.log(response);
-                         this.refreshNote();
+                         this.readNote();
                                             });
 }
 

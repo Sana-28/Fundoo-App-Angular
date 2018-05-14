@@ -31,7 +31,7 @@ export class UpdateNoteComponent implements OnInit {
     console.log(this.data);
      this.noteServiceObj.updateNotes(this.data)
                           .subscribe(data => {
-                            console.log(data);
+                            this.noteServiceObj.reloadNotes();
                             this.dialogRef.close();
                             
                           });
@@ -41,8 +41,8 @@ export class UpdateNoteComponent implements OnInit {
   deleteImage(note) {
     this.data.noteId = note.noteId;
     this.noteServiceObj.deleteImage(this.data.noteId )
-      .subscribe(response => {
-        console.log(response);
-      });
+                        .subscribe(response => {
+                          console.log(response);
+                        });
   }
 }

@@ -7,10 +7,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'; //use to share data b/w components
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { Headers, RequestOptions, Response } from '@angular/http';
 import { NoteResponse } from '../model/noteresponse';
 import { CurrentUserResp } from '../model/currentuserresp';
-import { environment } from "../../environments/environment"
+import { environment } from "../../environments/environment";
 
 /*It looks similar to component file but  but it uses the @Injectable() 
 decorator, which means we can import it. into other components and access
@@ -44,6 +45,7 @@ export class UserService {
   // private URL = 'http://localhost:8080/ToDo-App/';
       private URL= environment.base_url;
 
+     
   /*A representation of any set of values over any amount of time.
    This is the most basic building block of RxJS*/
   public postService(url, model): Observable<any> {
@@ -111,6 +113,14 @@ export class UserService {
   imageDelete(url, model):Observable<any>{
     var urlpath=this.URL.concat(url);
     return this.http.post<any>(urlpath,model,this.httpOptions);
+  }
+
+  private searchSubject=new Subject<any>();
+  searchObservable$=this.searchSubject.asObservable();
+
+  searchData(data : any){
+    console.log("in service", data)
+    this.searchSubject.next(data);
   }
 
 }

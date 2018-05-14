@@ -5,7 +5,7 @@
 
     <mat-card  [style.background]="note.color" class="mat-design">
 
-          <div *ngIf="note.noteImage" (click)="openNoteDialog(note)">
+          <div *ngIf="note.noteImage">
               <img class="image" [src]="note.imageString"/>
           </div>
 
@@ -16,6 +16,7 @@
           <!-- <img src="{{unpinSvg}}" (click)="updateStatus(note,status,'pin')"> -->
         </div>
 
+      <div (click)="openNoteDialog(note)">
         <mat-card-header>
             <!-- {{note.title}} -->
           <div [innerHTML]="note.title"></div>
@@ -25,7 +26,8 @@
           <!-- {{note.description}} -->
           <div [innerHTML]="note.description"></div>
         </mat-card-subtitle>
-
+      </div>
+      
           <!-- All buttons row Wrap -->
           <div fxLayout="row" style="margin-left: -20px;">
 

@@ -4,6 +4,7 @@
 * @description: This is Note Service contains method to create note,update note,delete note,get notes
 */
 import { Injectable } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
 import { UserService } from "./user.service"
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -14,19 +15,41 @@ import { NoteResponse } from '../model/noteresponse';
 @Injectable()
 export class NoteService {
 
-  private NoteSubject=new Subject<any>();
+  status:boolean = true;  
+  private viewSubject = new Subject<any>();
+  private noteSubject = new Subject<any>();
 
   constructor(private userServiceObj : UserService ) { }
 
   /**@method: This method is to fetch notes */
   reloadNotes():void{
     var path = "getnotes";
+    debugger;
     this.userServiceObj.getService(path)
                         .toPromise()
                           .then((res)=>{
-                            this.NoteSubject.next(res);
-                           });
+                            
+                            this.noteSubject.next(res);
+                          
+                            console.log("Notes fetched successfully");
+                          });
    }
+
+   getnotes():Observable<NoteResponse[]>
+    {
+      setTimeout(this.reloadNotes.bind(this))
+        return this.noteSubject.asObservable();
+    }
+   
+  changeView(){
+    this.status = !this.status;
+    this.viewSubject.next(this.status);
+  }
+
+  getStatus(){
+    return this.viewSubject.asObservable();
+  }
+
 
   /**@method: This method is to fetch notes */
   getNotes () : Observable<NoteResponse[]>{
