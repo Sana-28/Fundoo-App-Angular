@@ -6,6 +6,8 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
+import { FormGroup, FormControl, NgForm, FormGroupDirective } from '@angular/forms';
+
 import { environment } from '../../../environments/environment';
 
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
@@ -32,9 +34,12 @@ export class NoteListComponent implements OnInit {
       isArchive : any = {};
       isPin     : any = {};
       response  : any = {};
+      searchText: string = "";
   fileToUpload  : File = null;
   gridListView  : boolean;
   noteView      : string=localStorage.getItem('class');
+  searchForm    : FormGroup;
+  inputFormControl: FormControl;
 
   notes         : NoteResponse[]; //= [{noteId:0,title:"sample", description : "fdfsdf" }];
   labels        : LabelResponse[];
@@ -69,7 +74,19 @@ export class NoteListComponent implements OnInit {
   }
   ];
 
-  constructor(private userservice: UserService, private noteServiceObj: NoteService , private labelServiceObj:LabelService, private dialog: MatDialog) { }
+  constructor(private userservice: UserService,
+              private noteServiceObj: NoteService ,
+                private labelServiceObj:LabelService,
+                  private dialog: MatDialog) 
+                  {
+                    userservice.searchObservable$.subscribe(
+                      FormData=>{
+                        this.searchText = FormData;
+                        console.log(this.searchText);
+
+                      })
+                   }
+
 
   /**@method:This ngOnInit method loads all the notes at the time of initialization */
   ngOnInit() {
@@ -81,8 +98,7 @@ export class NoteListComponent implements OnInit {
     this.noteServiceObj.getStatus()
                         .subscribe((status)=>{
                             this.noteView = status ? "list-view" : "grid-view";
-                            localStorage.setItem('class',this.noteView);     
-
+                            localStorage.setItem('class',this.noteView);
                           });
   }
 
@@ -118,7 +134,6 @@ export class NoteListComponent implements OnInit {
                       .subscribe(response => {
                         //  this.refreshPage();
                         this.noteServiceObj.reloadNotes();       
-
                           console.log("Note Created successfully..", response, this.notes);
                         });
 
@@ -132,6 +147,7 @@ export class NoteListComponent implements OnInit {
 
   /**@method: This method is to fetch labels */
   refreshLabel():void{
+    this.labelServiceObj.reloadLabels();
   }
   
   /**@method:This method is to move the notes to trash
@@ -140,8 +156,8 @@ export class NoteListComponent implements OnInit {
   update(note):void{
     this.noteServiceObj.updateNotes(note)
                         .subscribe(response => {
+                          this.noteServiceObj.reloadNotes();  
                             console.log(response);
-                            this.readNote();
                           });
   }
 
@@ -307,4 +323,13 @@ openNoteDialog(note){
     //  height: '210px'
   });
 }
+
+// searchText(){
+//   console.log("Test for search",this.inputFormControl);
+//   this.searchForm.valueChanges.subscribe(
+//     (formData) => {
+//       console.log(formData.inputFormControl);
+//       this.userservice.searchData(formData.inputFormControl);
+//     });
+// }
 };

@@ -5,6 +5,8 @@
 */
 import { Component, OnInit,Input } from '@angular/core';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
+import { FormGroup, FormControl, NgForm, FormGroupDirective } from '@angular/forms';
+
 import { environment } from '../../../environments/environment';
 
 import { NoteResponse } from '../../model/noteresponse';
@@ -31,6 +33,8 @@ export class NotedisplayComponent implements OnInit {
   inTrash   : any = {};
   isArchive : any = {};
   isPin     : any = {};
+  searchForm    : FormGroup;
+  inputFormControl: FormControl;
 
   notes     : NoteResponse[]; //= [{noteId:0,title:"sample", description : "fdfsdf" }];
   labels    : LabelResponse[];
@@ -71,9 +75,17 @@ export class NotedisplayComponent implements OnInit {
 
   /**@method:This ngOnInit method loads all the notes at the time of initialization */
   ngOnInit() {
+    this.readlabel();
    //this.refreshNote();
-  // this.noteServiceObj.reloadNotes();
-    //this.refreshLabel();
+   //this.noteServiceObj.reloadNotes();
+   //this.refreshLabel();
+  }
+
+  readlabel() : void{
+    this.labels = this.labelServiceObj.labels;
+    this.labelServiceObj.changeLabel.subscribe((labelArry)=>{
+      this.labels = labelArry;
+    })
   }
 
   /*checkIcon(note){
@@ -88,11 +100,10 @@ export class NotedisplayComponent implements OnInit {
 
   getIcon(note){
     if(!note.isPin){
-      return '/assets/icons/unpin.svg';
+      return '/assets/icons/pin.svg'
     }
 
-    return '/assets/icons/pin.svg'
-
+    return '/assets/icons/unpin.svg';
   }
 
   /**@method:This method is to fetch notes */
@@ -122,7 +133,8 @@ export class NotedisplayComponent implements OnInit {
     this.noteServiceObj.updateNotes(note)
                         .subscribe(response => {
                             console.log(response);
-                            this.refreshNote();});
+                            this.refreshNote();
+                          });
   }
 
   updateNotes(note,status,field){
@@ -217,7 +229,7 @@ saveReminder(note,field){
            
     note.reminder=null;
     this.remind(note);
-}
+  }
 }
 
 /**@method:This method is to add LAbels */
@@ -242,12 +254,21 @@ optionChange(status, labelId, noteId){
  * @param note
  * @param labelId
  * @param field
-*/
+
 removeLabel(note,labelId,field){
 
   note.labels=null;
   this.labelServiceObj.addRemoveLabel(labelId,note,field);
   console.log(note,labelId,field);
+}*/
+
+removeLabel(labelId){
+
+  this.model.labelId=labelId;
+  this.labelServiceObj.deleteLabel(labelId)
+                      .subscribe(response => {
+                        console.log("Removed label");
+                      });
 }
 
 /**@method:This method is to open collaborator dialog
@@ -284,6 +305,15 @@ openNoteDialog(note){
      width: '350px',
     height: '400px'
   });
+}
+
+searchText(){
+  console.log("Test for search",this.inputFormControl);
+  this.searchForm.valueChanges.subscribe(
+    (formData) => {
+      console.log(formData.inputFormControl);
+      this.userservice.searchData(formData.inputFormControl);
+    });
 }
 
 };

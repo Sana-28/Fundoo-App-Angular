@@ -16,13 +16,17 @@
 
                     <div class="logincontainer">
                         <mat-form-field>
-                            <input matInput placeholder="Email" type="email" name="email" [(ngModel)]="model.email">
+                            <input matInput placeholder="Email" type="email" name="email"  [formControl]="emailControl" [(ngModel)]="model.email">
+                            <mat-error *ngIf="emailControl.hasError('required')">Email Address is required</mat-error>
+                            <mat-error *ngIf="emailControl.hasError('pattern') && !emailControl.hasError('required') ">Enter Valid Email address</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div class="logincontainer">
                         <mat-form-field>
-                            <input matInput placeholder="Password" type="password" name="password" [(ngModel)]="model.password">
+                            <input matInput placeholder="Password" type="password" name="password"  [formControl]="emailControl" [(ngModel)]="model.password">
+                            <mat-error *ngIf="passwordControl.hasError('required')">Password is required</mat-error>
+                            <mat-error *ngIf="passwordControl.hasError('pattern') && !passwordControl.hasError('required') ">Enter a valid Password</mat-error>
                         </mat-form-field>
                     </div>
 

@@ -3,7 +3,7 @@
 * @since: 9/April/2018
 * @description: This is Label Service contains method to create label,get label, add and remove label
 */
-import { Injectable } from '@angular/core';
+import { Injectable,Output,EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { UserService } from './user.service';
@@ -13,20 +13,19 @@ import { LabelResponse } from '../model/labelresponse';
 export class LabelService {
 
   private labelSubject = new Subject<any>();
-
+  public labels : Array<any> = [];
   constructor(private userServiceObj: UserService) { }
 
+  @Output() changeLabel: EventEmitter<Array<any>> = new EventEmitter();
 
   reloadLabels():void{
     var path = "getlabels";
-    debugger;
     this.userServiceObj.getService(path)
                         .toPromise()
                           .then((res)=>{
-                            
+                            this.labels = res;
+                            this.changeLabel.emit(res);
                             this.labelSubject.next(res);
-                          
-                            console.log("Label fetched successfully");
                           });
    }
 

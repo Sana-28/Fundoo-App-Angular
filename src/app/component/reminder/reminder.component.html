@@ -1,18 +1,21 @@
-<!-- <div class="class-container" fxLayoutAlign="center center">
+<div class="class-container" fxLayoutAlign="center center">
 
   <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
       <div fxLayout="row wrap"  fxLayoutAlign="space-between center"  class="mat-div" fxFlex="900px"> 
-         <div *ngFor="let note of notes | noteFilter: {isPin:false,inTrash:false,isArchive:false}" class={{noteView}}>
-            <app-notedisplay [note]="note"></app-notedisplay>
+         <div *ngFor="let note of notes" class={{noteView}}>
+            <div *ngIf="note.reminder!=null">
+              <app-notedisplay [note]="note"></app-notedisplay>
+            </div>
          </div>
       </div>
 </div>
-</div> -->
+</div>
 
-<div class="class-container" fxLayoutAlign="center center">
+<!-- <div class="class-container" fxLayoutAlign="center center">
     <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="1000px" fxLayoutGap="30px">
       <div *ngFor="let note of notes">
-        <div *ngIf="note.inTrash===false && note.isPin===false && note.isArchive===false">
+          <div *ngIf="note.reminder!=null">
+
           
           <mat-card [style.background]="note.color" class="mat-card">
   
@@ -44,10 +47,10 @@
              </div>
             </div>
   
-            <!-- All buttons row Wrap -->
+            
             <div fxLayout="row wrap">
   
-              <!-- Reminder Div -->
+             
               <div>
                 <button mat-icon-button [matMenuTriggerFor]="remind">
                   <img src="/assets/icons/reminder.svg">
@@ -95,7 +98,7 @@
                 </mat-menu>
               </div>
   
-              <!-- Color Div -->
+             
               <div>
                 <button mat-icon-button [matMenuTriggerFor]="color">
                   <mat-icon>color_lens</mat-icon>
@@ -111,14 +114,14 @@
                 </mat-menu>
               </div>
   
-              <!-- Archive Div -->
+             
               <div>
                 <button mat-button type="submit" (click)="updateNotes(note,'true','archive')">
                   <mat-icon>archive</mat-icon>
                 </button>
               </div>
   
-              <!-- Delete Div -->
+             
               <div>
                 <button mat-icon-button [matMenuTriggerFor]="menu">
                   <mat-icon>more_vert</mat-icon>
@@ -143,4 +146,4 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->

@@ -35,6 +35,7 @@ import { NoteFilterPipe } from './notefilter.pipe';
 import { TokenInterceptor } from './service/tokeninterceptor';
 import { AuthGuard, LoginAuthGuard} from './authguard/auth.guard';
 import { ToolbarDirective } from './directive/toolbar.directive';
+import { SearchFilterPipe } from './search-filter.pipe';
 
 const routes: Routes = [
   //{path:'register',component:RegisterComponent}
@@ -62,6 +63,8 @@ const routes: Routes = [
     NoteFilterPipe,
 
     ToolbarDirective,
+
+    SearchFilterPipe,
     ],
   
   imports: [

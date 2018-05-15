@@ -17,10 +17,11 @@
             <mat-icon>search</mat-icon>
           </button>
         </div>
-      </mat-toolbar> -->
+      </mat-toolbar>  
+    [attr.disabled]="disabled ? '' : null"-->
 
       <form [formGroup]="searchForm">
-            <input type='text' [formControl]="inputFormControl">
+            <input type='text' style=" height: 39px; width: 639px; margin-left: 53px; margin-right: 181px;" [formControl]="inputFormControl">
      </form> 
 
     <div class="toolitems">

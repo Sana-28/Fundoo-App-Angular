@@ -37,4 +37,10 @@
  }
 .matchip{
     block-size: 10px;
+    width: 175px;
+}
+
+.labelChip{
+   max-width: fit-content;
+   block-size: 10px;
 }

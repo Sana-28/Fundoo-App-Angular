@@ -22,6 +22,9 @@ export class UserService {
 
   /*model property for class userservice can accept any object */
   model: any = {};
+  private searchSubject=new Subject<any>();
+  searchObservable$=this.searchSubject.asObservable();
+
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -115,9 +118,7 @@ export class UserService {
     return this.http.post<any>(urlpath,model,this.httpOptions);
   }
 
-  private searchSubject=new Subject<any>();
-  searchObservable$=this.searchSubject.asObservable();
-
+  
   searchData(data : any){
     console.log("in service", data)
     this.searchSubject.next(data);

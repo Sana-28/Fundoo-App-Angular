@@ -14,7 +14,7 @@
     <div *ngIf="data.collaborators!=null"> 
             <div *ngFor="let collaboratorObj of data.collaborators">
                 <mat-icon>account_circle</mat-icon>
-                <span>{{collaborator.sharedUser.email}}</span>
+                <span>{{collaboratorObj.sharedUser.email}}</span>
                 <img style="margin-right: 8px;" src="{{crossSvg}}" (click)="removeCollaborator(collaboratorObj.note.noteId, collaboratorObj.sharedUser.email)">
             </div>
     </div>

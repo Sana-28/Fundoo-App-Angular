@@ -4,10 +4,13 @@
 * @description: This is login component contains login method  
 */
 
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../service/user.service';
+import { Component, OnInit} from '@angular/core';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +21,16 @@ export class LoginComponent implements OnInit {
 
   model: any = {};
 
+  emailControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
+  ]);
+
+  passwordControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('.{4,12}'),
+  ]);
+  
   constructor(private userservice: UserService, private router: Router) { }
 
   ngOnInit() {

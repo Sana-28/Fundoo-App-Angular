@@ -37,11 +37,12 @@ export class UpdatelabelComponent implements OnInit {
 
   /**@method: This method is to fetch labels */
   refreshLabel():void{
-    this.labelServiceObj.getLabels()
-                          .toPromise()
-                            .then(response=>{
-                               console.log("Labels fetched successfully..");
-                            })
+    this.labelServiceObj.reloadLabels();
+    // this.labelServiceObj.getLabels()
+    //                       .toPromise()
+    //                         .then(response=>{
+    //                            console.log("Labels fetched successfully..");
+    //                         })
   }
 
    /**@method:This method is to create labels */

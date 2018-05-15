@@ -4,6 +4,7 @@
  * @description This is register component contains a method to register user.
  */
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { NgForm} from '@angular/forms';
 import { UserService } from '../../service/user.service';
 
@@ -15,6 +16,25 @@ import { UserService } from '../../service/user.service';
 export class RegisterComponent implements OnInit {
 
   model:any={};
+
+  nameControl = new FormControl('', [
+    Validators.required,
+   ]);
+
+   emailControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
+  ]);
+
+  passwordControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('.{4,12}'),
+  ]);
+
+  mobileControl = new FormControl('',[
+    Validators.required
+  ]);
+
   constructor(private userservice:UserService) { 
   }
 

@@ -48,6 +48,7 @@ export class LabelComponent implements OnInit {
   createLabel(): void {
     this.labelServiceObj.createLabel(this.model)
                       .subscribe(response => {
+                        this.labelServiceObj.reloadLabels();
                           console.log("Label Created successfully..", response, this.label)
                            this.dialogRef.close();
                                              });

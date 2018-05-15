@@ -10,6 +10,7 @@ import { Router, ActivatedRoute, ParamMap,NavigationEnd } from '@angular/router'
 import { filter } from 'rxjs/operator/filter';
 import { map } from 'rxjs/operator/map';
 
+
 @Directive({
   selector: '[appToolbar]'
 })
@@ -37,6 +38,14 @@ export class ToolbarDirective {
       }
     });
 
+    /*this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+  ).subscribe(({url}: any) => {
+      console.log(url);
+      this.changeColor(url);
+  });*/
+  
+
     /*this.activatedroute.parent.url.subscribe((url)=>{
       console.log(this.router.url)
     })*/
@@ -62,7 +71,7 @@ export class ToolbarDirective {
 
     }
     else if (url.indexOf("archive")>-1) {
-      this.elRef.nativeElement.style['background-color'] = 'MediumSlateBlue	';
+      this.elRef.nativeElement.style['background-color'] = 'gray';
      // this.ngAfterViewInit("home/trash");
     }
 

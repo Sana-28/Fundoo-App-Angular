@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   notes: NoteResponse[];
   labels: LabelResponse[];
   reminder='/assets/icons/remind.png';
+  
   searchForm: FormGroup;
   inputFormControl: FormControl;
 
@@ -47,6 +48,7 @@ export class HomeComponent implements OnInit {
      //this.refresh();
      //this.labelServiceObj.getlabel();
      this.searchText();
+     this.readLabel();
       }
 
   /**@method: This is to refresh notes */
@@ -60,13 +62,12 @@ export class HomeComponent implements OnInit {
   };
   
   /**@method: This method is to fetch labels*/
-  refreshLabel():void{
-    /*this.labelServiceObj.getLabels()
-                          .toPromise()
-                            .then(response=>{
+  readLabel():void{
+    this.labelServiceObj.getlabels()
+                          .subscribe(response=>{
                               this.labels=response;
                                console.log("Labels fetched successfully..",this.labels);
-                            })*/
+                            })
   }
 
   /**@method: This method is for logout */
@@ -110,7 +111,8 @@ export class HomeComponent implements OnInit {
     console.log("Test for search",this.inputFormControl);
     this.searchForm.valueChanges.subscribe(
       (formData) => {
-        console.log(formData.inputFormControl);
+        debugger;
+        console.log("search",formData.inputFormControl);
         this.userservice.searchData(formData.inputFormControl);
       });
   }

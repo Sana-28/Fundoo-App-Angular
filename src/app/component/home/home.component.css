@@ -30,3 +30,10 @@
 .sidenavitem{
     color: royalblue;
 }
+
+search-Box{
+    height: 39px;
+    width: 639px;
+    margin-left: 53px;
+    margin-right: 181px;
+}
