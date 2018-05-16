@@ -9,3 +9,7 @@
   position: sticky; 
   top: 0;z-index: 1000;
 }
+
+.mat-field{
+  width: 500px;
+}

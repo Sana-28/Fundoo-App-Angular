@@ -8,3 +8,14 @@
    text-align:left;
     color: rgb(231, 231, 236);
 }
+
+.loginCard{
+    margin-left: 241px;
+    width: 456px;
+     margin-top: 538px;
+}
+
+
+.mat-field{
+    width: 450px;
+  }

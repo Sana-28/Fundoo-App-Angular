@@ -17,7 +17,7 @@ import { NoteResponse } from '../../model/noteresponse';
 import { LabelResponse } from '../../model/labelresponse';
 import { CollaboratorResponse } from '../../model/collaboratorresponse';
 
-import { NoteFilterPipe } from '../../notefilter.pipe';
+import { NoteFilterPipe } from '../../filter/notefilter.pipe';
 
 import { UserService, NoteService, LabelService } from '../../service';
 import { toBase64String } from '@angular/compiler/src/output/source_map';
@@ -91,9 +91,9 @@ export class NoteListComponent implements OnInit {
   /**@method:This ngOnInit method loads all the notes at the time of initialization */
   ngOnInit() {
     //this.refreshNote();
-   // this.noteServiceObj.reloadNotes();
+   // this.noteServiceObj.reloadNotes()
     this.readNote();
-    this.readLabel();
+    //this.readLabel();
 
     this.noteServiceObj.getStatus()
                         .subscribe((status)=>{
@@ -262,6 +262,7 @@ addLabel():void{
   this.labelServiceObj.getLabels()
                         .subscribe(response=>{
                           this.labels=response;
+                          this.noteServiceObj.reloadNotes();  
                           console.log("Label fetched successfully..",response, this.labels);
                         });
 }
@@ -279,14 +280,23 @@ optionChange(status, labelId, noteId){
  * @param note
  * @param labelId
  * @param field
-*/
+
 removeLabel(note,labelId,field){
 
   note.labels=null;
   this.labelServiceObj.addRemoveLabel(labelId,note,field);
                        console.log(note,labelId,field);
-}
+}*/
 
+removeLabel(labelId){
+
+  this.model.labelId=labelId;
+  this.labelServiceObj.deleteLabel(labelId)
+                      .subscribe(response => {
+                        this.noteServiceObj.reloadNotes();  
+                        console.log("Removed label", response);
+                      });
+}
 
 /**@method: This method is to open collaborator dialog 
  * @param note
@@ -324,12 +334,12 @@ openNoteDialog(note){
   });
 }
 
-// searchText(){
-//   console.log("Test for search",this.inputFormControl);
-//   this.searchForm.valueChanges.subscribe(
-//     (formData) => {
-//       console.log(formData.inputFormControl);
-//       this.userservice.searchData(formData.inputFormControl);
-//     });
-// }
+/*searchText(){
+  console.log("Test for search",this.inputFormControl);
+  this.searchForm.valueChanges.subscribe(
+    (formData) => {
+      console.log(formData.inputFormControl);
+      this.userservice.searchData(formData.inputFormControl);
+    });
+}*/
 };

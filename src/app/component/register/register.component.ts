@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { NgForm} from '@angular/forms';
 import { UserService } from '../../service/user.service';
+import { RegisterService } from '../../service/register.service';
 
 @Component({
   selector: 'app-register',
@@ -19,6 +20,7 @@ export class RegisterComponent implements OnInit {
 
   nameControl = new FormControl('', [
     Validators.required,
+    //Validators.pattern('[a-zA-Z0-9]'),
    ]);
 
    emailControl = new FormControl('', [
@@ -32,10 +34,12 @@ export class RegisterComponent implements OnInit {
   ]);
 
   mobileControl = new FormControl('',[
-    Validators.required
+    Validators.required,
+    //Validators.pattern("[0-9]{0-10}")
   ]);
 
-  constructor(private userservice:UserService) { 
+  constructor(private userservice:UserService,
+                private registerSericeObj:RegisterService) { 
   }
 
 /*****
@@ -63,8 +67,8 @@ export class RegisterComponent implements OnInit {
   register():void{
     
     console.log(this.model);
-    this.userservice.postService('register',this.model)
-                      .subscribe(data=>console.log(data));
-                      this.resetForm();
+    this.registerSericeObj.register(this.model)
+                            .subscribe(data=>console.log(data));
+                              this.resetForm();
   }
 }

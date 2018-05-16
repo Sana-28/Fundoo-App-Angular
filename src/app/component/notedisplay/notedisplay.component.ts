@@ -13,7 +13,7 @@ import { NoteResponse } from '../../model/noteresponse';
 import { LabelResponse } from '../../model/labelresponse';
 import { CollaboratorResponse } from '../../model/collaboratorresponse';
 
-import { NoteFilterPipe } from '../../notefilter.pipe';
+import { NoteFilterPipe } from '../../filter/notefilter.pipe';
 
 import { UserService, NoteService, LabelService } from '../../service';
 
@@ -132,8 +132,8 @@ export class NotedisplayComponent implements OnInit {
   update(note):void{
     this.noteServiceObj.updateNotes(note)
                         .subscribe(response => {
+                          this.noteServiceObj.reloadNotes();  
                             console.log(response);
-                            this.refreshNote();
                           });
   }
 
@@ -267,7 +267,7 @@ removeLabel(labelId){
   this.model.labelId=labelId;
   this.labelServiceObj.deleteLabel(labelId)
                       .subscribe(response => {
-                        console.log("Removed label");
+                        console.log("Removed label", response);
                       });
 }
 

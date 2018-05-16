@@ -31,7 +31,7 @@ export class LabelComponent implements OnInit {
                  }
 
   ngOnInit() {
-    this.refreshLabel();
+    //this.refreshLabel();
   }
 
   /**@method: This method is to fetch labels */

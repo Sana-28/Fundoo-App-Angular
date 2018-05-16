@@ -27,15 +27,19 @@ import { UpdatelabelComponent } from './component/updatelabel/updatelabel.compon
 
 
 import { UserService } from './service/user.service';
+import { LoginService } from './service/login.service';
+import { RegisterService } from './service/register.service';
 import { NoteService } from './service/note.service';
 import { LabelService } from './service/label.service';
 import { CollaboratorService } from './service/collaborator.service';
 
-import { NoteFilterPipe } from './notefilter.pipe';
+import { NoteFilterPipe } from './filter/notefilter.pipe';
 import { TokenInterceptor } from './service/tokeninterceptor';
 import { AuthGuard, LoginAuthGuard} from './authguard/auth.guard';
 import { ToolbarDirective } from './directive/toolbar.directive';
-import { SearchFilterPipe } from './search-filter.pipe';
+import { SearchFilterPipe } from './filter/search-filter.pipe';
+import { LabelnotePipe } from './filter/labelnote.pipe';
+import { LabelnoteComponent } from './component/labelnote/labelnote.component';
 
 const routes: Routes = [
   //{path:'register',component:RegisterComponent}
@@ -59,12 +63,13 @@ const routes: Routes = [
     UpdateNoteComponent, 
     ErrorComponent,
     UpdatelabelComponent,
+    LabelnoteComponent,
 
     NoteFilterPipe,
+    SearchFilterPipe,
+    LabelnotePipe,
 
     ToolbarDirective,
-
-    SearchFilterPipe,
     ],
   
   imports: [
@@ -84,6 +89,8 @@ const routes: Routes = [
                         ],
 
   providers: [UserService,
+              LoginService,
+               RegisterService,
                  NoteService,
                   LabelService, 
                    CollaboratorService,

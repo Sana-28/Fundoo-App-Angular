@@ -16,6 +16,7 @@ import { TrashComponent } from './component/trash/trash.component';
 import { ArchiveComponent } from './component/archive/archive.component';
 import { ReminderComponent } from './component/reminder/reminder.component';
 import { ErrorComponent } from './component/error/error.component';
+import { LabelnoteComponent } from './component/labelnote/labelnote.component';
 
 import { AuthGuard } from './authguard/auth.guard';
 import { LoginAuthGuard } from './authguard/auth.guard';
@@ -32,6 +33,7 @@ const routes: Routes = [
       { path: 'trash', component:TrashComponent },
       { path: 'archive', component:ArchiveComponent },
       { path: 'reminder', component:ReminderComponent },
+      { path: 'labelnote/:id', component:LabelnoteComponent },
     ]
   },
   { path: 'register', component: RegisterComponent },

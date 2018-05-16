@@ -1,0 +1,9 @@
+<div class="class-container" fxLayoutAlign="center center">
+
+      <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px" style="margin-top:95px">
+             <div *ngFor="let note of notes |labelnote : id">
+                <app-notedisplay [note]="note"></app-notedisplay>
+             </div>
+      </div>
+    </div>
+    

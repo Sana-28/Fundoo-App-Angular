@@ -2,7 +2,8 @@
     <!-- <div *ngFor="let note of notes"> -->
         <div *ngIf="data.noteImage">
             <img class="image" [src]="data.imageString"/>
-            <button mat-button (click)="deleteImage(data)" class="icon">
+            <!-- <button mat-button (click)="deleteImage(data)" class="icon"> -->
+                <button mat-button (click)="deleteImage(data)" class="icon">
                     <mat-icon>delete</mat-icon>
             </button>
         </div>

@@ -59,6 +59,21 @@
               </div>
             </div>
           </div>
+
+          <!-- For showing collaborator -->
+          <div *ngIf="note.collaborators!=null">
+            <div *ngFor="let collaborator of note.collaborators">
+
+              <mat-chip-list>
+                <mat-chip>
+                  {{collaborator.sharedUser.email}}
+                  <!-- <img style="margin-left: 8px;" src="{{crossSvg}}"> -->
+                </mat-chip>
+              </mat-chip-list>
+
+            </div>
+          </div>
+
       
           <!-- All buttons row Wrap -->
           <div fxLayout="row" style="margin-left: -20px;">
@@ -166,7 +181,7 @@
   
               <!-- Archive Div -->
               <div style="margin-left: -19px;">
-                <button mat-button type="submit" (click)="updateNotes(note,'true','archive')">
+                <button mat-button type="submit" (click)="updateNotes(note,'' + !note.isArchive,'archive')">
                   <mat-icon>archive</mat-icon>
                 </button>
 
