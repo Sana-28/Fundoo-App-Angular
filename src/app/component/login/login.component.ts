@@ -14,6 +14,13 @@ import { UserService } from '../../service/user.service';
 import { LoginService } from '../../service/login.service';
 
 
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,8 +31,8 @@ export class LoginComponent implements OnInit {
   model: any = {};
 
   emailControl = new FormControl('', [
-    Validators.required,
-    Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
+    //Validators.pattern("^[\\w\\d._-]+@[\\w\\d.-]+\\.[\\w\\d]{2,6}$"),
+    Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'),
   ]);
 
   passwordControl = new FormControl('', [
@@ -33,8 +40,10 @@ export class LoginComponent implements OnInit {
     // Validators.minLength(5),
     // Validators.maxLength(8),
     //Validators.pattern('.{4,12}'),
-    Validators.pattern('((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30})'),
+    Validators.pattern('[A-Za-z0-9]{8}'),
+    //Validators.pattern('((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30})'),
   ]);
+  match = new MyErrorStateMatcher();
   
   constructor(private userservice: UserService,
                private loginServiceObj: LoginService, 
@@ -65,6 +74,7 @@ export class LoginComponent implements OnInit {
      
       if (response.status === 200) {
         console.log("Check header..", response.headers.get("Authorization"));
+        alert("Logined Succesfully...");
 
         //localStorage.setItem=this.userservice.getToken.toString;
         localStorage.setItem('Authorization', response.headers.get("Authorization"));
@@ -72,7 +82,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']);
           
         } else if (response.status !== 200) {
-        alert(response.message);
+        alert("Login Failed..");
       }
     });
   }
