@@ -8,6 +8,7 @@ export class LabelnotePipe implements PipeTransform {
   transform(noteArray: Array<any>, labelId:number): any {
     if(!noteArray)
       return [];
+      
     return noteArray.filter(noteObject => {
       if(noteObject.labels.length == 0)
         return false;
@@ -16,6 +17,5 @@ export class LabelnotePipe implements PipeTransform {
       })
     })
   }
-
 }
 
