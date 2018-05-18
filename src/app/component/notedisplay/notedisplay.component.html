@@ -10,8 +10,7 @@
           </div>
 
         <div style="margin-left: 90%;">
-          
-            <img [src]="getIcon(note)" (click)="updateNotes(note,status,'pin')">
+            <img [src]="getIcon(note)" (click)="updateNotes(note,'' + !note.isPin,'pin')">
         </div>
 
       <div (click)="openNoteDialog(note)">
