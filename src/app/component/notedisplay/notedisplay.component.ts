@@ -262,10 +262,11 @@ removeLabel(note,labelId,field){
   console.log(note,labelId,field);
 }*/
 
-removeLabel(labelId){
+removeLabel(labelId,noteId){
 
   this.model.labelId=labelId;
-  this.labelServiceObj.deleteLabel(labelId)
+  this.model.noteId=noteId
+  this.labelServiceObj.deleteLabel(labelId,noteId)
                       .subscribe(response => {
                         console.log("Removed label", response);
                       });

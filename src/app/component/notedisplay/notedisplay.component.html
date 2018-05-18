@@ -49,7 +49,7 @@
                     <mat-chip color="primary" selected="true" class="labelChip">
                       {{label.labelTitle}}
                       <!-- <img style="margin-left: 8px;" src="{{crossSvg}}" (click)="removeLabel(note, label.labelId,'null')"> -->
-                      <img style="margin-left: 8px;" src="{{crossSvg}}" (click)="removeLabel(label.labelId)">
+                      <img style="margin-left: 8px;" src="{{crossSvg}}" (click)="removeLabel(label.labelId, note.noteId)">
 
                     </mat-chip>
                   </mat-chip-list>
@@ -179,9 +179,13 @@
             </div>
   
               <!-- Archive Div -->
-              <div style="margin-left: -19px;">
+              <div>
                 <button mat-button type="submit" (click)="updateNotes(note,'' + !note.isArchive,'archive')">
-                  <mat-icon>archive</mat-icon>
+                    <div *ngIf="note.isArchive; else other_content" style="margin-left: -19px; margin-top: 7px;">
+                        <mat-icon>unarchive</mat-icon>
+                    </div>
+                    <ng-template #other_content><mat-icon>archive</mat-icon></ng-template>
+
                 </button>
 
               </div>
