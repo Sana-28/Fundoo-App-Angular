@@ -7,9 +7,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class SearchFilterPipe implements PipeTransform {
 
+  
   /**
-   * @param
+   * @param items object array
+   * @param term search for searchText
    */
+
    transform(items: any, searchText: string): any {
     if (!searchText || !items) return items;
 
@@ -17,9 +20,7 @@ export class SearchFilterPipe implements PipeTransform {
   }
 
 /**
-   * 
    * @param
-   * 
    */
   static filter(items: Array<{ [key: string]: any }>, searchText: string): Array<{ [key: string]: any }> {
     searchText = searchText ? searchText : "";
