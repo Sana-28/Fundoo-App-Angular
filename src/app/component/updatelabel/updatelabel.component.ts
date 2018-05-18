@@ -69,7 +69,7 @@ export class UpdatelabelComponent implements OnInit {
                         });
  }
 
- deleteLabel(labelObj):void{
+ /*deleteLabel(labelObj):void{
 
   this.data=labelObj;
   console.log(this.data);
@@ -80,9 +80,6 @@ export class UpdatelabelComponent implements OnInit {
                           this.dialogRef.close();
                           this.refreshLabel();
                         });
-
- 
-
- }
+ }*/
 
 }
