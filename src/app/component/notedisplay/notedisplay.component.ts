@@ -100,7 +100,7 @@ export class NotedisplayComponent implements OnInit {
 
   getIcon(note){
     if(!note.isPin){
-      return '/assets/icons/pin.svg'
+      return '/assets/icons/pin.svg';
     }
 
     return '/assets/icons/unpin.svg';
@@ -157,15 +157,15 @@ export class NotedisplayComponent implements OnInit {
 
         note.isPin=status;
         this.update(note);
-        console.log("Pin note..");
+        console.log("Change note pin status");
     }
 
-    else if(field == 'pin'){
+    /*else if(field == 'pin'){
 
         note.isPin=status;
         this.update(note);
         console.log("Unpinned note..");
-    }
+    }*/
 
     else if(field == 'color'){
      
@@ -307,7 +307,7 @@ openNoteDialog(note){
   });
 }
 
-searchText(){
+searchTextForm(){
   console.log("Test for search",this.inputFormControl);
   this.searchForm.valueChanges.subscribe(
     (formData) => {
