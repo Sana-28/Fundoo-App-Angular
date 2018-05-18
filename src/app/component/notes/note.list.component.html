@@ -15,7 +15,7 @@
     <div contenteditable='true' data-text='Take a note..' class="editable line-height" name="description" (input)="model.description=$event.target.innerHTML"></div>
 
     <mat-card-actions>
-      <button type="submit" mat-button style="margin-left: 80%; color:#3f51b5;" onclick="event.stopPropagation()" (click)="createNote()" disabled>DONE</button>
+      <button type="submit" mat-button style="margin-left: 80%; color:#3f51b5;" onclick="event.stopPropagation()" (click)="createNote()">DONE</button>
     </mat-card-actions>
   </mat-card>
 

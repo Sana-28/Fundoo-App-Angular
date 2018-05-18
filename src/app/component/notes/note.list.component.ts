@@ -133,7 +133,8 @@ export class NoteListComponent implements OnInit {
     this.noteServiceObj.createNotes(this.model)
                       .subscribe(response => {
                         //  this.refreshPage();
-                        this.noteServiceObj.reloadNotes();       
+                        this.noteServiceObj.reloadNotes(); 
+                        alert("Note Created.."); 
                           console.log("Note Created successfully..", response, this.notes);
                         });
 
@@ -262,7 +263,7 @@ addLabel():void{
   this.labelServiceObj.getLabels()
                         .subscribe(response=>{
                           this.labels=response;
-                          this.noteServiceObj.reloadNotes();  
+                         this.labelServiceObj.reloadLabels();
                           console.log("Label fetched successfully..",response, this.labels);
                         });
 }
@@ -288,7 +289,7 @@ removeLabel(note,labelId,field){
                        console.log(note,labelId,field);
 }*/
 
-removeLabel(labelId){
+/*removeLabel(labelId){
 
   this.model.labelId=labelId;
   this.labelServiceObj.deleteLabel(labelId)
@@ -296,7 +297,7 @@ removeLabel(labelId){
                         this.noteServiceObj.reloadNotes();  
                         console.log("Removed label", response);
                       });
-}
+}*/
 
 /**@method: This method is to open collaborator dialog 
  * @param note
@@ -322,6 +323,7 @@ handleFileInput(event,noteId) {
   
   this.noteServiceObj.uploadImage(this.model)
                       .subscribe(response=>{
+                        this.noteServiceObj.reloadNotes();  
                        console.log("Image uploaded successfully..");
   });
 }
@@ -334,12 +336,12 @@ openNoteDialog(note){
   });
 }
 
-/*searchText(){
+searchTextForm(){
   console.log("Test for search",this.inputFormControl);
   this.searchForm.valueChanges.subscribe(
     (formData) => {
       console.log(formData.inputFormControl);
       this.userservice.searchData(formData.inputFormControl);
     });
-}*/
+}
 };
