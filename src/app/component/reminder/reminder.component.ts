@@ -15,22 +15,32 @@ import { UserService, NoteService } from '../../service';
 })
 export class ReminderComponent implements OnInit {
 
-    notes: NoteResponse[];
-    crossSvg = '/assets/icons/cross.svg';
+  notes         : NoteResponse[];
+  gridListView  : boolean;
+  noteView      : string=localStorage.getItem('class');
 
-    constructor(private userServiceObj: UserService, private noteServiceObj: NoteService) { }
+  crossSvg = '/assets/icons/cross.svg';
+
+    constructor(private userServiceObj: UserService,
+                 private noteServiceObj: NoteService) { }
+    
     ngOnInit() {
-        this.refreshNote();
+        this.readNote();
+        this.noteServiceObj.getStatus()
+                            .subscribe((status)=>{
+                                this.noteView = status ? "list-view" : "grid-view";
+                                localStorage.setItem('class',this.noteView);
+                              });
     }
 
     /**@method:This method is to fetch notes */
-    refreshNote(): void {
-        this.noteServiceObj.getNotes()
-                            .subscribe(response => {
-                              this.notes = response;
-                                console.log("Notes fetched successfully..", response)
-            });
-    };
+    readNote(): void {
+    this.noteServiceObj.getnotes()
+                          .subscribe(response => {
+                             this.notes = response;
+                              console.log("Notes fetched successfully",this.notes);
+                            });
+  };
 
 
     /**@method:This method is to move the notes to trash
@@ -39,8 +49,8 @@ export class ReminderComponent implements OnInit {
     update(note): void {
         this.noteServiceObj.updateNotes(note)
                             .subscribe(response => {
+                                this.noteServiceObj.getnotes();
                                 console.log(response);
-                                this.refreshNote();
             });
     }
 
@@ -67,13 +77,6 @@ export class ReminderComponent implements OnInit {
             console.log("Pin note..");
         }
 
-        else if (field == 'pin') {
-
-            note.isPin = status;
-            this.update(note);
-            console.log("Unpinned note..");
-        }
-
         else if (field == 'color') {
 
             this.update(note);
@@ -87,8 +90,8 @@ export class ReminderComponent implements OnInit {
     remind(note): void {
         this.noteServiceObj.updateNotes(note)
                             .subscribe(response => {
+                                this.noteServiceObj.getnotes();
                                 console.log(response);
-                                    this.refreshNote();
             });
     }
 
@@ -130,5 +133,4 @@ export class ReminderComponent implements OnInit {
             this.remind(note);
         }
     }
-
 }
