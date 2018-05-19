@@ -15,23 +15,30 @@ import { UserService, NoteService } from '../../service';
 })
 export class ArchiveComponent implements OnInit {
 
-  notes:NoteResponse[];
-  isArchive:any={};
+  notes         :NoteResponse[];
+  isArchive     : any={};
+  gridListView  : boolean;
+  noteView      : string=localStorage.getItem('class');
 
   constructor(private userservice: UserService , private noteServiceObj : NoteService) { }
 
   ngOnInit() {
-    this.refreshNote();
+    this.readNote();
+    this.noteServiceObj.getStatus()
+                        .subscribe((status)=>{
+                            this.noteView = status ? "list-view" : "grid-view";
+                            localStorage.setItem('class',this.noteView);
+                          });
   }
 
   /**@method:This method is to fetch notes */
-  refreshNote(): void {
-    this.noteServiceObj.getNotes()
+  readNote(): void {
+    this.noteServiceObj.getnotes()
                           .subscribe(response => {
                              this.notes = response;
-                                console.log("Notes fetched successfully..", response)
-       });
-};
+                              console.log("Notes fetched successfully",this.notes);
+                            });
+  };
 
 /**
  * @method:This method is to unArchieve notes 
@@ -42,9 +49,8 @@ export class ArchiveComponent implements OnInit {
             note.isArchive=false;
             this.noteServiceObj.updateNotes(note)
                                 .subscribe(response=>{
-                                   console.log(response);
-                                     this.refreshNote();
+                                  this.noteServiceObj.getnotes();
+                                   console.log(response);             
                                 });
-};
-  
+}; 
 }
