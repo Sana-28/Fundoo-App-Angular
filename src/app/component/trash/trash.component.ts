@@ -15,26 +15,32 @@ import { UserService, NoteService } from '../../service';
 })
 export class TrashComponent implements OnInit {
 
-  notes:NoteResponse[];
-  inTrash: any = {};
+  notes         : NoteResponse[];
+  inTrash       : any = {};
+  gridListView  : boolean;
+  noteView      : string=localStorage.getItem('class');
 
   constructor(private userservice: UserService , private noteServiceObj : NoteService) { }
 
   ngOnInit() {
-    this.refreshNote();
+    this.readNote();
+    this.noteServiceObj.getStatus()
+                        .subscribe((status)=>{
+                            this.noteView = status ? "list-view" : "grid-view";
+                            localStorage.setItem('class',this.noteView);
+                          });
   }
 
    /**@method:This method is to fetch notes */
-  refreshNote(): void {
-    this.noteServiceObj.getNotes()
-                        .subscribe(response => {
-                            this.notes = response;
-                              console.log("Notes fetched successfully..", response)
-       });
-};
+   readNote(): void {
+    this.noteServiceObj.getnotes()
+                          .subscribe(response => {
+                             this.notes = response;
+                              console.log("Notes fetched successfully",this.notes);
+                            });
+  };
   
-/**
-* @method:This method is to restore the deleted notes
+/**@method:This method is to restore the deleted notes
 * @param note
 */
 restore(note): void{
@@ -42,8 +48,8 @@ restore(note): void{
             note.inTrash=false;
             this.noteServiceObj.updateNotes(note)
                                 .subscribe(response=>{
+                                  this.noteServiceObj.getnotes();
                                    console.log(response);
-                                     this.refreshNote();
                                 });
 };
 
@@ -55,9 +61,8 @@ deleteForever(note): void{
   console.log("noteId",note);
                     this.noteServiceObj.deleteNotes(note)
                                           .subscribe(response => {
+                                            this.noteServiceObj.getnotes();
                                             console.log("Deleted Successfully..",response);
-                                              this.refreshNote(); 
   });
 };
-
 }
