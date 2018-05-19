@@ -24,7 +24,7 @@ export class NoteService {
   /**@method: This method is to fetch notes */
   reloadNotes():void{
     var path = "getnotes";
-    debugger;
+    //debugger;
     this.userServiceObj.getService(path)
                         .toPromise()
                           .then((res)=>{

@@ -117,13 +117,15 @@
         </button>
     </div>
     
-      <div *ngFor="let labelObj of labels">
+      <div *ngFor="let labelObj of labels; let i = index;">
           <div class="toolitems">
             <button [routerLink]="['/home/labelnote/', labelObj.labelId]" mat-menu-item style="color:royalblue">
               <mat-icon style="color:royalblue">label</mat-icon>
               <span>{{labelObj.labelTitle}}</span>
-              <!-- <input name="labels" value="{{label.labelTitle}}"> -->
-              
+              <!-- <div *ngIf="currentTools.indexOf(i) > -1">
+                  <mat-icon style="color:royalblue">label</mat-icon>
+                  <span>No label associated with this note yet</span>
+              </div> -->
                <!-- <i class="material-icons">create</i> -->
             </button>
           </div>

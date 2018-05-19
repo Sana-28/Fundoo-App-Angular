@@ -69,6 +69,7 @@ export class RegisterComponent implements OnInit {
     console.log(this.model);
     this.registerSericeObj.register(this.model)
                             .subscribe(data=>console.log(data));
+                            alert("Registered Successfully..");
                               this.resetForm();
   }
 }

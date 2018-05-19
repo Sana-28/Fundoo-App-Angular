@@ -55,7 +55,7 @@ export class LabelService {
     return this.userServiceObj.putService('updatelabel',data);
   }
 
-  deleteLabel(data):Observable<any>{
-    return this.userServiceObj.deleteService('deletelabel',data);
+  deleteLabel(labelId, noteId):Observable<any>{
+    return this.userServiceObj.deleteServiceLabel('deletelabel' + '/' + labelId + '/' + noteId);
   }
 }

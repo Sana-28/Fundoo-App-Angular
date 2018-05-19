@@ -97,6 +97,11 @@ export class UserService {
     return this.http.put(urlpath,this.httpOptions);
   }
 
+  deleteServiceLabel(url){
+    var urlpath=this.URL.concat(url);
+    return this.http.delete(urlpath, this.httpOptions)
+  }
+
   imageUpload(url, model):Observable<any>{
     const fd = new FormData()
     const file = model.event[0]
@@ -123,5 +128,4 @@ export class UserService {
     console.log("in service", data)
     this.searchSubject.next(data);
   }
-
 }

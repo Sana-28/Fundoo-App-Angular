@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   emailControl = new FormControl('', [
     //Validators.pattern("^[\\w\\d._-]+@[\\w\\d.-]+\\.[\\w\\d]{2,6}$"),
-    Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'),
+    Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')
   ]);
 
   passwordControl = new FormControl('', [
