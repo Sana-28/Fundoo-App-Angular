@@ -1,5 +1,5 @@
 /**
-* @author: SANA SHAIKh
+* @author: SANA SHAIKH
 * @since: 9/April/2018
 * @description: This is notes display component contains methods to create and update notes
 */
@@ -13,12 +13,11 @@ import { NoteResponse } from '../../model/noteresponse';
 import { LabelResponse } from '../../model/labelresponse';
 import { CollaboratorResponse } from '../../model/collaboratorresponse';
 
-import { NoteFilterPipe } from '../../filter/notefilter.pipe';
-
-import { UserService, NoteService, LabelService } from '../../service';
-
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
 import { UpdateNoteComponent } from '../update-note/update-note.component';
+
+import { NoteFilterPipe } from '../../filter/notefilter.pipe';
+import { UserService, NoteService, LabelService } from '../../service';
 
 @Component({
   selector: 'app-notedisplay',
@@ -29,17 +28,21 @@ export class NotedisplayComponent implements OnInit {
 
   @Input() note : any;
 
-  model     : any = {};
-  inTrash   : any = {};
-  isArchive : any = {};
-  isPin     : any = {};
-  searchForm    : FormGroup;
+  model           : any = {};
+  inTrash         : any = {};
+  isArchive       : any = {};
+  isPin           : any = {};
+  searchForm      : FormGroup;
   inputFormControl: FormControl;
+  response        : any = {};
+  searchText      : string = "";
+  fileToUpload    : File = null;
+  gridListView    : boolean;
+  noteView        : string=localStorage.getItem('class');
 
-  notes     : NoteResponse[]; //= [{noteId:0,title:"sample", description : "fdfsdf" }];
-  labels    : LabelResponse[];
-  collaborators : CollaboratorResponse[];
-
+  notes           : NoteResponse[]; //= [{noteId:0,title:"sample", description : "fdfsdf" }];
+  labels          : LabelResponse[];
+  collaborators   : CollaboratorResponse[];
 
   pinSvg    ='/assets/icons/pin.svg';
   unpinSvg  ='/assets/icons/unpin.svg';
@@ -71,14 +74,20 @@ export class NotedisplayComponent implements OnInit {
   ];
 
   
-  constructor(private userservice: UserService, private noteServiceObj: NoteService , private labelServiceObj:LabelService, private dialog: MatDialog) { }
+  constructor(private userservice: UserService,
+                private noteServiceObj: NoteService ,
+                  private labelServiceObj:LabelService,
+                    private dialog: MatDialog) {
+                      userservice.searchObservable$.subscribe(
+                        FormData=>{
+                          this.searchText = FormData;
+                          console.log(this.searchText);
+                        })
+                    }
 
   /**@method:This ngOnInit method loads all the notes at the time of initialization */
   ngOnInit() {
     this.readlabel();
-   //this.refreshNote();
-   //this.noteServiceObj.reloadNotes();
-   //this.refreshLabel();
   }
 
   readlabel() : void{
@@ -87,17 +96,7 @@ export class NotedisplayComponent implements OnInit {
       this.labels = labelArry;
     })
   }
-
-  /*checkIcon(note){
-    //var isPin=true;
-    
-    if(this.note.isPin === false){
-      return this.unpinSvg;
-    }
-   
-    return this.pinSvg;
-  }*/
-
+  
   getIcon(note){
     if(!note.isPin){
       return '/assets/icons/pin.svg';
@@ -106,26 +105,6 @@ export class NotedisplayComponent implements OnInit {
     return '/assets/icons/unpin.svg';
   }
 
-  /**@method:This method is to fetch notes */
-  refreshNote(): void {
-    this.noteServiceObj.getNotes()
-                        .toPromise()
-                          .then(response => {
-                             this.notes = response;
-                              console.log("Notes fetched successfully");
-                                            });
-  };
-
-  /**@method: This method is to fetch labels */
-  refreshLabel():void{
-    this.labelServiceObj.getLabels()
-                          .toPromise()
-                            .then(response=>{
-                              this.labels=response;
-                              console.log("Labels fetched successfully..");
-                            })
-  }
-  
   /**@method:This method is to move the notes to trash
    * @param:note,status,field
    */
@@ -181,7 +160,7 @@ remind(note):void{
   this.noteServiceObj.updateNotes(note)
                       .subscribe(response=>{
                         console.log(response);
-                        this.refreshNote();
+                        this.noteServiceObj.getnotes();
                                             });
 }
 
@@ -237,6 +216,7 @@ addLabel():void{
   this.labelServiceObj.getLabels()
                         .subscribe(response=>{
                           this.labels=response;
+                          this.labelServiceObj.getlabels();
                           console.log("Label fetched successfully..",response, this.labels);
                         });
 }
@@ -246,6 +226,7 @@ optionChange(status, labelId, noteId){
   console.log("Checkk..",status.bubbles);
   this.labelServiceObj.addRemoveLabel(status, labelId, noteId)
                         .subscribe(response=>{
+                          this.labelServiceObj.getlabels();
                           console.log("status changed..");
                         });
 }
@@ -254,20 +235,14 @@ optionChange(status, labelId, noteId){
  * @param note
  * @param labelId
  * @param field
-
-removeLabel(note,labelId,field){
-
-  note.labels=null;
-  this.labelServiceObj.addRemoveLabel(labelId,note,field);
-  console.log(note,labelId,field);
-}*/
-
+*/
 removeLabel(labelId,noteId){
 
   this.model.labelId=labelId;
   this.model.noteId=noteId
   this.labelServiceObj.deleteLabel(labelId,noteId)
                       .subscribe(response => {
+                        this.noteServiceObj.getnotes();
                         console.log("Removed label", response);
                       });
 }

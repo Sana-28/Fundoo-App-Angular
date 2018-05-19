@@ -90,11 +90,7 @@ export class NoteListComponent implements OnInit {
 
   /**@method:This ngOnInit method loads all the notes at the time of initialization */
   ngOnInit() {
-    //this.refreshNote();
-   // this.noteServiceObj.reloadNotes()
     this.readNote();
-    //this.readLabel();
-
     this.noteServiceObj.getStatus()
                         .subscribe((status)=>{
                             this.noteView = status ? "list-view" : "grid-view";
@@ -124,10 +120,6 @@ export class NoteListComponent implements OnInit {
                             });
   }
 
-  // refreshPage(): void {
-  //   window.location.reload();
-  // }
-
   /**@method:This method is to create notes */
   createNote(): void {
     this.noteServiceObj.createNotes(this.model)
@@ -137,12 +129,6 @@ export class NoteListComponent implements OnInit {
                         alert("Note Created.."); 
                           console.log("Note Created successfully..", response, this.notes);
                         });
-
-    /*   let self = this;
-        this.noteServiceObj.createNotes(this.model).subscribe(function(response){
-          console.log("Note Created successfully..", response, self.notes,this.notes);
-        });
-    */
   };
 
 

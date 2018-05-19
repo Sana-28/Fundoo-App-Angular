@@ -78,6 +78,7 @@ export class NoteService {
     return this.userServiceObj.imageUpload('uploadNoteImage',model);
   }
 
+  /**@method: This is to delete Image */
   deleteImage(model):Observable<any>{
     return this.userServiceObj.imageDelete('deleteImage',model);
   }
