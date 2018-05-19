@@ -179,7 +179,7 @@
             </div>
   
               <!-- Archive Div -->
-              <div>
+              <div style="margin-left: -20px;">
                 <button mat-button type="submit" (click)="updateNotes(note,'' + !note.isArchive,'archive')">
                     <div *ngIf="note.isArchive; else other_content" style="margin-left: -19px; margin-top: 7px;">
                         <mat-icon>unarchive</mat-icon>

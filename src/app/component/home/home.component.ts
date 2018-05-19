@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   notes: NoteResponse[];
   labels: LabelResponse[];
   reminder='/assets/icons/remind.png';
+  crossSvg  = '/assets/icons/cross.svg';
   
   searchForm: FormGroup;
   inputFormControl: FormControl;

@@ -117,7 +117,7 @@
         </button>
     </div>
     
-      <div *ngFor="let labelObj of labels; let i = index;">
+      <div *ngFor="let labelObj of labels;">
           <div class="toolitems">
             <button [routerLink]="['/home/labelnote/', labelObj.labelId]" mat-menu-item style="color:royalblue">
               <mat-icon style="color:royalblue">label</mat-icon>
@@ -155,6 +155,10 @@
     </mat-sidenav>
 
     <router-outlet></router-outlet>
+
+    <!-- <mat-sidenav-content style="margin-left: 212px;margin-right: 0px;background-image:Url(http://bangalorewebmaster.com/wp-content/uploads/2018/05/search-photos-g-clef-intended-for-colorful-music-note-transparent-background.jpg)">
+
+    </mat-sidenav-content> -->
 
   </mat-sidenav-container>
 </div>
