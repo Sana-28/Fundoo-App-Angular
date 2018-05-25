@@ -1,0 +1,32 @@
+<div>
+    <!-- <h1>Admin</h1> -->
+    <mat-toolbar class="toolbar">Fundoo Notes Admin</mat-toolbar>
+</div>
+
+<div>
+        <mat-card>
+                <mat-toolbar>
+                        <h3 style="color: #ececf8">
+                            <i>Login</i>
+                        </h3>
+                </mat-toolbar>
+
+                <form #loginForm="ngForm" (ngSubmit)="login()">
+                        <div>
+                                <mat-form-field>
+                                        <input matInput placeholder="Email">
+                                </mat-form-field>
+                        </div>
+
+                        <div>
+                                <mat-form-field>
+                                        <input matInput placeholder="Password">
+                                </mat-form-field>
+                        </div>
+                        
+                    </form>
+            
+        </mat-card>
+
+        
+</div>
