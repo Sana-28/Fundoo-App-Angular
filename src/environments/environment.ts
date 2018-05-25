@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  base_url:"http://localhost:8080/ToDo-App/"
+  //base_url:"http://localhost:8080/ToDo-App/"
+  base_url:"http://localhost:8080/"
 };
