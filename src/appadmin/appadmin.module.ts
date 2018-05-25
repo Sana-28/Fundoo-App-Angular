@@ -25,7 +25,11 @@ import { MaterialModule } from '../appadmin/material.module';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    RouterModule.forRoot([{ path:'admin', component:AdminComponent}]),
+    RouterModule.forRoot(
+                          [
+                            { path: '', redirectTo: 'admin', pathMatch: 'full' },
+                            { path:'admin', component:AdminComponent}
+                          ]),
   ],
 
  entryComponents:[],
