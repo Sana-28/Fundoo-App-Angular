@@ -1,0 +1,33 @@
+.toptoolbar{
+    background-color: #3f51b5; 
+    margin-top: -8px;
+    position: sticky; 
+    top: 0;z-index: 1000;
+    width: 110%;
+    margin-left: -9px;
+  }
+
+.toolitemms{
+   text-align:left;
+    color: rgb(231, 231, 236);
+}
+
+.loginCard{
+    margin-left: 241px;
+    width: 456px;
+     margin-top: 538px;
+}
+
+
+.mat-field{
+    width: 400px;
+  }
+
+ .log{
+    background-color: #3f51b5; 
+    width: 112%;
+    margin-left: -25px;
+    margin-top: -25px;
+    padding-left: 27px;
+  
+  }
