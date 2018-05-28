@@ -8,12 +8,14 @@
     </div>
 
     <div class="toolitems">
-      <span> Fundoo Notes </span>
+      <!-- <span> Fundoo Notes </span> -->
+      <span>{{title}}</span>
     </div>
 
-      <form [formGroup]="searchForm">
-            <input type='text' placeholder="Search" [formControl]="inputFormControl">
-     </form> 
+    
+    <form [formGroup]="searchForm">
+      <input type='text' placeholder="Search" [formControl]="inputFormControl">
+    </form>
 
     <div class="toolitems">
       <button mat-icon-button (click)="refresh()">
@@ -43,12 +45,12 @@
       <button mat-mini-fab [matMenuTriggerFor]="appMenu" style="background-color: #3f51b5;" (click)="loggedUser()">
         <mat-icon>account_circle</mat-icon>
       </button>
-   </div>
+    </div>
   </mat-toolbar>
 
   <mat-menu #appMenu="matMenu">
     <div fxLayout="row">
-            <mat-icon>account_circle</mat-icon>
+      <mat-icon>account_circle</mat-icon>
     </div>
 
     <div>
@@ -58,7 +60,7 @@
 
     <button mat-raised-button>Add account</button>
     <button mat-raised-button (click)="logout()">Sign out</button>
- </mat-menu> 
+  </mat-menu>
 
   <mat-sidenav-container fxFlexFill class="example-container">
     <mat-sidenav mode="side" #sidenav opened fxLayout="column" class="sidenav">
@@ -66,57 +68,64 @@
       <div>
         <div class="sidenavitem">
           <a routerLink="/home/createnotes" routerLinkActive="active" mat-button>
-            <mat-icon>lightbulb_outline</mat-icon>  Note</a>
+            <mat-icon>lightbulb_outline</mat-icon> Note</a>
         </div>
-
       </div>
 
       <div>
         <div class="sidenavitem">
           <a routerLink="/home/trash" routerLinkActive="active" mat-button>
-            <mat-icon>delete</mat-icon>  Trash</a>
+            <mat-icon>delete</mat-icon> Trash</a>
         </div>
       </div>
 
       <div>
         <div class="sidenavitem">
           <a routerLink="/home/archive" routerLinkActive="active" mat-button>
-            <mat-icon>assignment_returned</mat-icon>  Archive</a>
+            <mat-icon>assignment_returned</mat-icon> Archive</a>
         </div>
       </div>
 
-     <div>
-          <div class="sidenavitem">
-            <a routerLink="/home/reminder" routerLinkActive="active" mat-button>
-            
-              <img src="/assets/icons/reminder.svg" class="sidenavitem" >  Reminders</a>
-          </div>
-    </div>
+      <div>
+        <div class="sidenavitem">
+          <a routerLink="/home/reminder" routerLinkActive="active" mat-button>
 
-    <div>
+            <img src="/assets/icons/reminder.svg" class="sidenavitem"> Reminders</a>
+        </div>
+      </div>
+
+      <div>
         <button mat-menu-item style="color:royalblue">
           Labels
           <button style="color:royalblue" (click)="OpenLabelUpdateDialog(label)">EDIT
           </button>
 
         </button>
-    </div>
-    
-      <div *ngFor="let labelObj of labels;">
-          <div class="toolitems">
-            <button [routerLink]="['/home/labelnote/', labelObj.labelId]" mat-menu-item style="color:royalblue">
-              <mat-icon style="color:royalblue">label</mat-icon>
-              <span>{{labelObj.labelTitle}}</span>
-            </button>
-          </div>
-        </div>
+      </div>
 
-        <div>
-        <button mat-menu-item  (click)="openLabelDialog()">
+      <div *ngFor="let labelObj of labels;">
+        <div class="toolitems">
+          <button [routerLink]="['/home/labelnote/', labelObj.labelId]" mat-menu-item style="color:royalblue">
+            <mat-icon style="color:royalblue">label</mat-icon>
+            <span>{{labelObj.labelTitle}}</span>
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <button mat-menu-item (click)="openLabelDialog()">
           <mat-icon style="color:royalblue">add</mat-icon>
           <span style="color:royalblue">Create new label</span>
         </button>
-       </div>
+      </div>
+
+      <div>
+          <div class="sidenavitem">
+              <a href="https://support.google.com/keep/#topic=6262468"> 
+                <mat-icon style="margin-left: 16px;">help</mat-icon>
+                Help</a>
+          </div>
+      </div>
 
     </mat-sidenav>
 

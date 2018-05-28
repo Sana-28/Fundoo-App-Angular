@@ -5,9 +5,9 @@
 */
 
 import { Component, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
 import { FormsModule, FormGroup, FormControl, FormBuilder} from '@angular/forms'
+import { Router, ActivatedRoute, ParamMap,NavigationEnd } from '@angular/router';
 
 import { UserService, NoteService, LabelService } from '../../service';
 
@@ -36,11 +36,13 @@ export class HomeComponent implements OnInit {
 
   name:string;
   email:string;
+  title:any;
 
   constructor(private userServiceObj: UserService,
                 private noteServiceObj: NoteService, 
                   private labelServiceObj:LabelService,
                    private dialog: MatDialog,
+                   private activatedroute: ActivatedRoute,
                     private router : Router,
                      private builder: FormBuilder) 
                      { 
@@ -51,9 +53,36 @@ export class HomeComponent implements OnInit {
                      }
 
   ngOnInit() {
+    console.log("Home->>", this.router.url)
+    this.router.events.subscribe((event: any) => {
+              if(event instanceof NavigationEnd){
+                console.log(event);
+                this.change(event.url);        
+              }
+             });
      this.searchText();
      this.readLabel();
       }
+
+   
+      change(url){
+        if (url.indexOf("createnotes")>-1) {
+          this.title = 'Google Keep';
+        }
+        else if (url.indexOf("archive")>-1) {
+          this.title = 'Archive'; 
+        }
+        else if(url.indexOf("reminder")>-1){
+          this.title = 'Reminder'; 
+        }
+        else if(url.indexOf("trash")>-1){
+          this.title = 'Trash';
+        }
+        else{
+          this.title = 'Google Keep';
+        }
+      }
+  
   
   /**@method: This method is to fetch labels*/
   readLabel():void{
