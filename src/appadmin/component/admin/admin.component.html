@@ -9,11 +9,10 @@
                 <div fxLayout="row">
                 
                         <mat-toolbar class="matcardtool">
-                                <h3>
-                                        <i>Login</i>
-                                </h3>
+                                <h3> <i>Login</i> </h3>
                         </mat-toolbar>
                 </div>
+                
                 <form #loginForm="ngForm" (ngSubmit)="login()">
                         <div>
                                 <mat-form-field fxFlex fxFlex.gt-xs="400px">
@@ -25,6 +24,10 @@
                                 <mat-form-field fxFlex fxFlex.gt-xs="400px">
                                         <input matInput placeholder="Password">
                                 </mat-form-field>
+                        </div>
+
+                        <div>
+                                <button mat-button color="primary">Login</button>
                         </div>
 
                 </form>
