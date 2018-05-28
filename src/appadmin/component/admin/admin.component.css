@@ -2,6 +2,11 @@
     width: 110%;
     margin-left: -8px;
     margin-top: -8px;
-    color: cornflowerblue;
-    background: #0a0909;
+    color: #fafafa;
+    background: #3f51b5;
+}
+
+.matcardtool{
+    color: #fafafa;
+    background: #3f51b5;
 }
