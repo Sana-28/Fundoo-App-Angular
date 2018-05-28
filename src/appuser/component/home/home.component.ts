@@ -53,11 +53,11 @@ export class HomeComponent implements OnInit {
                      }
 
   ngOnInit() {
-    console.log("Home->>", this.router.url)
+    //console.log("Home->>", this.router.url)
     this.router.events.subscribe((event: any) => {
               if(event instanceof NavigationEnd){
                 console.log(event);
-                this.change(event.url);        
+                this.changeTitle(event.url);        
               }
              });
      this.searchText();
@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit {
       }
 
    
-      change(url){
+      changeTitle(url){
         if (url.indexOf("createnotes")>-1) {
           this.title = 'Google Keep';
         }
