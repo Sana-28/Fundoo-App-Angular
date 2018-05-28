@@ -58,12 +58,12 @@ export class NoteService {
 
    /**@method: This method is to create notes */
   createNotes(note) :Observable<any>{
-    return this.userServiceObj.putService('createnotes', note);
+    return this.userServiceObj.putService('createnote', note);
   }
 
    /**@method: This method is to update notes */
   updateNotes(note):Observable<any>{
-    return this.userServiceObj.putService('updatenotes',note);
+    return this.userServiceObj.putService('updatenote',note);
   }
 
    /**@method: This method is to delete notes */
