@@ -44,7 +44,7 @@ export class ToolbarDirective {
     }
 
     else if(url.indexOf("reminder")>-1){
-      this.elRef.nativeElement.style['background-color'] = 'pink';
+      this.elRef.nativeElement.style['background-color'] = 'CadetBlue';
     }
 
     else if(url.indexOf("trash")>-1){

@@ -15,6 +15,7 @@ import { UserService, NoteService } from '../../service';
 })
 export class TrashComponent implements OnInit {
 
+  model         : any;
   notes         : NoteResponse[];
   inTrash       : any = {};
   gridListView  : boolean;
@@ -57,9 +58,10 @@ restore(note): void{
 * @method:This method is to delete notes permanently
 * @param note
 */
-deleteForever(note): void{
-  console.log("noteId",note);
-                    this.noteServiceObj.deleteNotes(note)
+deleteForever(noteId): void{
+  this.model=noteId;
+  console.log("noteId",noteId);
+                    this.noteServiceObj.deleteNote(noteId)
                                           .subscribe(response => {
                                             this.noteServiceObj.getnotes();
                                             console.log("Deleted Successfully..",response);

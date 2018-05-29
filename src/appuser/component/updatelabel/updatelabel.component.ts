@@ -69,17 +69,17 @@ export class UpdatelabelComponent implements OnInit {
                         });
  }
 
- /*deleteLabel(labelObj):void{
+ deleteSideLabel(labelId):void{
 
-  this.data=labelObj;
+  this.data=labelId;
   console.log(this.data);
 
-  this.labelServiceObj.deleteLabel(this.data)
+  this.labelServiceObj.deleteSideLabel(labelId)
                         .subscribe(data=>{
                           console.log(data);
                           this.dialogRef.close();
                           this.refreshLabel();
                         });
- }*/
+ }
 
 }

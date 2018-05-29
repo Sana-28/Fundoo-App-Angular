@@ -58,4 +58,8 @@ export class LabelService {
   deleteLabel(labelId, noteId):Observable<any>{
     return this.userServiceObj.deleteServiceLabel('deletelabel' + '/' + labelId + '/' + noteId);
   }
+
+  deleteSideLabel(labelId):Observable<any>{
+    return this.userServiceObj.deleteServiceLabel('deletelabel'+'/'+labelId);
+  }
 }

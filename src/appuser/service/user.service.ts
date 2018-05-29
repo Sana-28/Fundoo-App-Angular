@@ -74,7 +74,6 @@ export class UserService {
   }
 
   deleteService(url,model):Observable<any>{
-
     var urlpath=this.URL.concat(url);
     console.log("Http option",this.httpOptions);
     return this.http.post<any>(urlpath,model,this.httpOptions);
@@ -89,6 +88,11 @@ export class UserService {
 
   isLoggedIn(): boolean {
     return false;
+  }
+
+  deleteNoteService(url){
+    var urlpath=this.URL.concat(url);
+    return this.http.delete(urlpath,this.httpOptions);
   }
 
   putServiceLabel(url){

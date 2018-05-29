@@ -69,19 +69,18 @@ export class RegisterComponent implements OnInit {
     console.log(this.model);
     this.registerSericeObj.register(this.model)
                             .subscribe(response =>
-  //                             data=>console.log(data));
-  //                            alert("Registered Successfully..");
-  //                             this.resetForm();
-  // }
-
-  {
-     
-    if (response.status === 200) {
-      alert("Register Succesfully...");
-
-      } else if (response.status !== 200) {
-      alert("Registration Failed..");
-    }
-  });
+                              data=>console.log(data));
+                             alert("Registered Successfully..");
+                              //this.resetForm();
   }
+
+  // {
+     
+  //   if (response.status === 200) {
+  //     alert("Register Succesfully...");
+
+  //     } else if (response.status !== 200) {
+  //     alert("Registration Failed..");
+  //   }
+  // });
 }
