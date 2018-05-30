@@ -1,0 +1,67 @@
+<div>
+    <mat-toolbar class="toptoolbar">
+
+        <div class="toolitems">
+            <button mat-icon-button (click)="sidenav.toggle()" href="#" name="Main menu">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+
+        <div class="toolitems">
+            <span>Admin Home</span>
+        </div>
+
+        <div>
+            <button mat-mini-fab [matMenuTriggerFor]="appMenu" (click)="loggedUser()" class="adminlogo">
+                <mat-icon>account_circle</mat-icon>
+            </button>
+        </div>
+
+        <mat-menu #appMenu="matMenu">
+            <div fxLayout="row">
+                <mat-icon>account_circle</mat-icon>
+            </div>
+        </mat-menu>
+    </mat-toolbar>
+
+    <mat-sidenav-container fxFlexFill class="example-container">
+        <mat-sidenav mode="side" #sidenav opened fxLayout="column" class="sidenav">
+
+            <div>
+                <div class="sidenavitem">
+                    <a routerLink="/home/dashboard" routerLinkActive="active" mat-button>
+                        <mat-icon>dashboard</mat-icon> Dashboard</a>
+                </div>
+            </div>
+
+            <div>
+                <div class="sidenavitem">
+                    <a routerLink="/home/timeline" routerLinkActive="active" mat-button>
+                        <mat-icon>timeline</mat-icon> Timeline</a>
+                </div>
+            </div>
+
+            <div>
+                <div class="sidenavitem">
+                    <a routerLink="/home/database" routerLinkActive="active" mat-button>
+                        <mat-icon>table_chart</mat-icon> Database</a>
+                </div>
+            </div>
+
+            <div>
+                <div class="sidenavitem">
+                    <a routerLink="/home/map" routerLinkActive="active" mat-button>
+                        <mat-icon>map</mat-icon> Google Maps</a>
+                </div>
+            </div>
+
+            <div>
+                <div class="sidenavitem">
+                        <a routerLink="/home/calendar" routerLinkActive="active" mat-button>
+                        <mat-icon>calendar_today</mat-icon> Calender</a>
+                </div>
+            </div>
+        </mat-sidenav>
+        <router-outlet></router-outlet>
+    </mat-sidenav-container>
+</div>
