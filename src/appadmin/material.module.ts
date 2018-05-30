@@ -19,10 +19,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule(
@@ -45,6 +46,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
             MatSelectModule,
             MatChipsModule,
             MatCheckboxModule,
+            MatProgressBarModule,
             ReactiveFormsModule
         ],
             
