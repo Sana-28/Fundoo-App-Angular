@@ -36,7 +36,7 @@ export class ToolbarDirective {
   changeColor(url: string) {
 
     if (url.indexOf("createnotes")>-1) {
-      this.elRef.nativeElement.style['background-color'] = 'skyblue';
+      this.elRef.nativeElement.style['background-color'] = '#3f51b5';
     }
 
     else if (url.indexOf("archive")>-1) {

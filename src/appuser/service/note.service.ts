@@ -75,11 +75,11 @@ export class NoteService {
   uploadImage(model):Observable<any>{
     console.log("Checking upload image in service", model)
     //return this.userServiceObj.putService('uploadNoteImage',model);
-    return this.userServiceObj.imageUpload('uploadNoteImage',model);
+    return this.userServiceObj.imageUpload('uploadnoteimage',model);
   }
 
   /**@method: This is to delete Image */
   deleteImage(model):Observable<any>{
-    return this.userServiceObj.imageDelete('deleteImage',model);
+    return this.userServiceObj.imageDelete('deleteimage',model);
   }
 }
