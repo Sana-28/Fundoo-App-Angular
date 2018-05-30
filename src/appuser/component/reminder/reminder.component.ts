@@ -14,7 +14,7 @@ import { UserService, NoteService } from '../../service';
     styleUrls: ['./reminder.component.css']
 })
 export class ReminderComponent implements OnInit {
-
+  model         : any;
   notes         : NoteResponse[];
   gridListView  : boolean;
   noteView      : string=localStorage.getItem('class');
@@ -42,6 +42,16 @@ export class ReminderComponent implements OnInit {
                             });
   };
 
+    /**@method:This method is to create notes */
+    createNote(): void {
+        this.noteServiceObj.createNotes(this.model)
+                        .subscribe(response => {
+                            //  this.refreshPage();
+                            this.noteServiceObj.reloadNotes(); 
+                            alert("Note Created.."); 
+                            console.log("Note Created successfully..", response, this.notes);
+                            });
+    };
 
     /**@method:This method is to move the notes to trash
      * @param:note,status,field
