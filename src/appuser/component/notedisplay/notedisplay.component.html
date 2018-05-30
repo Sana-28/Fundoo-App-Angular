@@ -76,16 +76,14 @@
                       <b>Reminder:</b>
                     </button>
                   </div>
-  
-                  <button type="submit" mat-menu-item>
-                    <div *ngFor="let note of notes">
-                      <div style="user-select: none;text-align: left;" (click)="saveReminder(note,'today')">
+
+                  <button type="submit" mat-menu-item (click)="saveReminder(note,'today')">
+                      <div style="user-select: none;text-align: left;">
                         <span> Later today &nbsp;&nbsp;&nbsp;</span>
                         <span> 8:00 PM</span>
                       </div>
-                    </div>
                   </button>
-  
+
                   <button type="submit" mat-menu-item (click)="saveReminder(note,'tomorrow')">
                     <div style="user-select: none;text-align: left;">
                       <span>Tomorrow &nbsp;&nbsp;</span>
@@ -101,11 +99,12 @@
                   </button>
   
                   <div>
-                    <button mat-button [mat-menu-trigger-for]="calender">
-                      <mat-icon>schedule</mat-icon>
-                      <span>Pick date and time</span>
-                    </button>
+                      <button mat-menu-item [mat-menu-trigger-for]="calender">
+                        <mat-icon>schedule</mat-icon>
+                        <span>Pick date and time</span>
+                      </button>
                   </div>
+
                   <mat-menu #calender="matMenu">
                     <button mat-menu-item (click)="saveReminder(note,'pickDate')">
                       <mat-form-field>
