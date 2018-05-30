@@ -69,8 +69,6 @@ export class NoteService {
    /**@method: This method is to delete notes */
   deleteNote(noteId): Observable<any>{
     return this.userServiceObj.deleteNoteService('deletenote'+'/' + noteId);
-
-
   }
 
   /**@method: This method is to upload image of notes */
