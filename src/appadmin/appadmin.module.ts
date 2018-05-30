@@ -8,7 +8,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { AppAdminComponent } from './appadmin.component';
 import { AdminComponent } from './component/admin/admin.component';
-// import { MaterialModule } from './appadmin/appadminmaterial';
+import { CalendarComponent }  from './component/calendar/calendar.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { HomeComponent } from './component/home/home.component';
+import { MapComponent } from './component/map/map.component';
 import { MaterialModule } from '../appadmin/material.module';
 
 // import { AppRoutingModule } from '../appadmin/app-routing.module';
@@ -17,7 +20,11 @@ import { MaterialModule } from '../appadmin/material.module';
 @NgModule({
   declarations: [
     AppAdminComponent,
-    AdminComponent
+    AdminComponent,
+    CalendarComponent,
+    DashboardComponent,
+    HomeComponent,
+    MapComponent
     ],
   
   imports: [
@@ -25,10 +32,23 @@ import { MaterialModule } from '../appadmin/material.module';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
+    RouterModule,
+    HttpClientModule,
     RouterModule.forRoot(
                           [
                             { path: '', redirectTo: 'admin', pathMatch: 'full' },
-                            { path:'admin', component:AdminComponent}
+                            { path:'admin', component:AdminComponent},
+                            { path:'home', component: HomeComponent,
+                            children:[
+                              { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+                              { path:'dashboard', component:DashboardComponent},
+                              { path:'map', component: MapComponent},
+                              // { path:'timeline'},
+                              // { path:'database'},
+                              { path:'calendar', component:CalendarComponent},
+                            ]
+                          },
+                          { path:'dashboard', component:DashboardComponent},
                           ]),
   ],
 
