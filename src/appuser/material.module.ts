@@ -24,6 +24,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule(
@@ -46,6 +47,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
             MatSelectModule,
             MatChipsModule,
             MatCheckboxModule,
+            MatProgressSpinnerModule,
             ReactiveFormsModule
         ],
             
