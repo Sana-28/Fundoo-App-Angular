@@ -1,9 +1,37 @@
 <!-- <mat-progress-bar mode="determinate" value="40"></mat-progress-bar> -->
 <div class="container">
         <div fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="900px" fxLayoutGap="20px">
+                <div *ngFor="let usernote of usernotes" fxFlex="30">
+                        <mat-card class="card">
+                                <mat-card-header>
+                                        <mat-icon style="margin-left: -18px;margin-right: 12px;">account_circle</mat-icon>
+                                        <div [innerHTML]="usernote.userName">
+                                        </div>
+                                </mat-card-header>
 
-                <!-- <mat-card fxFlex style="flex: 30; margin-top: 86px; background-color:turquoise">User card</mat-card> -->
-                <mat-card class="card" fxFlex="30">Note card</mat-card>
-                <mat-card class="card" fxFlex="30">Image card</mat-card>
+                                <mat-card style="margin-top: 21px;background-color: aliceblue;">
+                                        <mat-card-header>
+                                                <div style="margin-left: -29px; margin-right: 13px;">Text note count</div>
+                                                <div [innerHTML]="usernote.textNoteCount"></div>
+                                               
+                                        </mat-card-header>
+                                </mat-card>
+
+                                <mat-card  style="margin-top: 21px; background-color: lavender;">
+                                        <mat-card-header>
+                                                 <div style="margin-left: -29px; margin-right: 13px;">Image note count</div>
+                                                <div [innerHTML]="usernote.imageNoteCount"></div>
+                                        </mat-card-header>
+                                </mat-card>
+
+                                <mat-card  style="margin-top: 21px; background-color: lightsteelblue;">
+                                        <mat-card-header>
+                                                <div style="margin-left: -29px; margin-right: 13px;">Total note count</div>
+                                                <div [innerHTML]="usernote.noteCount"></div>
+                                        </mat-card-header>
+                                </mat-card>
+
+                        </mat-card>
+                </div>
         </div>
 </div>
