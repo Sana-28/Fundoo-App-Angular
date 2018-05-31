@@ -24,8 +24,6 @@ import { MatNativeDateModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatTooltipModule } from '@angular/material/tooltip';
-
 
 @NgModule(
     {
@@ -48,7 +46,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
             MatChipsModule,
             MatCheckboxModule,
             MatProgressBarModule,
-            MatTooltipModule,
             ReactiveFormsModule
         ],
             
