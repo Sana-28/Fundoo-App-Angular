@@ -24,7 +24,7 @@ import { CollaboratorComponent } from './component/collaborator/collaborator.com
 import { UpdateNoteComponent } from './component/update-note/update-note.component';
 import { ErrorComponent } from './component/error/error.component';
 import { UpdatelabelComponent } from './component/updatelabel/updatelabel.component';
-
+import { LabelnoteComponent } from './component/labelnote/labelnote.component';
 
 import { UserService } from './service/user.service';
 import { LoginService } from './service/login.service';
@@ -39,7 +39,6 @@ import { AuthGuard, LoginAuthGuard} from './authguard/auth.guard';
 import { ToolbarDirective } from './directive/toolbar.directive';
 import { SearchFilterPipe } from './filter/search-filter.pipe';
 import { LabelnotePipe } from './filter/labelnote.pipe';
-import { LabelnoteComponent } from './component/labelnote/labelnote.component';
 
 const routes: Routes = [
   //{path:'register',component:RegisterComponent}
