@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserNoteResp } from '../../model/usernoteresp';
-import { UserNoteService } from '../../service/usernote';
+import { UserNoteService } from '../../service/usernote.service';
 
 @Component({
   selector: 'dashboard-admin',
