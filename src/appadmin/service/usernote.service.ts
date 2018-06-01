@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { UserNoteResp } from '../model/usernoteresp';
-import { AdminService } from './admin';
+import { AdminService } from './admin.service';
 
 @Injectable()
 export class UserNoteService {
