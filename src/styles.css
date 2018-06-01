@@ -8,3 +8,9 @@
     height: 200px;
     background: url('/assets/icons/loading-1.gif') no-repeat center;
 }
+
+.msg{
+    text-align: center;
+    margin-left: 3px;
+    color: cornflowerblue;
+}
