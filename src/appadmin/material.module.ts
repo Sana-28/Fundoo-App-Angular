@@ -5,13 +5,14 @@
  * @since: 9/April/2018
  */
 
-import { NgModule } from '@angular/core';
+import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
+import { ChartsModule } from 'ng2-charts';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule} from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,10 +25,15 @@ import { MatNativeDateModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { NgModule } from '@angular/core';
 
 @NgModule(
     {
         imports:[
+            AgmCoreModule.forRoot({
+                apiKey: 'AIzaSyAMuee18C3d68DzpyuB9QVh6LAYRcJ1VeM'
+              }),
+            ChartsModule,         
             FormsModule,
             FlexLayoutModule,
 
@@ -50,9 +56,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
         ],
             
         exports:[
+            AgmCoreModule,
+            ChartsModule,
             FlexLayoutModule,
             FormsModule,
-
             MatButtonModule,
             MatToolbarModule,
             MatCardModule,
