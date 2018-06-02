@@ -1,10 +1,14 @@
 <div style="margin-top: 100px;margin-left: 50px;">
     <mat-card class="card">
-        <h2 style="color: gray;"> Map</h2>
-        <h4 style="color: gray;">home / map</h4>
+        <h2 style="color: royalblue;">{{ title }}</h2>
+        <h4 style="color:  royalblue;">home / map</h4>
     </mat-card>
 
-    <div class="link">
+    <agm-map [latitude]="lat" [longitude]="lng">
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
+
+    <!-- <div class="link">
         <a href="https://www.google.com/maps/"> Google Maps</a>
-    </div>
+    </div> -->
 </div>
