@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Chart } from 'chart.js';
-// import { GraphService } from '../../service/graph.service';
-import { GraphService } from '../../service/graph.service';
+import { UserNoteResp } from '../../model/usernoteresp';
+import { UserNoteService } from '../../service/usernote.service';
 
 @Component({
   selector: 'app-timeline',
@@ -11,18 +10,35 @@ import { GraphService } from '../../service/graph.service';
 })
 export class TimelineComponent {
 
-  constructor(private graphObj: GraphService) { }
+  usernotes : UserNoteResp[];
+
+  constructor(private userNoteSerObj: UserNoteService) { }
 
   ngOnInit() {
+    this.fetchData();
   }
-  
-  public pieChartType:string = 'pie';
- 
+
+  fetchData():void{
+    this.userNoteSerObj.getData()
+                          .subscribe(response => {
+                             this.usernotes = response;
+                             //debugger;
+                            });
+  }
+
+  // lineChart
+  public lineChartData:Array<any> = [];
+  public lineChartLabels:Array<any> = ['Text Notes', 'Image Notes'];
+  public lineChartType:string = 'line';
+
   // Pie
   public pieChartLabels:string[] = ['Text Notes', 'Image Notes', 'Total Notes'];
-  public pieChartData:number[] = [4, 4, 8];
+  public pieChartType:string = 'pie';
+
+  public pieChartData:number[] ;
  
   public randomizeType():void {
+    this.lineChartType = this.lineChartType === 'line' ? 'bar' : 'line';
     this.pieChartType = this.pieChartType === 'doughnut' ? 'pie' : 'doughnut';
   }
  
