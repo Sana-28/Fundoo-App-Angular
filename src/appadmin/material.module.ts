@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule} from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
@@ -25,7 +26,10 @@ import { MatNativeDateModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTableModule } from '@angular/material/table';
 import { NgModule } from '@angular/core';
+import { Observable } from 'rxjs';
+
 
 @NgModule(
     {
@@ -33,10 +37,10 @@ import { NgModule } from '@angular/core';
             AgmCoreModule.forRoot({
                 apiKey: 'AIzaSyAMuee18C3d68DzpyuB9QVh6LAYRcJ1VeM'
               }),
-            ChartsModule,         
+            ChartsModule,
             FormsModule,
             FlexLayoutModule,
-
+            HttpClientModule,
             MatButtonModule,
             MatToolbarModule,
             MatInputModule,
@@ -52,6 +56,7 @@ import { NgModule } from '@angular/core';
             MatChipsModule,
             MatCheckboxModule,
             MatProgressBarModule,
+            MatTableModule,
             ReactiveFormsModule
         ],
             
@@ -60,6 +65,7 @@ import { NgModule } from '@angular/core';
             ChartsModule,
             FlexLayoutModule,
             FormsModule,
+            HttpClientModule,
             MatButtonModule,
             MatToolbarModule,
             MatCardModule,
@@ -74,7 +80,7 @@ import { NgModule } from '@angular/core';
             MatSelectModule,
             MatChipsModule,
             MatCheckboxModule,
-        
+            MatTableModule,
             ReactiveFormsModule
         ],
     }
