@@ -37,4 +37,12 @@ export class AdminService {
     let urlpath=this.URL.concat(url);
     return this.http.get<any>(urlpath,this.httpOptions);
   }
+
+  //debugger;
+  public postService(url, model? : any): Observable<any> {
+
+    console.log(url, model);
+    let urlpath=this.URL.concat(url);
+    return this.http.post<any>(urlpath, this.httpOptions, { observe: 'response'});
+  }
 }
