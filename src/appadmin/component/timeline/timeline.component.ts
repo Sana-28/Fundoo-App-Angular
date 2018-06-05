@@ -32,7 +32,7 @@ export class TimelineComponent {
   public lineChartType:string = 'line';
 
   // Pie
-  public pieChartLabels:string[] = ['Text Notes', 'Image Notes', 'Total Notes'];
+  public pieChartLabels:string[] = ['Total Notes', 'Text Notes', 'Image Notes'];
   public pieChartType:string = 'pie';
 
   public pieChartData:number[] ;
